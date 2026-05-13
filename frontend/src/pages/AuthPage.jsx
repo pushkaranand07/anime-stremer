@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import gsap from 'gsap';
 import { useAuth } from '../context/AuthContext';
 import MagnetButton from '../components/ui/MagnetButton';
@@ -11,7 +10,7 @@ export default function AuthPage() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
-  const { login } = useAuth();
+  const { login, signup } = useAuth();
   const navigate = useNavigate();
   const containerRef = useRef(null);
 
@@ -28,19 +27,16 @@ export default function AuthPage() {
     setIsLoading(true);
 
     try {
-      const endpoint = isLogin ? '/login' : '/signup';
-      const response = await axios.post(`http://localhost:5000/api/auth${endpoint}`, formData);
-      
       if (isLogin) {
-        login(response.data.user, response.data.token);
+        await login({ email: formData.email, password: formData.password });
         navigate('/');
       } else {
-        setIsLogin(true);
+        await signup(formData);
+        setIsLogin(true); // Switch to login after successful signup
         setFormData({ ...formData, password: '' });
-        // Optionally show success toast here
       }
     } catch (err) {
-      setError(err.response?.data?.error || 'Something went wrong');
+      setError(err.message || 'Authentication failed');
     } finally {
       setIsLoading(false);
     }
@@ -72,7 +68,7 @@ export default function AuthPage() {
                 type="text"
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-yellow-500/50 transition-all"
+                className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:yellow-500/50 transition-all"
                 placeholder="otaku_explorer"
               />
             </div>
@@ -100,9 +96,13 @@ export default function AuthPage() {
             />
           </div>
 
-          <MagnetButton className="w-full py-5 text-lg" onClick={() => {}}>
+          <button 
+            type="submit"
+            disabled={isLoading}
+            className="w-full py-5 text-lg bg-yellow-500 text-black font-black rounded-2xl hover:bg-yellow-400 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             {isLoading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
-          </MagnetButton>
+          </button>
         </form>
 
         <div className="mt-8 text-center">

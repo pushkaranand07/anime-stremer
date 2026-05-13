@@ -1,0 +1,12 @@
+2026-05-14 00:17:18:1718 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:26:19:2619 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:33:12:3312 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:33:13:3313 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:33:15:3315 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:33:36:3336 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:33:36:3336 [31merror[39m: [31mGET /favicon.ico - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:34:55:3455 [31merror[39m: [31mGET /.well-known/appspecific/com.chrome.devtools.json - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:35:00:350 [31merror[39m: [31mGET /favicon.ico - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:35:01:351 [31merror[39m: [31mGET /favicon.ico - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:35:19:3519 [31merror[39m: [31mGET /.well-known/appspecific/com.chrome.devtools.json - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:40:58:4058 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - All providers failed: Hianime: Something went wrong. Please try again later., AnimeKai: Something went wrong. Please try again later., AnimePahe: getaddrinfo ENOTFOUND animepahe.si, KickAssAnime: getaddrinfo ENOTFOUND kickass-anime.ru[39m

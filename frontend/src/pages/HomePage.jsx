@@ -17,20 +17,26 @@ export default function HomePage() {
 
   // Hero reveal animation
   useEffect(() => {
+    if (status === 'pending') return;
+    
     const ctx = gsap.context(() => {
-      gsap.fromTo('.hero-content > *', 
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.2 }
-      );
+      if (document.querySelector('.hero-content')) {
+        gsap.fromTo('.hero-content > *', 
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.2 }
+        );
+      }
       
-      gsap.fromTo('.hero-bg',
-        { scale: 1.2, opacity: 0 },
-        { scale: 1, opacity: 0.3, duration: 2, ease: 'power2.out' }
-      );
+      if (document.querySelector('.hero-bg')) {
+        gsap.fromTo('.hero-bg',
+          { scale: 1.2, opacity: 0 },
+          { scale: 1, opacity: 0.3, duration: 2, ease: 'power2.out' }
+        );
+      }
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [status]);
 
   // Trigger next page when user scrolls to bottom
   useEffect(() => {

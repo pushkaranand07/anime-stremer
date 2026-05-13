@@ -1,0 +1,51 @@
+2026-05-14 00:03:52:352 [35mhttp[39m: [35mOPTIONS /api/v1/favorites?page=1&limit=20 204 0 - 2.038 ms[39m
+2026-05-14 00:06:22:622 [35mhttp[39m: [35mOPTIONS /api/v1/favorites?page=1&limit=20 204 0 - 0.226 ms[39m
+2026-05-14 00:06:32:632 [35mhttp[39m: [35mOPTIONS /api/v1/favorites?page=1&limit=20 204 0 - 0.268 ms[39m
+2026-05-14 00:08:14:814 [35mhttp[39m: [35mGET /api/v1 500 1251 - 4.369 ms[39m
+2026-05-14 00:08:14:814 [35mhttp[39m: [35mGET /favicon.ico 500 1251 - 0.833 ms[39m
+2026-05-14 00:08:34:834 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 0.581 ms[39m
+2026-05-14 00:08:35:835 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 0.454 ms[39m
+2026-05-14 00:08:37:837 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 0.437 ms[39m
+2026-05-14 00:08:38:838 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 0.778 ms[39m
+2026-05-14 00:08:39:839 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 0.421 ms[39m
+2026-05-14 00:08:41:841 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 0.561 ms[39m
+2026-05-14 00:08:56:856 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 0.901 ms[39m
+2026-05-14 00:08:57:857 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 0.494 ms[39m
+2026-05-14 00:08:59:859 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 0.482 ms[39m
+2026-05-14 00:09:15:915 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Tongari+Boushi+no+Atelier 500 1251 - 0.503 ms[39m
+2026-05-14 00:09:16:916 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Tongari+Boushi+no+Atelier 500 1251 - 0.503 ms[39m
+2026-05-14 00:09:18:918 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Tongari+Boushi+no+Atelier 500 1251 - 0.550 ms[39m
+2026-05-14 00:09:21:921 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Tongari+Boushi+no+Atelier 500 1251 - 0.414 ms[39m
+2026-05-14 00:09:22:922 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Tongari+Boushi+no+Atelier 500 1251 - 0.461 ms[39m
+2026-05-14 00:09:24:924 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Tongari+Boushi+no+Atelier 500 1251 - 0.514 ms[39m
+2026-05-14 00:09:42:942 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Ore+dake+Level+Up+na+Ken+Season+2:+Arise+from+the+Shadow 500 1251 - 0.518 ms[39m
+2026-05-14 00:09:43:943 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Ore+dake+Level+Up+na+Ken+Season+2:+Arise+from+the+Shadow 500 1251 - 0.339 ms[39m
+2026-05-14 00:09:45:945 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Ore+dake+Level+Up+na+Ken+Season+2:+Arise+from+the+Shadow 500 1251 - 0.447 ms[39m
+2026-05-14 00:13:46:1346 [35mhttp[39m: [35mOPTIONS /api/v1/favorites?page=1&limit=20 204 0 - 1.935 ms[39m
+2026-05-14 00:13:51:1351 [35mhttp[39m: [35mOPTIONS /api/v1/streaming/info?q=Re:Zero+kara+Hajimeru+Isekai+Seikatsu+4th+Season 204 0 - 0.230 ms[39m
+2026-05-14 00:13:52:1352 [35mhttp[39m: [35mOPTIONS /api/v1/streaming/info?q=Re:Zero+kara+Hajimeru+Isekai+Seikatsu+4th+Season 204 0 - 0.488 ms[39m
+2026-05-14 00:13:54:1354 [35mhttp[39m: [35mOPTIONS /api/v1/streaming/info?q=Re:Zero+kara+Hajimeru+Isekai+Seikatsu+4th+Season 204 0 - 0.207 ms[39m
+2026-05-14 00:17:18:1718 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:17:18:1718 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 3.089 ms[39m
+2026-05-14 00:26:19:2619 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:26:19:2619 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 5.973 ms[39m
+2026-05-14 00:33:12:3312 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:33:12:3312 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 18.162 ms[39m
+2026-05-14 00:33:13:3313 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:33:13:3313 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 2.083 ms[39m
+2026-05-14 00:33:15:3315 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:33:15:3315 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 2.226 ms[39m
+2026-05-14 00:33:36:3336 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:33:36:3336 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 500 1251 - 15.711 ms[39m
+2026-05-14 00:33:36:3336 [31merror[39m: [31mGET /favicon.ico - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:33:36:3336 [35mhttp[39m: [35mGET /favicon.ico 500 1251 - 2.906 ms[39m
+2026-05-14 00:34:55:3455 [31merror[39m: [31mGET /.well-known/appspecific/com.chrome.devtools.json - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:34:55:3455 [35mhttp[39m: [35mGET /.well-known/appspecific/com.chrome.devtools.json 500 1251 - 1.498 ms[39m
+2026-05-14 00:35:00:350 [31merror[39m: [31mGET /favicon.ico - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:35:00:350 [35mhttp[39m: [35mGET /favicon.ico 500 1251 - 3.229 ms[39m
+2026-05-14 00:35:01:351 [31merror[39m: [31mGET /favicon.ico - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:35:01:351 [35mhttp[39m: [35mGET /favicon.ico 500 1251 - 2.582 ms[39m
+2026-05-14 00:35:19:3519 [31merror[39m: [31mGET /.well-known/appspecific/com.chrome.devtools.json - Cannot set property query of #<IncomingMessage> which has only a getter[39m
+2026-05-14 00:35:19:3519 [35mhttp[39m: [35mGET /.well-known/appspecific/com.chrome.devtools.json 500 1251 - 2.235 ms[39m
+2026-05-14 00:40:58:4058 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - All providers failed: Hianime: Something went wrong. Please try again later., AnimeKai: Something went wrong. Please try again later., AnimePahe: getaddrinfo ENOTFOUND animepahe.si, KickAssAnime: getaddrinfo ENOTFOUND kickass-anime.ru[39m
+2026-05-14 00:40:58:4058 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 503 1032 - 22265.184 ms[39m

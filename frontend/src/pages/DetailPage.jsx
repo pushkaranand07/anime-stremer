@@ -8,6 +8,8 @@ import { useFavorites } from '../context/FavoritesContext';
 import { useAuth } from '../context/AuthContext';
 import MagnetButton from '../components/ui/MagnetButton';
 
+import { streamingService } from '../features/streaming/services/streamingService';
+
 export default function DetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -25,6 +27,12 @@ export default function DetailPage() {
     queryKey: ['anime', id, 'characters'],
     queryFn: () => fetchAnimeCharacters(id),
     enabled: !!anime,
+  });
+
+  const { data: streamInfo } = useQuery({
+    queryKey: ['streaming', anime?.title],
+    queryFn: () => streamingService.getAnimeInfo(anime?.title),
+    enabled: !!anime?.title,
   });
 
   if (animeLoading) return <LoadingSpinner />;

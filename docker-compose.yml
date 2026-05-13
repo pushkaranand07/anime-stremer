@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ./backend
+    env_file: ./backend/.env.example
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    networks:
+      - animestream-network
+
+  mongo:
+    image: mongo:7
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - animestream-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    networks:
+      - animestream-network
+
+networks:
+  animestream-network:
+    driver: bridge
+
+volumes:
+  mongo_data:

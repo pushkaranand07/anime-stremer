@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
 import { useQueryClient } from '@tanstack/react-query';
+import { authService } from '../services/auth.service';
 
 const AuthContext = createContext();
 
@@ -13,37 +13,61 @@ export function AuthProvider({ children }) {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (token) {
-      localStorage.setItem('token', token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      const savedUser = JSON.parse(localStorage.getItem('user'));
-      if (savedUser) setUser(savedUser);
-    } else {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      delete axios.defaults.headers.common['Authorization'];
-      setUser(null);
-    }
-    setLoading(false);
+    const initAuth = async () => {
+      if (token) {
+        localStorage.setItem('token', token);
+        const savedUser = JSON.parse(localStorage.getItem('user'));
+        if (savedUser) setUser(savedUser);
+      } else {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setUser(null);
+      }
+      setLoading(false);
+    };
+
+    initAuth();
   }, [token]);
 
-  const login = (userData, userToken) => {
-    setUser(userData);
-    setToken(userToken);
-    localStorage.setItem('user', JSON.stringify(userData));
-    // Invalidate favorites cache so they reload for this user
-    queryClient.invalidateQueries({ queryKey: ['favorites'] });
+  const login = async (credentials) => {
+    try {
+      const response = await authService.login(credentials);
+      const { user, token } = response.data;
+      
+      setUser(user);
+      setToken(token);
+      localStorage.setItem('user', JSON.stringify(user));
+      
+      queryClient.invalidateQueries({ queryKey: ['favorites'] });
+      return response;
+    } catch (error) {
+      throw error;
+    }
   };
 
   const logout = () => {
     setToken(null);
     setUser(null);
-    // Clear cached favorites so they don't show for the next user
     queryClient.removeQueries({ queryKey: ['favorites'] });
   };
 
+  const signup = async (userData) => {
+    try {
+      const response = await authService.signup(userData);
+      const { user, token } = response.data;
+      
+      setUser(user);
+      setToken(token);
+      localStorage.setItem('user', JSON.stringify(user));
+      
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, loading, isAuthenticated: !!token }}>
+    <AuthContext.Provider value={{ user, token, login, logout, signup, loading, isAuthenticated: !!token }}>
       {children}
     </AuthContext.Provider>
   );

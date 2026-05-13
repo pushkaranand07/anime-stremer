@@ -1,37 +1,24 @@
-import axios from 'axios';
+import apiClient from './api.client';
 
-const API_BASE = 'http://localhost:5000/api';
+export const favoriteService = {
+  async getFavorites(page = 1, limit = 20) {
+    return await apiClient.get('/favorites', {
+      params: { page, limit }
+    });
+  },
 
-// Helper: always gets a fresh auth header from localStorage
-const authHeader = () => {
-  const token = localStorage.getItem('token');
-  return token ? { Authorization: `Bearer ${token}` } : {};
-};
+  async addFavorite(anime) {
+    // Map Jikan anime object to our backend schema
+    const favoriteData = {
+      animeId: String(anime.mal_id),
+      title: anime.title,
+      imageUrl: anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url,
+      malId: String(anime.mal_id)
+    };
+    return await apiClient.post('/favorites', favoriteData);
+  },
 
-export const fetchFavorites = async () => {
-  const response = await axios.get(`${API_BASE}/favorites`, {
-    headers: authHeader(),
-  });
-  return response.data;
-};
-
-export const addFavoriteToDB = async (anime) => {
-  const payload = {
-    anime_id: anime.mal_id,
-    title: anime.title,
-    image_url: anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url,
-    score: anime.score,
-    episodes: anime.episodes,
-  };
-  const response = await axios.post(`${API_BASE}/favorites`, payload, {
-    headers: authHeader(),
-  });
-  return response.data;
-};
-
-export const removeFavoriteFromDB = async (animeId) => {
-  const response = await axios.delete(`${API_BASE}/favorites/${animeId}`, {
-    headers: authHeader(),
-  });
-  return response.data;
+  async removeFavorite(animeId) {
+    return await apiClient.delete(`/favorites/${animeId}`);
+  }
 };

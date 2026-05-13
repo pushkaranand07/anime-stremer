@@ -20,11 +20,11 @@ export default function FavoritesPage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
           {favorites.map(fav => (
             <AnimeCard 
-              key={fav.anime_id} 
+              key={fav.animeId} 
               anime={{
-                mal_id: fav.anime_id,
+                mal_id: fav.animeId,
                 title: fav.title,
-                images: { jpg: { large_image_url: fav.image_url, image_url: fav.image_url } },
+                images: { jpg: { large_image_url: fav.imageUrl, image_url: fav.imageUrl } },
                 score: fav.score,
                 episodes: fav.episodes
               }} 
