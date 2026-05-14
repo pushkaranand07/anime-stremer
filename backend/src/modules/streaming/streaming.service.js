@@ -1,5 +1,6 @@
 const cacheService = require('./cache.service');
 const providerService = require('./provider.service');
+const providerConfig = require('../../config/provider.config');
 
 class StreamingService {
   async getAnimeInfo(query) {
@@ -8,10 +9,13 @@ class StreamingService {
     if (cached) return cached;
 
     const info = await providerService.fetchAnimeInfo(query);
-    
-    // Normalize and format (could use a dedicated formatter class here)
+
+    // Look up hasDub capability for the provider that responded
+    const matchingProvider = providerConfig.chain.find(p => p.name === info.provider);
+
     const result = {
       provider: info.provider,
+      hasDub: matchingProvider?.hasDub || false,
       id: info.id,
       title: info.title,
       image: info.image,
@@ -34,7 +38,7 @@ class StreamingService {
     if (cached) return cached;
 
     const sourcesData = await providerService.fetchEpisodeSources(episodeId, provider, subOrDub);
-    
+
     const result = {
       provider: sourcesData.provider,
       subOrDub: subOrDub,

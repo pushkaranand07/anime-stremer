@@ -15,7 +15,7 @@ class MangaHookProvider {
 
     const response = await axios.get(url, {
       params,
-      timeout: 20000,
+      timeout: 8000,
     });
 
     if (response.status !== 200) {

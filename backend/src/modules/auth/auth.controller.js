@@ -1,6 +1,7 @@
 const authService = require('./auth.service');
 const asyncHandler = require('../../utils/asyncHandler');
 const ApiResponse = require('../../utils/ApiResponse');
+const ApiError = require('../../utils/ApiError');
 
 const signup = asyncHandler(async (req, res) => {
   const result = await authService.register(req.body);

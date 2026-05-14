@@ -8,12 +8,16 @@ export const favoriteService = {
   },
 
   async addFavorite(anime) {
-    // Map Jikan anime object to our backend schema
+    // Map the full Jikan anime object to our backend Favorite schema
     const favoriteData = {
       animeId: String(anime.mal_id),
       title: anime.title,
-      imageUrl: anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url,
-      malId: String(anime.mal_id)
+      imageUrl: anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url || null,
+      malId: String(anime.mal_id),
+      score: typeof anime.score === 'number' ? anime.score : null,
+      episodes: typeof anime.episodes === 'number' ? anime.episodes : null,
+      type: anime.type || null,
+      genres: Array.isArray(anime.genres) ? anime.genres.map(g => g.name).filter(Boolean) : [],
     };
     return await apiClient.post('/favorites', favoriteData);
   },

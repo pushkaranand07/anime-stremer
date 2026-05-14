@@ -7,7 +7,7 @@ import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 const MANGA_PROVIDERS = ['MangaPill', 'Mangahook', 'MangaKakalot', 'MangaDex'];
 
 export default function MangaPage() {
-  const [searchQuery, setSearchQuery] = useState('Solo Leveling'); // Default trending manga
+  const [searchQuery, setSearchQuery] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [selectedProvider, setSelectedProvider] = useState('MangaPill');
 

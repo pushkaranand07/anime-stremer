@@ -2,65 +2,94 @@ const path = require('path');
 const os = require('os');
 const logger = require('../../utils/logger');
 
+// Maximum number of concurrent torrents to keep in memory
+const MAX_STREAMS = 5;
+
 class TorrentService {
   constructor() {
     this.client = null;
-    this.streams = new Map(); // torrentId -> stream info
+    this.streams = new Map(); // magnetUri -> stream info
   }
 
   async getClient() {
     if (!this.client) {
       const { default: WebTorrent } = await import('webtorrent');
       this.client = new WebTorrent();
+      this.client.on('error', (err) => {
+        logger.error(`[TorrentService] Client error: ${err.message}`);
+      });
     }
     return this.client;
   }
 
-  async startStream(magnetUri) {
+  _evictOldestIfNeeded() {
+    if (this.streams.size >= MAX_STREAMS) {
+      // Remove the oldest entry (first inserted)
+      const oldestKey = this.streams.keys().next().value;
+      const oldestInfo = this.streams.get(oldestKey);
+      logger.info(`[TorrentService] Evicting torrent: ${oldestInfo.name}`);
+      if (this.client) {
+        this.client.remove(oldestKey, { destroyStore: false }, () => {});
+      }
+      this.streams.delete(oldestKey);
+    }
+  }
+
+  startStream(magnetUri) {
     if (this.streams.has(magnetUri)) {
-      return this.streams.get(magnetUri);
+      return Promise.resolve(this.streams.get(magnetUri));
     }
 
-    return new Promise(async (resolve, reject) => {
-      const client = await this.getClient();
-      client.add(magnetUri, { path: path.join(os.tmpdir(), 'seanime-torrents') }, (torrent) => {
-        logger.info(`[TorrentService] Torrent added: ${torrent.name}`);
+    this._evictOldestIfNeeded();
 
-        // Find the largest file (usually the video)
-        const file = torrent.files.reduce((a, b) => (a.length > b.length ? a : b));
+    return new Promise((resolve, reject) => {
+      this.getClient().then((client) => {
+        client.add(magnetUri, { path: path.join(os.tmpdir(), 'anime-torrents') }, (torrent) => {
+          logger.info(`[TorrentService] Torrent added: ${torrent.name}`);
 
-        const streamInfo = {
-          id: magnetUri,
-          name: torrent.name,
-          fileName: file.name,
-          length: file.length,
-          file: file,
-          progress: 0
-        };
+          const file = torrent.files.reduce((a, b) => (a.length > b.length ? a : b));
 
-        this.streams.set(magnetUri, streamInfo);
+          const streamInfo = {
+            id: magnetUri,
+            name: torrent.name,
+            fileName: file.name,
+            length: file.length,
+            file,
+            progress: 0,
+          };
 
-        torrent.on('download', () => {
-          streamInfo.progress = torrent.progress;
+          this.streams.set(magnetUri, streamInfo);
+
+          torrent.on('download', () => {
+            streamInfo.progress = torrent.progress;
+          });
+
+          resolve(streamInfo);
         });
-
-        resolve(streamInfo);
-      });
-
-      client.on('error', (err) => {
-        logger.error(`[TorrentService] Client Error: ${err.message}`);
-        reject(err);
-      });
+      }).catch(reject);
     });
   }
 
   getStream(magnetUri, range) {
     const streamInfo = this.streams.get(magnetUri);
     if (!streamInfo) return null;
-
-    // WebTorrent's createReadStream handles sequential prioritization automatically
     return streamInfo.file.createReadStream(range);
+  }
+
+  destroy() {
+    if (this.client) {
+      this.client.destroy();
+      this.client = null;
+    }
+    this.streams.clear();
   }
 }
 
-module.exports = new TorrentService();
+const torrentService = new TorrentService();
+
+// Cleanup on process exit
+process.on('exit', () => torrentService.destroy());
+process.on('SIGINT', () => { torrentService.destroy(); process.exit(0); });
+process.on('SIGTERM', () => { torrentService.destroy(); process.exit(0); });
+
+module.exports = torrentService;

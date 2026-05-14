@@ -4,6 +4,9 @@ const ApiError = require('../../utils/ApiError');
 const MangaHookProvider = require('../../services/mangaProviders/mangahook.provider');
 
 class MangaService {
+  // Providers that serve images with strict Referer requirements (need backend proxy)
+  static PROXY_REQUIRED_PROVIDERS = new Set(['MangaPill', 'MangaKakalot', 'Mangahook']);
+
   constructor() {
     this.providers = {
       MangaPill: null,
@@ -11,18 +14,34 @@ class MangaService {
       MangaDex: null,
       MangaKakalot: null
     };
-    this.baseUrl = process.env.API_BASE_URL || 'http://localhost:5000/api/v1';
+
+    // Validate API_BASE_URL in production so proxy URLs are correct
+    this.baseUrl = process.env.API_BASE_URL;
+    if (!this.baseUrl) {
+      if (process.env.NODE_ENV === 'production') {
+        throw new Error('[MangaService] API_BASE_URL environment variable is required in production for manga image proxification');
+      }
+      this.baseUrl = 'http://localhost:5000/api/v1';
+    }
+    // Strip trailing slash
+    this.baseUrl = this.baseUrl.replace(/\/$/, '');
   }
 
   proxify(url, providerName = 'MangaPill') {
     if (!url) return url;
-    
-    // MangaPill is very strict about Referer
+
+    // Skip proxification for providers that already support CORS (e.g. MangaDex CDN)
+    if (!MangaService.PROXY_REQUIRED_PROVIDERS.has(providerName)) {
+      return url;
+    }
+
     const headers = {};
     if (providerName === 'MangaPill') {
       headers['Referer'] = 'https://mangapill.com/';
     } else if (providerName === 'MangaKakalot') {
       headers['Referer'] = 'https://chapmanganato.com/';
+    } else if (providerName === 'Mangahook') {
+      headers['Referer'] = process.env.MANGAHOOK_API_URL || 'http://localhost:4000';
     }
 
     const headersBase64 = Buffer.from(JSON.stringify(headers)).toString('base64');

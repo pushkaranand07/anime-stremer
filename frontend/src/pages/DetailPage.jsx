@@ -34,8 +34,8 @@ export default function DetailPage() {
     isLoading: streamLoading, 
     isError: streamError 
   } = useQuery({
-    queryKey: ['streaming', anime?.title],
-    queryFn: () => streamingService.getAnimeInfo(anime?.title),
+    queryKey: ['streaming', id, anime?.title],
+    queryFn: () => streamingService.getAnimeInfo(anime.title.trim()),
     enabled: !!anime?.title,
     retry: 1,
   });

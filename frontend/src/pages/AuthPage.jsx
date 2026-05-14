@@ -67,7 +67,7 @@ export default function AuthPage() {
                 type="text"
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:yellow-500/50 transition-all"
+                className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-yellow-500/50 transition-all"
                 placeholder="otaku_explorer"
               />
             </div>

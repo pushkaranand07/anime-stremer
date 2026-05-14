@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const User = require('../../models/User.model');
 const userRepository = require('../../repositories/user.repository');
 const ApiError = require('../../utils/ApiError');
 const jwtConfig = require('../../config/jwt.config');
@@ -36,7 +37,8 @@ class AuthService {
   }
 
   async login(email, password) {
-    const userDoc = await require('../../models/User.model').findOne({ email });
+    // Use User model directly to get the full Mongoose document (needed for comparePassword method)
+    const userDoc = await User.findOne({ email }).select('+passwordHash');
     if (!userDoc) {
       throw new ApiError(401, 'Invalid credentials');
     }
@@ -62,23 +64,41 @@ class AuthService {
   }
 
   async refreshAccessToken(refreshToken) {
+    let decoded;
     try {
-      const decoded = jwt.verify(refreshToken, jwtConfig.refreshSecret);
-      const user = await userRepository.findById(decoded.userId);
-      if (!user) {
-        throw new ApiError(401, 'Invalid refresh token');
-      }
-
-      const token = jwt.sign(
-        { userId: user._id, username: user.username, role: user.role },
-        jwtConfig.secret,
-        { expiresIn: jwtConfig.expiry }
-      );
-
-      return { token };
-    } catch (error) {
+      decoded = jwt.verify(refreshToken, jwtConfig.refreshSecret);
+    } catch (err) {
       throw new ApiError(401, 'Invalid or expired refresh token');
     }
+
+    const user = await userRepository.findById(decoded.userId);
+    if (!user) {
+      throw new ApiError(401, 'User not found for this refresh token');
+    }
+
+    const token = jwt.sign(
+      { userId: user._id, username: user.username, role: user.role },
+      jwtConfig.secret,
+      { expiresIn: jwtConfig.expiry }
+    );
+
+    return { token };
+  }
+
+  generateTokens(user) {
+    const token = jwt.sign(
+      { userId: user._id, username: user.username, role: user.role },
+      jwtConfig.secret,
+      { expiresIn: jwtConfig.expiry }
+    );
+
+    const refreshToken = jwt.sign(
+      { userId: user._id },
+      jwtConfig.refreshSecret,
+      { expiresIn: jwtConfig.refreshExpiry }
+    );
+
+    return { token, refreshToken };
   }
 }
 

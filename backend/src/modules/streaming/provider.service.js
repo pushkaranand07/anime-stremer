@@ -106,25 +106,9 @@ class ProviderService {
         errors.push(`${name}: ${err.message}`);
       }
     }
-    
-    // Total failure fallback
-    return this.getFallbackSources(preferredProvider, subOrDub);
-  }
 
-  getFallbackSources(provider, subOrDub) {
-    return {
-      provider: provider || 'Fallback',
-      subOrDub,
-      isFallback: true,
-      sources: [
-        {
-          url: 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4',
-          quality: '1080p',
-          isM3U8: false,
-        }
-      ],
-      subtitles: [],
-    };
+    // All providers failed — throw so the frontend shows "No Streams Available"
+    throw new ApiError(503, `No streaming sources available. All providers failed: ${errors.join(', ')}`);
   }
 }
 

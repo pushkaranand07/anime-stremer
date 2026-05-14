@@ -5,17 +5,15 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
+    unique: true,  // unique: true already creates an index — do not add index: true
     trim: true,
-    index: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: true,  // unique: true already creates an index — do not add index: true
     trim: true,
     lowercase: true,
-    index: true,
   },
   passwordHash: {
     type: String,

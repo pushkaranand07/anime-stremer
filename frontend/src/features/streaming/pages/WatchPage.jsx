@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAnimeById } from '../../../api/endpoints';
 import { streamingService } from '../services/streamingService';
@@ -10,6 +10,7 @@ import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 export default function WatchPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [currentEpisode, setCurrentEpisode] = useState(null);
 
   // ── Metadata fetching ──────────────────────────────────────────────────
@@ -24,21 +25,26 @@ export default function WatchPage() {
     isError: streamError,
     error: streamErrorInfo 
   } = useQuery({
-    queryKey: ['streaming', anime?.title],
-    queryFn: () => streamingService.getAnimeInfo(anime?.title),
+    queryKey: ['streaming', id, anime?.title],
+    queryFn: () => streamingService.getAnimeInfo(anime.title.trim()),
     enabled: !!anime?.title,
     retry: 1
   });
 
-  // Set first episode by default if not set
+  // Restore episode from URL param, or default to first episode
   useEffect(() => {
     if (streamInfo?.episodes?.length > 0 && !currentEpisode) {
-      setCurrentEpisode(streamInfo.episodes[0]);
+      const epParam = parseInt(searchParams.get('ep'), 10);
+      const targetEp = epParam
+        ? streamInfo.episodes.find(e => e.number === epParam) || streamInfo.episodes[0]
+        : streamInfo.episodes[0];
+      setCurrentEpisode(targetEp);
     }
-  }, [streamInfo, currentEpisode]);
+  }, [streamInfo]);
 
   const handleEpisodeSelect = (ep) => {
     setCurrentEpisode(ep);
+    setSearchParams({ ep: ep.number });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

@@ -1,12 +1,10 @@
 const streamingService = require('./streaming.service');
 const proxyService = require('./proxy.service');
 const torrentService = require('./torrent.service');
-const transcoderService = require('./transcoder.service');
 const asyncHandler = require('../../utils/asyncHandler');
 const ApiResponse = require('../../utils/ApiResponse');
 const ApiError = require('../../utils/ApiError');
 const axios = require('axios');
-const fs = require('fs');
 const logger = require('../../utils/logger');
 
 const getInfo = asyncHandler(async (req, res) => {

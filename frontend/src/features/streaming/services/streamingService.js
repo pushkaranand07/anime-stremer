@@ -1,57 +1,81 @@
 import apiClient from '../../../services/api.client';
 
+/**
+ * Builds a URL that routes a raw CDN stream URL through the backend proxy.
+ * This solves CORS restrictions on CDN segments.
+ * @param {string} rawStreamUrl - The original CDN URL
+ * @param {object|null} headers - Optional headers the CDN requires (e.g. Referer)
+ * @returns {string} Proxied URL pointing to our backend
+ */
 function buildProxiedUrl(rawStreamUrl, headers) {
+  if (!rawStreamUrl) return rawStreamUrl;
   const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1';
   const encoded = encodeURIComponent(rawStreamUrl);
   let url = `${baseUrl}/streaming/proxy?url=${encoded}`;
-  
-  if (headers) {
+
+  if (headers && Object.keys(headers).length > 0) {
     const headersBase64 = btoa(JSON.stringify(headers));
     url += `&headers=${encodeURIComponent(headersBase64)}`;
   }
-  
+
   return url;
 }
 
 export const streamingService = {
+  /**
+   * Searches providers for a streaming source for the given anime title.
+   * Returns episode list, provider name, hasDub flag, etc.
+   */
   async getAnimeInfo(query) {
-    const res = await apiClient.get('/streaming/info', {
-      params: { q: query }
+    if (!query) return null;
+    // apiClient interceptor returns response.data, which is our ApiResponse wrapper
+    // The actual payload is in .data of that wrapper
+    const apiResponse = await apiClient.get('/streaming/info', {
+      params: { q: query.trim() }
     });
-    return res.data;
+    // apiResponse = { success, statusCode, message, data: { provider, hasDub, episodes, ... } }
+    return apiResponse.data ?? apiResponse;
   },
 
+  /**
+   * Fetches playable video sources for a specific episode.
+   * Proxifies all source and subtitle URLs through the backend proxy.
+   */
   async getEpisodeSources(episodeId, provider, subOrDub) {
+    if (!episodeId) return { sources: [], subtitles: [] };
+
     try {
-      const response = await apiClient.get(`/streaming/watch/${episodeId}`, {
+      const apiResponse = await apiClient.get(`/streaming/watch/${encodeURIComponent(episodeId)}`, {
         params: { provider, subOrDub }
       });
 
-      const rawData = response.data || response; 
-      const apiData = rawData.data || rawData;
+      // apiResponse = { success, statusCode, message, data: { sources, subtitles, provider, ... } }
+      const payload = apiResponse.data ?? apiResponse;
 
-      if (!apiData || !apiData.sources) {
+      if (!payload || !Array.isArray(payload.sources)) {
         return { sources: [], subtitles: [] };
       }
 
-      const sources = apiData.sources.map(source => ({
+      // Proxify every source URL so HLS segments bypass CDN CORS restrictions
+      const sources = payload.sources.map(source => ({
         ...source,
-        url: buildProxiedUrl(source.url, source.headers)
+        url: buildProxiedUrl(source.url, source.headers ?? null),
       }));
 
-      const subtitles = (apiData.subtitles || []).map(sub => ({
+      // Proxify subtitle track URLs as well
+      const subtitles = (payload.subtitles || []).map(sub => ({
         ...sub,
-        url: buildProxiedUrl(sub.url)
+        url: buildProxiedUrl(sub.url, null),
       }));
 
       return {
-        ...apiData,
+        ...payload,
         sources,
-        subtitles
+        subtitles,
       };
     } catch (err) {
-      console.error('[streamingService] Fetch error:', err.message);
+      console.error('[streamingService] getEpisodeSources error:', err.message);
       return { sources: [], subtitles: [] };
     }
-  }
+  },
 };
