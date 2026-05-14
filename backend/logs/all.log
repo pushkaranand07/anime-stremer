@@ -209,3 +209,380 @@
 2026-05-14 10:13:50:1350 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
 2026-05-14 10:13:50:1350 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
 2026-05-14 10:13:50:1350 [35mhttp[39m: [35mGET /api/v1/streaming/watch/rezero-kara-hajimeru-isekai-seikatsu-4th-season-8lj0$ep=1$token=Ltfh8KXzuwau03VfhY-G?provider=Hianime&subOrDub=sub 200 279 - 3917.868 ms[39m
+2026-05-14 10:16:25:1625 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:16:25:1625 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 10:16:25:1625 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:16:25:1625 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:16:45:1645 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:16:45:1645 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "One Piece"...[39m
+2026-05-14 10:16:46:1646 [32minfo[39m: [32m[ProviderService] AnimeKai found 30 results. Top 3: One Piece, One Piece: The Movie, One Piece Uncropped[39m
+2026-05-14 10:16:46:1646 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "One Piece" (one-piece-dk6r)[39m
+2026-05-14 10:16:48:1648 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 23783.176 ms[39m
+2026-05-14 10:16:49:1649 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 4.178 ms[39m
+2026-05-14 10:16:56:1656 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=dub 304 - - 1.714 ms[39m
+2026-05-14 10:17:00:170 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 1.456 ms[39m
+2026-05-14 10:17:03:173 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:17:03:173 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:17:05:175 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=54$token=NcH78-PptQfhi3lKx8g?provider=Hianime&subOrDub=sub 304 - - 2.329 ms[39m
+2026-05-14 10:17:06:176 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:17:07:177 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:17:07:177 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=33$token=JYK69qH2og2xhG8VjZuB?provider=Hianime&subOrDub=sub 200 279 - 3932.719 ms[39m
+2026-05-14 10:17:24:1724 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:17:24:1724 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 9.447 ms[39m
+2026-05-14 10:17:25:1725 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 2.006 ms[39m
+2026-05-14 10:17:31:1731 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:17:31:1731 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:17:34:1734 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:17:35:1735 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:17:35:1735 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=2$token=dYXy8vL4ukrh1W9eyoaB?provider=Hianime&subOrDub=sub 200 279 - 3930.183 ms[39m
+2026-05-14 10:17:37:1737 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:17:37:1737 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:17:40:1740 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:17:40:1740 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:17:40:1740 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1160$token=ccLztvHl5gWvhA?provider=Hianime&subOrDub=sub 200 279 - 3228.415 ms[39m
+2026-05-14 10:17:41:1741 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:17:41:1741 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:17:41:1741 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Server megaup not found[39m
+2026-05-14 10:17:42:1742 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:17:42:1742 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1115$token=KNf89aXxt0bgiA?provider=Hianime&subOrDub=sub 200 279 - 1408.840 ms[39m
+2026-05-14 10:17:43:1743 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:17:43:1743 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:17:46:1746 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:17:47:1747 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:17:47:1747 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1115$token=KNf89aXxt0bgiA?provider=Hianime&subOrDub=dub 200 279 - 3358.547 ms[39m
+2026-05-14 10:18:30:1830 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:18:31:1831 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:18:32:1832 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:18:32:1832 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:18:33:1833 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:18:34:1834 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:18:34:1834 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1103$token=KYG5quf4qRjkm3VMy5Td?provider=Hianime&subOrDub=dub 200 279 - 4058.503 ms[39m
+2026-05-14 10:18:36:1836 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:18:37:1837 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:18:37:1837 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1091$token=LoPk8KH2vQa6kXoVxMeA?provider=Hianime&subOrDub=dub 200 279 - 5175.880 ms[39m
+2026-05-14 10:18:40:1840 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:18:40:1840 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:18:42:1842 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:18:43:1843 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:18:43:1843 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1122$token=e9ezpabzqUrhhm8TyoaV?provider=Hianime&subOrDub=dub 200 279 - 3227.477 ms[39m
+2026-05-14 10:18:45:1845 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=dub 304 - - 1.701 ms[39m
+2026-05-14 10:18:49:1849 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 1.783 ms[39m
+2026-05-14 10:19:09:199 [32minfo[39m: [32m[StreamingController] GET /info?q="Nippon Sangoku"[39m
+2026-05-14 10:19:09:199 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "Nippon Sangoku"...[39m
+2026-05-14 10:19:10:1910 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:19:10:1910 [32minfo[39m: [32m[ProviderService] Searching Hianime for "Nippon Sangoku"...[39m
+2026-05-14 10:19:30:1930 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:19:30:1930 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "Nippon Sangoku"...[39m
+2026-05-14 10:19:30:1930 [32minfo[39m: [32m[ProviderService] AnimeKai found 30 results. Top 3: Nippon Sangoku: The Three Nations of the Crimson Sun, The Legend of the Strongest General: Romance of the Three Kingdoms, Ippou Nippon Mukashibanashi[39m
+2026-05-14 10:19:30:1930 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "Nippon Sangoku: The Three Nations of the Crimson Sun" (nippon-sangoku-rkkm9)[39m
+2026-05-14 10:19:31:1931 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Nippon+Sangoku 200 1772 - 22027.733 ms[39m
+2026-05-14 10:19:31:1931 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:19:31:1931 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:19:34:1934 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:19:35:1935 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:19:35:1935 [35mhttp[39m: [35mGET /api/v1/streaming/watch/nippon-sangoku-rkkm9$ep=1$token=e4Wz-Oz4uw26iWhfipTb?provider=Hianime&subOrDub=sub 200 279 - 3405.489 ms[39m
+2026-05-14 10:19:40:1940 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:19:40:1940 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:19:42:1942 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:19:43:1943 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:19:43:1943 [35mhttp[39m: [35mGET /api/v1/streaming/watch/nippon-sangoku-rkkm9$ep=1$token=e4Wz-Oz4uw26iWhfipTb?provider=Hianime&subOrDub=dub 200 279 - 3444.290 ms[39m
+2026-05-14 10:19:47:1947 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:19:47:1947 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 8.729 ms[39m
+2026-05-14 10:19:49:1949 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 2.455 ms[39m
+2026-05-14 10:20:04:204 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=2$token=dYXy8vL4ukrh1W9eyoaB?provider=Hianime&subOrDub=sub 304 - - 2.960 ms[39m
+2026-05-14 10:20:05:205 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 2.400 ms[39m
+2026-05-14 10:21:53:2153 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 19.793 ms[39m
+2026-05-14 10:22:03:223 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 3.779 ms[39m
+2026-05-14 10:22:50:2250 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:22:50:2250 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 33.284 ms[39m
+2026-05-14 10:22:52:2252 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 5.961 ms[39m
+2026-05-14 10:23:00:230 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=dub 304 - - 2.655 ms[39m
+2026-05-14 10:23:13:2313 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 2.149 ms[39m
+2026-05-14 10:25:08:258 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:25:08:258 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 40.228 ms[39m
+2026-05-14 10:25:09:259 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:25:09:259 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 7.783 ms[39m
+2026-05-14 10:26:45:2645 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:26:45:2645 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 16.317 ms[39m
+2026-05-14 10:26:47:2647 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 5.215 ms[39m
+2026-05-14 10:28:42:2842 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 2.804 ms[39m
+2026-05-14 10:29:41:2941 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:29:41:2941 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 30.058 ms[39m
+2026-05-14 10:29:42:2942 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:29:42:2942 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:29:42:2942 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 7.294 ms[39m
+2026-05-14 10:29:44:2944 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:29:44:2944 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:29:44:2944 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 3.152 ms[39m
+2026-05-14 10:29:45:2945 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:29:45:2945 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:29:45:2945 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 3.643 ms[39m
+2026-05-14 10:29:46:2946 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:29:46:2946 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:29:46:2946 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=dub 304 - - 2.636 ms[39m
+2026-05-14 10:32:26:3226 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:32:26:3226 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:32:26:3226 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=dub 304 - - 14.334 ms[39m
+2026-05-14 10:32:26:3226 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:32:26:3226 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:32:26:3226 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?subOrDub=dub 200 279 - 3.649 ms[39m
+2026-05-14 10:33:04:334 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:33:04:334 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 17.759 ms[39m
+2026-05-14 10:33:05:335 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:33:05:335 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:33:05:335 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 5.106 ms[39m
+2026-05-14 10:33:05:335 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:33:05:335 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:33:05:335 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?subOrDub=sub 200 279 - 6.003 ms[39m
+2026-05-14 10:34:00:340 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:34:00:340 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:34:00:340 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?subOrDub=sub 304 - - 2.551 ms[39m
+2026-05-14 10:34:00:340 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:34:00:340 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:34:00:340 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 5.419 ms[39m
+2026-05-14 10:34:34:3434 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:34:34:3434 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:34:34:3434 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 2.652 ms[39m
+2026-05-14 10:35:13:3513 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:35:13:3513 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 13.351 ms[39m
+2026-05-14 10:35:15:3515 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:35:15:3515 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:35:15:3515 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 4.175 ms[39m
+2026-05-14 10:37:49:3749 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:37:49:3749 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 35.890 ms[39m
+2026-05-14 10:37:51:3751 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:37:51:3751 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:37:51:3751 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 9.736 ms[39m
+2026-05-14 10:37:57:3757 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:37:57:3757 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:37:57:3757 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=2$token=dYXy8vL4ukrh1W9eyoaB?provider=Hianime&subOrDub=sub 304 - - 3.579 ms[39m
+2026-05-14 10:37:59:3759 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:37:59:3759 [31merror[39m: [31m[ProviderService] Gogoanime watch failed: klass is not a constructor[39m
+2026-05-14 10:38:00:380 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:38:02:382 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:38:02:382 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:38:02:382 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:38:02:382 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=3$token=L4C6uq74phTuhnVLyoTa?provider=Hianime&subOrDub=sub 200 279 - 3097.860 ms[39m
+2026-05-14 10:38:04:384 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:38:04:384 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:38:04:384 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 3.690 ms[39m
+2026-05-14 10:39:53:3953 [35mhttp[39m: [35mOPTIONS /api/v1/favorites?page=1&limit=20 204 0 - 0.342 ms[39m
+2026-05-14 10:39:53:3953 [31merror[39m: [31mGET /api/v1/favorites?page=1&limit=20 - Invalid access token[39m
+2026-05-14 10:39:53:3953 [35mhttp[39m: [35mGET /api/v1/favorites?page=1&limit=20 401 1200 - 4.473 ms[39m
+2026-05-14 10:40:02:402 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:40:02:402 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 200 175902 - 14.172 ms[39m
+2026-05-14 10:40:04:404 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:40:04:404 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:40:04:404 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 200 279 - 5.665 ms[39m
+2026-05-14 10:40:18:4018 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:40:18:4018 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 11.342 ms[39m
+2026-05-14 10:40:19:4019 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:40:19:4019 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:40:19:4019 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 4.110 ms[39m
+2026-05-14 10:49:45:4945 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:49:45:4945 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:50:05:505 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:50:05:505 [32minfo[39m: [32m[ProviderService] Searching Gogoanime for "One Piece"...[39m
+2026-05-14 10:50:05:505 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:50:05:505 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 10:50:06:506 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:50:06:506 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 10:50:07:507 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:50:07:507 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:50:07:507 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 503 976 - 22172.745 ms[39m
+2026-05-14 10:50:08:508 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:50:08:508 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:50:28:5028 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:50:28:5028 [32minfo[39m: [32m[ProviderService] Searching Gogoanime for "One Piece"...[39m
+2026-05-14 10:50:28:5028 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:50:28:5028 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 10:50:28:5028 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:50:28:5028 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 10:50:29:5029 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:50:29:5029 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:50:29:5029 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 503 976 - 21104.856 ms[39m
+2026-05-14 10:51:12:5112 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:51:12:5112 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:52:03:523 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:52:03:523 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:52:03:523 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece - - - - ms[39m
+2026-05-14 10:52:04:524 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:52:04:524 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:52:04:524 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece - - - - ms[39m
+2026-05-14 10:52:08:528 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:52:08:528 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:52:23:5223 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:52:23:5223 [32minfo[39m: [32m[ProviderService] Searching Gogoanime for "One Piece"...[39m
+2026-05-14 10:52:23:5223 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:52:23:5223 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:52:24:5224 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:52:24:5224 [32minfo[39m: [32m[ProviderService] Searching Gogoanime for "One Piece"...[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:52:24:5224 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:52:24:5224 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:52:25:5225 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:52:25:5225 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:52:28:5228 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:52:28:5228 [32minfo[39m: [32m[ProviderService] Searching Gogoanime for "One Piece"...[39m
+2026-05-14 10:52:28:5228 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:52:28:5228 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 10:52:28:5228 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:52:28:5228 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 10:52:28:5228 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:52:28:5228 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:52:28:5228 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 503 976 - 20763.695 ms[39m
+2026-05-14 10:52:29:5229 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:52:29:5229 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:52:49:5249 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:52:49:5249 [32minfo[39m: [32m[ProviderService] Searching Gogoanime for "One Piece"...[39m
+2026-05-14 10:52:49:5249 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:52:49:5249 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 10:52:50:5250 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:52:50:5250 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 10:52:51:5251 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:52:51:5251 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:52:51:5251 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 503 976 - 21157.623 ms[39m
+2026-05-14 10:52:53:5253 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:52:53:5253 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:53:13:5313 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:53:13:5313 [32minfo[39m: [32m[ProviderService] Searching Gogoanime for "One Piece"...[39m
+2026-05-14 10:53:13:5313 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:53:13:5313 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 10:53:14:5314 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:53:14:5314 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 10:53:14:5314 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:53:14:5314 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:53:14:5314 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 503 976 - 21052.664 ms[39m
+2026-05-14 10:53:15:5315 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:53:15:5315 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:53:35:5335 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:53:35:5335 [32minfo[39m: [32m[ProviderService] Searching Gogoanime for "One Piece"...[39m
+2026-05-14 10:53:35:5335 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:53:35:5335 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 10:53:36:5336 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:53:36:5336 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 10:53:36:5336 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:53:36:5336 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:53:36:5336 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 503 976 - 21087.934 ms[39m
+2026-05-14 10:57:23:5723 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:57:23:5723 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 10:57:43:5743 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:57:43:5743 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 10:57:44:5744 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:57:44:5744 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 10:57:45:5745 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:57:45:5745 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "One Piece"...[39m
+2026-05-14 10:57:46:5746 [32minfo[39m: [32m[ProviderService] AnimeKai found 30 results. Top 3: One Piece, One Piece: The Movie, One Piece Uncropped[39m
+2026-05-14 10:57:46:5746 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "One Piece" (one-piece-dk6r)[39m
+2026-05-14 10:57:48:5748 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 200 175902 - 25288.757 ms[39m
+2026-05-14 10:57:49:5749 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:57:49:5749 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:57:50:5750 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:57:52:5752 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:57:52:5752 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:57:52:5752 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:57:52:5752 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 3114.779 ms[39m
+2026-05-14 10:58:01:581 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:01:581 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:02:582 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:03:583 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:58:03:583 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:58:03:583 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 4.522 ms[39m
+2026-05-14 10:58:05:585 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:05:585 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:05:585 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:05:585 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:58:05:585 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:58:05:585 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=2$token=dYXy8vL4ukrh1W9eyoaB?provider=Hianime&subOrDub=sub 304 - - 3834.614 ms[39m
+2026-05-14 10:58:05:585 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:06:586 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:06:586 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:06:586 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:07:587 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:07:587 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:07:587 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:07:587 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:58:07:587 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:58:07:587 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=11$token=OMu4q_3xvhS6j31KxI-U?provider=Hianime&subOrDub=sub 200 279 - 2791.091 ms[39m
+2026-05-14 10:58:08:588 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:09:589 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:09:589 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:09:589 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:09:589 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:58:09:589 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:58:09:589 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=12$token=Nd_u9e7jqhi90W9BxYiH?provider=Hianime&subOrDub=sub 200 279 - 2972.024 ms[39m
+2026-05-14 10:58:10:5810 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:10:5810 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:10:5810 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:10:5810 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:10:5810 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:58:10:5810 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:58:10:5810 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=13$token=L8TyuPjluhPn1XUQ2MjU?provider=Hianime&subOrDub=sub 200 279 - 2902.320 ms[39m
+2026-05-14 10:58:10:5810 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:11:5811 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:11:5811 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:12:5812 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:12:5812 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:12:5812 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:58:12:5812 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:58:12:5812 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=14$token=LMvurKTz6BKshHpfipqH?provider=Hianime&subOrDub=sub 200 279 - 3461.854 ms[39m
+2026-05-14 10:58:12:5812 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:12:5812 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:58:12:5812 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:58:12:5812 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=15$token=L4Tu8KXxvBKslGkRj5KK?provider=Hianime&subOrDub=sub 200 279 - 2931.841 ms[39m
+2026-05-14 10:58:14:5814 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:14:5814 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 10:58:14:5814 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 10:58:14:5814 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=16$token=e9TktvPj6U3glX5BjofU?provider=Hianime&subOrDub=sub 200 279 - 2809.648 ms[39m
+2026-05-14 11:38:53:3853 [32minfo[39m: [32m[MangaService] Searching for: "Solo Leveling"[39m
+2026-05-14 11:39:05:395 [31merror[39m: [31m[MangaService] Search failed: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:05:395 [31merror[39m: [31mGET /api/v1/manga/search?q=Solo+Leveling - Failed to search manga: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:05:395 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 500 521 - 11274.693 ms[39m
+2026-05-14 11:39:05:395 [32minfo[39m: [32m[MangaService] Searching for: "black clover"[39m
+2026-05-14 11:39:16:3916 [31merror[39m: [31m[MangaService] Search failed: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:16:3916 [31merror[39m: [31mGET /api/v1/manga/search?q=black+clover - Failed to search manga: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:16:3916 [35mhttp[39m: [35mGET /api/v1/manga/search?q=black+clover 500 521 - 11220.845 ms[39m
+2026-05-14 11:39:17:3917 [32minfo[39m: [32m[MangaService] Searching for: "black clover"[39m
+2026-05-14 11:39:28:3928 [31merror[39m: [31m[MangaService] Search failed: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:28:3928 [31merror[39m: [31mGET /api/v1/manga/search?q=black+clover - Failed to search manga: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:28:3928 [35mhttp[39m: [35mGET /api/v1/manga/search?q=black+clover 500 521 - 11235.906 ms[39m
+2026-05-14 11:39:30:3930 [32minfo[39m: [32m[MangaService] Searching for: "black clover"[39m
+2026-05-14 11:39:41:3941 [31merror[39m: [31m[MangaService] Search failed: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:41:3941 [31merror[39m: [31mGET /api/v1/manga/search?q=black+clover - Failed to search manga: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:41:3941 [35mhttp[39m: [35mGET /api/v1/manga/search?q=black+clover 500 521 - 11258.659 ms[39m
+2026-05-14 11:43:11:4311 [32minfo[39m: [32m[MangaService] Searching (Primary: MangaDex) for: "Solo Leveling"[39m
+2026-05-14 11:43:23:4323 [33mwarn[39m: [33m[MangaService] Primary search failed: getaddrinfo ENOTFOUND api.mangadex.org. Trying Fallback (MangaKakalot)...[39m
+2026-05-14 11:43:23:4323 [32minfo[39m: [32m[MangaService] Searching (Primary: MangaDex) for: "solo leveling"[39m
+2026-05-14 11:43:34:4334 [33mwarn[39m: [33m[MangaService] Primary search failed: getaddrinfo ENOTFOUND api.mangadex.org. Trying Fallback (MangaKakalot)...[39m
+2026-05-14 11:43:35:4335 [31merror[39m: [31m[MangaService] All manga providers failed: [MangaKakalot] Search failed: Cloudflare challenge persists after all retries[39m
+2026-05-14 11:43:35:4335 [31merror[39m: [31mGET /api/v1/manga/search?q=Solo+Leveling - Manga search failed on all providers[39m
+2026-05-14 11:43:35:4335 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 500 469 - 23513.066 ms[39m
+2026-05-14 11:43:44:4344 [31merror[39m: [31m[MangaService] All manga providers failed: [MangaKakalot] Search failed: Cloudflare challenge persists after all retries[39m
+2026-05-14 11:43:44:4344 [31merror[39m: [31mGET /api/v1/manga/search?q=solo+leveling - Manga search failed on all providers[39m
+2026-05-14 11:43:44:4344 [35mhttp[39m: [35mGET /api/v1/manga/search?q=solo+leveling 500 469 - 20945.488 ms[39m
+2026-05-14 11:43:45:4345 [32minfo[39m: [32m[MangaService] Searching (Primary: MangaDex) for: "solo leveling"[39m
+2026-05-14 11:43:56:4356 [33mwarn[39m: [33m[MangaService] Primary search failed: getaddrinfo ENOTFOUND api.mangadex.org. Trying Fallback (MangaKakalot)...[39m
+2026-05-14 11:44:06:446 [31merror[39m: [31m[MangaService] All manga providers failed: [MangaKakalot] Search failed: Cloudflare challenge persists after all retries[39m
+2026-05-14 11:44:06:446 [31merror[39m: [31mGET /api/v1/manga/search?q=solo+leveling - Manga search failed on all providers[39m
+2026-05-14 11:44:06:446 [35mhttp[39m: [35mGET /api/v1/manga/search?q=solo+leveling 500 469 - 20793.302 ms[39m
+2026-05-14 11:44:08:448 [32minfo[39m: [32m[MangaService] Searching (Primary: MangaDex) for: "solo leveling"[39m
+2026-05-14 11:44:19:4419 [33mwarn[39m: [33m[MangaService] Primary search failed: getaddrinfo ENOTFOUND api.mangadex.org. Trying Fallback (MangaKakalot)...[39m
+2026-05-14 11:44:28:4428 [31merror[39m: [31m[MangaService] All manga providers failed: [MangaKakalot] Search failed: Cloudflare challenge persists after all retries[39m
+2026-05-14 11:44:28:4428 [31merror[39m: [31mGET /api/v1/manga/search?q=solo+leveling - Manga search failed on all providers[39m
+2026-05-14 11:44:28:4428 [35mhttp[39m: [35mGET /api/v1/manga/search?q=solo+leveling 500 469 - 20376.761 ms[39m
+2026-05-14 11:46:43:4643 [32minfo[39m: [32m[MangaService] Initialized provider: MangaPill[39m
+2026-05-14 11:46:43:4643 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 11:46:44:4644 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 11:46:44:4644 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 200 1473 - 1105.248 ms[39m
+2026-05-14 11:46:53:4653 [32minfo[39m: [32m[MangaService] Initialized provider: MangaPill[39m
+2026-05-14 11:46:53:4653 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "solo leveling"[39m
+2026-05-14 11:46:54:4654 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 11:46:54:4654 [35mhttp[39m: [35mGET /api/v1/manga/search?q=solo+leveling 200 1473 - 968.720 ms[39m
+2026-05-14 11:46:57:4657 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 11:46:57:4657 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 11:46:57:4657 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 304 - - 729.638 ms[39m

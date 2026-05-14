@@ -17,6 +17,10 @@ class ProviderService {
     const errors = [];
     for (const { name, klass } of providerConfig.chain) {
       try {
+        if (!klass) {
+          logger.warn(`[ProviderService] Skipping ${name}: Provider class is not defined.`);
+          continue;
+        }
         logger.info(`[ProviderService] Searching ${name} for "${query}"...`);
         const provider = new klass();
         
@@ -34,13 +38,16 @@ class ProviderService {
         // Log search results for debugging
         logger.info(`[ProviderService] ${name} found ${searchResult.results.length} results. Top 3: ${searchResult.results.slice(0, 3).map(r => r.title).join(', ')}`);
 
-        // Strategy: Find exact title match first, otherwise take the first result
-        const exactMatch = searchResult.results.find(r => 
-          r.title.toLowerCase() === query.toLowerCase() || 
-          (r.title.toLowerCase().includes(query.toLowerCase()) && r.type === 'TV')
-        );
+        // Strategy: Find best title match
+        const searchResults = searchResult.results;
+        const normalizedQuery = query.toLowerCase().trim();
         
-        const bestMatch = exactMatch || searchResult.results[0];
+        const bestMatch = searchResults.find(r => 
+          r.title.toLowerCase() === normalizedQuery ||
+          r.title.toLowerCase() === `${normalizedQuery} (tv)` ||
+          r.title.toLowerCase().startsWith(normalizedQuery)
+        ) || searchResults[0];
+
         logger.info(`[ProviderService] ${name} best match: "${bestMatch.title}" (${bestMatch.id})`);
 
         const info = await this.withTimeout(
@@ -75,6 +82,10 @@ class ProviderService {
     const errors = [];
     for (const { name, klass } of orderedProviders) {
       try {
+        if (!klass) {
+          logger.warn(`[ProviderService] Skipping ${name}: Provider class is not defined.`);
+          continue;
+        }
         const provider = new klass();
         const sourcesData = await this.withTimeout(
           provider.fetchEpisodeSources(episodeId, undefined, subOrDub),

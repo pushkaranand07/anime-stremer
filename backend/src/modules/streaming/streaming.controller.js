@@ -26,6 +26,10 @@ const getWatch = asyncHandler(async (req, res) => {
   if (!episodeId) throw new ApiError(400, 'Episode ID is required');
 
   const result = await streamingService.getEpisodeSources(episodeId, provider, subOrDub);
+  logger.info(`[StreamingController] Fetched ${result.sources?.length || 0} sources from ${result.provider}`);
+  if (result.sources?.length > 0) {
+    logger.info(`[StreamingController] First source sample: ${result.sources[0].url.substring(0, 50)}...`);
+  }
   res.status(200).json(new ApiResponse(200, 'Video sources fetched', result));
 });
 
@@ -38,34 +42,55 @@ const proxyStream = asyncHandler(async (req, res) => {
   if (!url) throw new ApiError(400, 'Stream URL is required');
 
   const targetUrl = decodeURIComponent(url);
-
-  // If it's an M3U8 playlist, use ProxyService to rewrite it
-  if (targetUrl.includes('.m3u8')) {
-    const protocol = req.protocol;
-    const host = req.get('host');
-    const proxyPrefix = `${protocol}://${host}/api/v1/streaming/proxy`;
-    
-    const { content, contentType } = await proxyService.proxyM3U8(targetUrl, proxyPrefix);
-    res.setHeader('Content-Type', contentType);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    return res.send(content);
+  
+  let customHeaders = {};
+  if (req.query.headers) {
+    try {
+      customHeaders = JSON.parse(Buffer.from(req.query.headers, 'base64').toString());
+    } catch (e) {
+      // Silent fail for malformed headers
+    }
   }
 
-  // Otherwise, pipe the binary stream (TS segments, MP4, etc.)
-  const targetOrigin = new URL(targetUrl).origin;
-  const response = await axios.get(targetUrl, {
-    responseType: 'stream',
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-      'Referer': targetOrigin,
-      'Origin': targetOrigin,
-    },
-    timeout: 30000,
-  });
+  if (targetUrl.includes('.m3u8')) {
+    try {
+      const protocol = req.protocol;
+      const host = req.get('host');
+      const proxyPrefix = `${protocol}://${host}/api/v1/streaming/proxy`;
+      
+      const { content, contentType } = await proxyService.proxyM3U8(targetUrl, proxyPrefix, {
+        ...customHeaders,
+        'headers': req.query.headers
+      });
+      
+      res.setHeader('Content-Type', contentType);
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      return res.send(content);
+    } catch (err) {
+      return res.status(502).json({ error: 'Failed to fetch playlist' });
+    }
+  }
 
-  res.setHeader('Content-Type', response.headers['content-type'] || 'video/MP2T');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  response.data.pipe(res);
+  try {
+    const targetOrigin = new URL(targetUrl).origin;
+    const response = await axios.get(targetUrl, {
+      responseType: 'stream',
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Referer': customHeaders.Referer || targetOrigin,
+        ...customHeaders
+      },
+      timeout: 15000,
+    });
+
+    res.setHeader('Content-Type', response.headers['content-type'] || 'video/MP2T');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    response.data.pipe(res);
+  } catch (err) {
+    if (!res.headersSent) {
+      res.status(err.response?.status || 500).end();
+    }
+  }
 });
 
 /**

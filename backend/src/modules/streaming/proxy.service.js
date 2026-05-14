@@ -28,6 +28,7 @@ class ProxyService {
       
       // We rewrite the M3U8 content line by line
       const lines = content.split('\n');
+      const headersString = headers.headers;
       const rewrittenLines = lines.map(line => {
         line = line.trim();
         if (!line || line.startsWith('#')) {
@@ -36,13 +37,13 @@ class ProxyService {
             // Find URI="..." and rewrite it
             return line.replace(/URI="([^"]+)"/g, (match, uri) => {
               const absoluteUri = this.getAbsoluteUrl(uri, baseUrl);
-              return `URI="${this.getProxyUrl(absoluteUri, proxyPrefix)}"`;
+              return `URI="${this.getProxyUrl(absoluteUri, proxyPrefix, headersString)}"`;
             });
           }
           if (line.startsWith('#EXT-X-MEDIA')) {
             return line.replace(/URI="([^"]+)"/g, (match, uri) => {
               const absoluteUri = this.getAbsoluteUrl(uri, baseUrl);
-              return `URI="${this.getProxyUrl(absoluteUri, proxyPrefix)}"`;
+              return `URI="${this.getProxyUrl(absoluteUri, proxyPrefix, headersString)}"`;
             });
           }
           return line;
@@ -50,7 +51,7 @@ class ProxyService {
 
         // It's a segment or sub-playlist URL
         const absoluteUrl = this.getAbsoluteUrl(line, baseUrl);
-        return this.getProxyUrl(absoluteUrl, proxyPrefix);
+        return this.getProxyUrl(absoluteUrl, proxyPrefix, headersString);
       });
 
       return {
@@ -72,8 +73,12 @@ class ProxyService {
     return baseUrl + url;
   }
 
-  getProxyUrl(targetUrl, proxyPrefix) {
-    return `${proxyPrefix}?url=${encodeURIComponent(targetUrl)}`;
+  getProxyUrl(targetUrl, proxyPrefix, headersString) {
+    let url = `${proxyPrefix}?url=${encodeURIComponent(targetUrl)}`;
+    if (headersString) {
+      url += `&headers=${encodeURIComponent(headersString)}`;
+    }
+    return url;
   }
 }
 

@@ -50,3 +50,143 @@
 2026-05-14 10:13:47:1347 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
 2026-05-14 10:13:50:1350 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
 2026-05-14 10:13:50:1350 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:16:25:1625 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:16:45:1645 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:17:03:173 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:17:03:173 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:17:06:176 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:17:07:177 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:17:31:1731 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:17:31:1731 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:17:34:1734 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:17:35:1735 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:17:37:1737 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:17:37:1737 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:17:40:1740 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:17:40:1740 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:17:41:1741 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:17:41:1741 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:17:41:1741 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Server megaup not found[39m
+2026-05-14 10:17:42:1742 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:17:43:1743 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:17:43:1743 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:17:46:1746 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:17:47:1747 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:18:30:1830 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:18:31:1831 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:18:32:1832 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:18:32:1832 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:18:33:1833 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:18:34:1834 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:18:36:1836 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:18:37:1837 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:18:40:1840 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:18:40:1840 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:18:42:1842 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:18:43:1843 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:19:10:1910 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:19:30:1930 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:19:31:1931 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:19:31:1931 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:19:34:1934 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:19:35:1935 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:19:40:1940 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:19:40:1940 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:19:42:1942 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:19:43:1943 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:37:59:3759 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:37:59:3759 [31merror[39m: [31m[ProviderService] Gogoanime watch failed: klass is not a constructor[39m
+2026-05-14 10:38:00:380 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:38:02:382 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:39:53:3953 [31merror[39m: [31mGET /api/v1/favorites?page=1&limit=20 - Invalid access token[39m
+2026-05-14 10:50:05:505 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:50:05:505 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:50:06:506 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:50:07:507 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:50:07:507 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:50:28:5028 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:50:28:5028 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:50:28:5028 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:50:29:5029 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:50:29:5029 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:52:23:5223 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:52:23:5223 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:52:24:5224 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:52:25:5225 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:52:25:5225 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:52:28:5228 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:52:28:5228 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:52:28:5228 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:52:28:5228 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:52:28:5228 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:52:49:5249 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:52:49:5249 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:52:50:5250 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:52:51:5251 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:52:51:5251 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:53:13:5313 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:53:13:5313 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:53:14:5314 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:53:14:5314 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:53:14:5314 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:53:35:5335 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:53:35:5335 [31merror[39m: [31m[ProviderService] Gogoanime failed: klass is not a constructor[39m
+2026-05-14 10:53:36:5336 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:53:36:5336 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:53:36:5336 [31merror[39m: [31mGET /api/v1/streaming/info?q=One+Piece - All providers failed: Hianime: Timeout after 20000ms [Hianime/search], Gogoanime: klass is not a constructor, AnimePahe: getaddrinfo EAI_AGAIN animepahe.si, KickAssAnime: Request failed with status code 403[39m
+2026-05-14 10:57:43:5743 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:57:44:5744 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:57:45:5745 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 10:57:49:5749 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:57:49:5749 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:57:50:5750 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:57:52:5752 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:01:581 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:01:581 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:02:582 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:05:585 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:05:585 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:05:585 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:05:585 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:06:586 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:06:586 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:06:586 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:07:587 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:07:587 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:07:587 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:08:588 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:09:589 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:09:589 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:09:589 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:10:5810 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:10:5810 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:10:5810 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:10:5810 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:10:5810 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:11:5811 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:58:11:5811 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:58:12:5812 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:58:12:5812 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:12:5812 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:58:14:5814 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 11:39:05:395 [31merror[39m: [31m[MangaService] Search failed: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:05:395 [31merror[39m: [31mGET /api/v1/manga/search?q=Solo+Leveling - Failed to search manga: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:16:3916 [31merror[39m: [31m[MangaService] Search failed: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:16:3916 [31merror[39m: [31mGET /api/v1/manga/search?q=black+clover - Failed to search manga: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:28:3928 [31merror[39m: [31m[MangaService] Search failed: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:28:3928 [31merror[39m: [31mGET /api/v1/manga/search?q=black+clover - Failed to search manga: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:41:3941 [31merror[39m: [31m[MangaService] Search failed: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:39:41:3941 [31merror[39m: [31mGET /api/v1/manga/search?q=black+clover - Failed to search manga: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 11:43:35:4335 [31merror[39m: [31m[MangaService] All manga providers failed: [MangaKakalot] Search failed: Cloudflare challenge persists after all retries[39m
+2026-05-14 11:43:35:4335 [31merror[39m: [31mGET /api/v1/manga/search?q=Solo+Leveling - Manga search failed on all providers[39m
+2026-05-14 11:43:44:4344 [31merror[39m: [31m[MangaService] All manga providers failed: [MangaKakalot] Search failed: Cloudflare challenge persists after all retries[39m
+2026-05-14 11:43:44:4344 [31merror[39m: [31mGET /api/v1/manga/search?q=solo+leveling - Manga search failed on all providers[39m
+2026-05-14 11:44:06:446 [31merror[39m: [31m[MangaService] All manga providers failed: [MangaKakalot] Search failed: Cloudflare challenge persists after all retries[39m
+2026-05-14 11:44:06:446 [31merror[39m: [31mGET /api/v1/manga/search?q=solo+leveling - Manga search failed on all providers[39m
+2026-05-14 11:44:28:4428 [31merror[39m: [31m[MangaService] All manga providers failed: [MangaKakalot] Search failed: Cloudflare challenge persists after all retries[39m
+2026-05-14 11:44:28:4428 [31merror[39m: [31mGET /api/v1/manga/search?q=solo+leveling - Manga search failed on all providers[39m

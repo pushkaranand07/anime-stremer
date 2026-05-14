@@ -17,6 +17,9 @@ export default function Header() {
           <NavLink to="/search" className={({ isActive }) => `text-sm font-medium transition-colors hover:text-yellow-400 ${isActive ? 'text-yellow-400' : 'text-gray-400'}`}>
             Search
           </NavLink>
+          <NavLink to="/manga" className={({ isActive }) => `text-sm font-medium transition-colors hover:text-yellow-400 ${isActive ? 'text-yellow-400' : 'text-gray-400'}`}>
+            Manga
+          </NavLink>
           {isAuthenticated ? (
             <>
               <NavLink to="/favorites" className={({ isActive }) => `text-sm font-medium transition-colors hover:text-yellow-400 ${isActive ? 'text-yellow-400' : 'text-gray-400'}`}>

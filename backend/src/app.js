@@ -14,7 +14,10 @@ const app = express();
 app.use(requestLogger);
 
 // Security Middleware
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  contentSecurityPolicy: false, // Disable for dev to allow various stream sources
+}));
 app.use(cors({
   origin: appConfig.allowedOrigins,
   credentials: true

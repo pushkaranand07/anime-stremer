@@ -14,6 +14,11 @@ const FavoritesPage = lazy(() => import('../pages/FavoritesPage'));
 const AuthPage = lazy(() => import('../pages/AuthPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
+// Manga
+const MangaPage = lazy(() => import('../features/manga/pages/MangaPage'));
+const MangaDetailPage = lazy(() => import('../features/manga/pages/MangaDetailPage'));
+const MangaReaderPage = lazy(() => import('../features/manga/pages/MangaReaderPage'));
+
 function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
   
@@ -31,6 +36,12 @@ export default function AppRouter() {
           <Route path="/anime/:id" element={<DetailPage />} />
           <Route path="/watch/:id" element={<WatchPage />} />
           <Route path="/auth" element={<AuthPage />} />
+          
+          {/* Manga Routes */}
+          <Route path="/manga" element={<MangaPage />} />
+          <Route path="/manga/:id" element={<MangaDetailPage />} />
+          <Route path="/manga/read/:chapterId" element={<MangaReaderPage />} />
+
           <Route 
             path="/favorites" 
             element={
