@@ -19,3 +19,34 @@
 2026-05-14 09:45:25:4525 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
 2026-05-14 10:00:46:046 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
 2026-05-14 10:01:06:16 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:06:29:629 [31merror[39m: [31mPOST /api/v1/auth/login - Invalid credentials[39m
+2026-05-14 10:06:41:641 [31merror[39m: [31mPOST /api/v1/auth/login - Invalid credentials[39m
+2026-05-14 10:06:58:658 [31merror[39m: [31mPOST /api/v1/auth/signup - next is not a function[39m
+2026-05-14 10:12:46:1246 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:12:46:1246 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:12:49:1249 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:12:51:1251 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:12:58:1258 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:12:58:1258 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:01:131 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:02:132 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:09:139 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:13:09:139 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:12:1312 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:13:1313 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:13:13:1313 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:13:1313 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:15:1315 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:15:1315 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:13:15:1315 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:16:1316 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:17:1317 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:13:17:1317 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:18:1318 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:18:1318 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:19:1319 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:20:1320 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:47:1347 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:13:47:1347 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:50:1350 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:50:1350 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m

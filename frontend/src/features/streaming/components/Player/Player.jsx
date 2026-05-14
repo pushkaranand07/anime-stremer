@@ -1,9 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { MediaPlayer, MediaProvider, Poster, Track } from '@vidstack/react';
-import { DefaultVideoLayout, defaultLayoutIcons } from '@vidstack/react/player/layouts/default';
-
-import '@vidstack/react/player/styles/default/theme.css';
-import '@vidstack/react/player/styles/default/layouts/video.css';
+import { useRef, useEffect } from 'react';
+import ReactPlayer from 'react-player';
 
 export default function Player({ 
   sources = [], 
@@ -15,64 +11,70 @@ export default function Player({
   onEnded,
   onError 
 }) {
-  const player = useRef(null);
+  const playerRef = useRef(null);
 
-  // Convert sources to Vidstack format
-  const streamSources = sources.map(s => ({
-    src: s.url,
-    type: s.isM3U8 || s.url.includes('.m3u8') ? 'application/x-mpegurl' : 'video/mp4',
-    label: s.quality || 'Default'
-  }));
+  // Get the primary source (prioritize M3U8 for HLS streaming)
+  const primarySource = sources.find(s => s.url.includes('.m3u8'))?.url || sources[0]?.url;
 
-  // Handle errors
-  const onMediaError = (event) => {
-    console.error('[Vidstack Player] Error:', event);
-    if (onError) onError(event);
-  };
-
-  // Sync start time
+  // Handle seeking to start time when source loads
   useEffect(() => {
-    if (player.current && startTime > 0) {
-      player.current.currentTime = startTime;
+    if (playerRef.current && startTime > 0) {
+      // Small delay to ensure player is ready
+      const timer = setTimeout(() => {
+        playerRef.current.seekTo(startTime, 'seconds');
+      }, 500);
+      return () => clearTimeout(timer);
     }
-  }, [startTime, sources]);
+  }, [startTime, primarySource]);
 
   return (
     <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-white/5">
-      <MediaPlayer
-        ref={player}
-        title={title}
-        src={streamSources}
-        crossOrigin
-        playsInline
-        onTimeUpdate={(detail) => {
-          if (onTimeUpdate) onTimeUpdate(detail.currentTime, detail.duration);
+      <ReactPlayer
+        ref={playerRef}
+        url={primarySource}
+        width="100%"
+        height="100%"
+        controls
+        playing={false}
+        pip={true}
+        stopOnUnmount={false}
+        light={poster} // Shows poster before play, extremely smooth for UX
+        playIcon={
+          <div className="w-20 h-20 bg-yellow-500 rounded-full flex items-center justify-center shadow-2xl shadow-yellow-500/40 transform hover:scale-110 transition-transform">
+             <svg className="w-10 h-10 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+             </svg>
+          </div>
+        }
+        onProgress={({ playedSeconds }) => {
+          if (onTimeUpdate) {
+            // We don't have total duration in this callback easily, 
+            // but the hook only needs playedSeconds for progress tracking
+            onTimeUpdate(playedSeconds, 0); 
+          }
         }}
         onEnded={onEnded}
-        onError={onMediaError}
-        className="w-full h-full"
-        style={{ width: '100%', aspectRatio: '16/9' }}
-      >
-        <MediaProvider>
-          <Poster
-            className="vds-poster absolute inset-0 block h-full w-full opacity-0 transition-opacity data-[visible]:opacity-100 object-cover"
-            src={poster}
-            alt={title}
-          />
-          {subtitles.map((sub, i) => (
-            <Track
-              key={i}
-              src={sub.url}
-              label={sub.lang || sub.language || 'English'}
-              lang={(sub.lang || 'en').slice(0, 2)}
-              kind="subtitles"
-              default={sub.lang === 'English' || i === 0}
-            />
-          ))}
-        </MediaProvider>
-
-        <DefaultVideoLayout icons={defaultLayoutIcons} />
-      </MediaPlayer>
+        onError={(err) => {
+          console.error('[ReactPlayer] Error:', err);
+          if (onError) onError(err);
+        }}
+        config={{
+          file: {
+            attributes: {
+              crossOrigin: 'anonymous',
+              style: { width: '100%', height: '100%', objectFit: 'contain' }
+            },
+            forceHLS: primarySource?.includes('.m3u8'),
+            tracks: subtitles.map(sub => ({
+              kind: 'subtitles',
+              src: sub.url,
+              srcLang: (sub.lang || 'en').slice(0, 2),
+              label: sub.lang || 'English',
+              default: sub.lang === 'English'
+            }))
+          }
+        }}
+      />
     </div>
   );
 }

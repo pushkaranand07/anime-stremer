@@ -144,3 +144,68 @@
 2026-05-14 10:01:10:110 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Re:Zero+kara+Hajimeru+Isekai+Seikatsu+4th+Season 304 - - 3.490 ms[39m
 2026-05-14 10:01:12:112 [32minfo[39m: [32m[StreamingController] GET /info?q="Re:Zero kara Hajimeru Isekai Seikatsu 4th Season"[39m
 2026-05-14 10:01:12:112 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Re:Zero+kara+Hajimeru+Isekai+Seikatsu+4th+Season 304 - - 12.288 ms[39m
+2026-05-14 10:06:29:629 [35mhttp[39m: [35mOPTIONS /api/v1/auth/login 204 0 - 0.358 ms[39m
+2026-05-14 10:06:29:629 [31merror[39m: [31mPOST /api/v1/auth/login - Invalid credentials[39m
+2026-05-14 10:06:29:629 [35mhttp[39m: [35mPOST /api/v1/auth/login 401 424 - 29.033 ms[39m
+2026-05-14 10:06:41:641 [35mhttp[39m: [35mOPTIONS /api/v1/auth/login 204 0 - 0.235 ms[39m
+2026-05-14 10:06:41:641 [31merror[39m: [31mPOST /api/v1/auth/login - Invalid credentials[39m
+2026-05-14 10:06:41:641 [35mhttp[39m: [35mPOST /api/v1/auth/login 401 424 - 2.621 ms[39m
+2026-05-14 10:06:58:658 [35mhttp[39m: [35mOPTIONS /api/v1/auth/signup 204 0 - 0.178 ms[39m
+2026-05-14 10:06:58:658 [31merror[39m: [31mPOST /api/v1/auth/signup - next is not a function[39m
+2026-05-14 10:06:58:658 [35mhttp[39m: [35mPOST /api/v1/auth/signup 500 953 - 262.558 ms[39m
+2026-05-14 10:07:19:719 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:07:19:719 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 8.135 ms[39m
+2026-05-14 10:07:31:731 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:07:31:731 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 4.856 ms[39m
+2026-05-14 10:07:35:735 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:07:35:735 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 4.367 ms[39m
+2026-05-14 10:07:45:745 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:07:45:745 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.468 ms[39m
+2026-05-14 10:07:47:747 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:07:47:747 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.429 ms[39m
+2026-05-14 10:07:48:748 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:07:48:748 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.527 ms[39m
+2026-05-14 10:07:49:749 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:07:49:749 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.325 ms[39m
+2026-05-14 10:07:50:750 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:07:50:750 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.121 ms[39m
+2026-05-14 10:12:44:1244 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:12:44:1244 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 6.113 ms[39m
+2026-05-14 10:12:46:1246 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:12:46:1246 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:12:49:1249 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:12:51:1251 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:12:51:1251 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 200 279 - 5088.226 ms[39m
+2026-05-14 10:12:58:1258 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:12:58:1258 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:01:131 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:02:132 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:02:132 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=dub 200 279 - 3792.827 ms[39m
+2026-05-14 10:13:09:139 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:13:09:139 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:12:1312 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:13:1313 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:13:13:1313 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:13:1313 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:13:1313 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=54$token=NcH78-PptQfhi3lKx8g?provider=Hianime&subOrDub=dub 200 279 - 3673.634 ms[39m
+2026-05-14 10:13:15:1315 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:15:1315 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:13:15:1315 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:16:1316 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:16:1316 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=54$token=NcH78-PptQfhi3lKx8g?provider=Hianime&subOrDub=sub 200 279 - 2736.028 ms[39m
+2026-05-14 10:13:17:1317 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:13:17:1317 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:18:1318 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:18:1318 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 2.724 ms[39m
+2026-05-14 10:13:18:1318 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:18:1318 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=53$token=Jtm8rfX-pgW7iiUX1s0?provider=Hianime&subOrDub=sub 200 279 - 3014.571 ms[39m
+2026-05-14 10:13:19:1319 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:20:1320 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:20:1320 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=42$token=dYC5pOTxtxWs038TjcY?provider=Hianime&subOrDub=sub 200 279 - 2988.805 ms[39m
+2026-05-14 10:13:43:1343 [32minfo[39m: [32m[StreamingController] GET /info?q="Re:Zero kara Hajimeru Isekai Seikatsu 4th Season"[39m
+2026-05-14 10:13:43:1343 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Re:Zero+kara+Hajimeru+Isekai+Seikatsu+4th+Season 304 - - 4.987 ms[39m
+2026-05-14 10:13:47:1347 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 10:13:47:1347 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:13:50:1350 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 10:13:50:1350 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 10:13:50:1350 [35mhttp[39m: [35mGET /api/v1/streaming/watch/rezero-kara-hajimeru-isekai-seikatsu-4th-season-8lj0$ep=1$token=Ltfh8KXzuwau03VfhY-G?provider=Hianime&subOrDub=sub 200 279 - 3917.868 ms[39m
