@@ -4,15 +4,15 @@ const ApiResponse = require('../../utils/ApiResponse');
 const ApiError = require('../../utils/ApiError');
 
 const searchManga = asyncHandler(async (req, res) => {
-  const { q } = req.query;
+  const { q, provider } = req.query;
   if (!q) throw new ApiError(400, 'Search query is required');
 
-  const result = await mangaService.searchManga(q);
+  const result = await mangaService.searchManga(q, provider);
   res.status(200).json(new ApiResponse(200, 'Manga search results fetched', result));
 });
 
 const getMangaInfo = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+  const id = req.query.id || req.params.id || req.params[0];
   const { provider } = req.query; // New: Optional provider param
   if (!id) throw new ApiError(400, 'Manga ID is required');
 
@@ -21,7 +21,7 @@ const getMangaInfo = asyncHandler(async (req, res) => {
 });
 
 const getChapterPages = asyncHandler(async (req, res) => {
-  const { chapterId } = req.params;
+  const chapterId = req.query.chapterId || req.params.chapterId || req.params[0];
   const { provider } = req.query; // New: Optional provider param
   if (!chapterId) throw new ApiError(400, 'Chapter ID is required');
 

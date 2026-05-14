@@ -586,3 +586,272 @@
 2026-05-14 11:46:57:4657 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
 2026-05-14 11:46:57:4657 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
 2026-05-14 11:46:57:4657 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 304 - - 729.638 ms[39m
+2026-05-14 11:54:52:5452 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 11:54:53:5453 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 11:54:53:5453 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 200 1473 - 1079.076 ms[39m
+2026-05-14 12:03:06:36 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 12:03:07:37 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 12:03:07:37 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 304 - - 1058.597 ms[39m
+2026-05-14 12:03:52:352 [32minfo[39m: [32m[MangaService] Initialized provider: MangaPill[39m
+2026-05-14 12:03:52:352 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 12:03:53:353 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 12:03:53:353 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 200 1855 - 1018.946 ms[39m
+2026-05-14 12:03:53:353 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg 403 - - 283.827 ms[39m
+2026-05-14 12:03:53:353 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg 403 - - 281.977 ms[39m
+2026-05-14 12:03:53:353 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg 403 - - 335.054 ms[39m
+2026-05-14 12:03:53:353 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245 403 - - 81.070 ms[39m
+2026-05-14 12:03:53:353 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg 403 - - 82.742 ms[39m
+2026-05-14 12:03:53:353 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg 403 - - 94.761 ms[39m
+2026-05-14 12:05:32:532 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 12:05:33:533 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 12:05:33:533 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 304 - - 846.744 ms[39m
+2026-05-14 12:05:33:533 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg 403 - - 255.412 ms[39m
+2026-05-14 12:05:33:533 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg 403 - - 243.105 ms[39m
+2026-05-14 12:05:33:533 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg 403 - - 252.171 ms[39m
+2026-05-14 12:05:33:533 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg 403 - - 296.208 ms[39m
+2026-05-14 12:05:33:533 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245 403 - - 299.172 ms[39m
+2026-05-14 12:05:33:533 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg 403 - - 335.244 ms[39m
+2026-05-14 12:07:59:759 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 12:07:59:759 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 12:07:59:759 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 304 - - 854.496 ms[39m
+2026-05-14 12:08:00:80 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg 403 - - 255.863 ms[39m
+2026-05-14 12:08:00:80 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg 403 - - 278.206 ms[39m
+2026-05-14 12:08:00:80 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg 403 - - 268.640 ms[39m
+2026-05-14 12:08:00:80 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg 403 - - 289.775 ms[39m
+2026-05-14 12:08:00:80 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg 403 - - 280.674 ms[39m
+2026-05-14 12:08:00:80 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245 403 - - 304.751 ms[39m
+2026-05-14 12:08:11:811 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 12:08:12:812 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 12:08:12:812 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 200 1855 - 891.974 ms[39m
+2026-05-14 12:08:12:812 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg 403 - - 244.625 ms[39m
+2026-05-14 12:08:12:812 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg 403 - - 240.277 ms[39m
+2026-05-14 12:08:12:812 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg 403 - - 283.728 ms[39m
+2026-05-14 12:08:12:812 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg 403 - - 316.476 ms[39m
+2026-05-14 12:08:12:812 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245 403 - - 348.596 ms[39m
+2026-05-14 12:08:12:812 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg 403 - - 359.939 ms[39m
+2026-05-14 12:09:21:921 [32minfo[39m: [32m[MangaService] Initialized provider: MangaPill[39m
+2026-05-14 12:09:21:921 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 12:09:22:922 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 12:09:22:922 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling 200 2197 - 1021.049 ms[39m
+2026-05-14 12:09:23:923 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 444.260 ms[39m
+2026-05-14 12:09:23:923 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 459.627 ms[39m
+2026-05-14 12:09:23:923 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 474.513 ms[39m
+2026-05-14 12:09:23:923 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 483.722 ms[39m
+2026-05-14 12:09:23:923 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 484.302 ms[39m
+2026-05-14 12:09:23:923 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 592.034 ms[39m
+2026-05-14 12:09:27:927 [35mhttp[39m: [35mGET /api/v1/manga/info/8136/solo-leveling-novel?provider=MangaPill 404 181 - 1.694 ms[39m
+2026-05-14 12:09:28:928 [35mhttp[39m: [35mGET /api/v1/manga/info/8136/solo-leveling-novel?provider=MangaPill 404 181 - 1.445 ms[39m
+2026-05-14 12:09:30:930 [35mhttp[39m: [35mGET /api/v1/manga/info/8136/solo-leveling-novel?provider=MangaPill 404 181 - 1.549 ms[39m
+2026-05-14 12:09:38:938 [35mhttp[39m: [35mGET /api/v1/manga/info/8136/solo-leveling-novel?provider=MangaPill 404 181 - 0.806 ms[39m
+2026-05-14 12:09:39:939 [35mhttp[39m: [35mGET /api/v1/manga/info/8136/solo-leveling-novel?provider=MangaPill 404 181 - 0.822 ms[39m
+2026-05-14 12:09:41:941 [35mhttp[39m: [35mGET /api/v1/manga/info/8136/solo-leveling-novel?provider=MangaPill 404 181 - 0.760 ms[39m
+2026-05-14 12:10:08:108 [35mhttp[39m: [35mGET /api/v1/manga/info/8136/solo-leveling-novel?provider=MangaPill 404 181 - 0.673 ms[39m
+2026-05-14 13:03:49:349 [32minfo[39m: [32m[StreamingController] GET /info?q="Tongari Boushi no Atelier"[39m
+2026-05-14 13:03:49:349 [32minfo[39m: [32m[ProviderService] Searching Hianime for "Tongari Boushi no Atelier"...[39m
+2026-05-14 13:04:09:49 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 13:04:09:49 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "Tongari Boushi no Atelier"...[39m
+2026-05-14 13:04:10:410 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:04:10:410 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "Tongari Boushi no Atelier"...[39m
+2026-05-14 13:04:10:410 [32minfo[39m: [32m[MangaService] Initialized provider: MangaPill[39m
+2026-05-14 13:04:10:410 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 13:04:11:411 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 13:04:11:411 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling&provider=MangaPill 200 2197 - 1205.986 ms[39m
+2026-05-14 13:04:11:411 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 13:04:11:411 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "Tongari Boushi no Atelier"...[39m
+2026-05-14 13:04:12:412 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 427.441 ms[39m
+2026-05-14 13:04:12:412 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 433.109 ms[39m
+2026-05-14 13:04:12:412 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 426.594 ms[39m
+2026-05-14 13:04:12:412 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 453.290 ms[39m
+2026-05-14 13:04:12:412 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 485.053 ms[39m
+2026-05-14 13:04:12:412 [32minfo[39m: [32m[ProviderService] AnimeKai found 30 results. Top 3: Witch Hat Atelier, Tongari Boushi no Memole, Tongari Boushi no Memole: Marielle no Housekibako[39m
+2026-05-14 13:04:12:412 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "Witch Hat Atelier" (witch-hat-atelier-3e32)[39m
+2026-05-14 13:04:12:412 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 300.356 ms[39m
+2026-05-14 13:04:13:413 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Tongari+Boushi+no+Atelier 200 1885 - 24170.858 ms[39m
+2026-05-14 13:04:15:415 [32minfo[39m: [32m[MangaService] Initialized provider: Mangahook[39m
+2026-05-14 13:04:15:415 [32minfo[39m: [32m[MangaService] Searching Mangahook for: "Solo Leveling"[39m
+2026-05-14 13:04:15:415 [32minfo[39m: [32m[MangaHookProvider] GET http://localhost:4000/search params={"q":"Solo Leveling"}[39m
+2026-05-14 13:04:15:415 [33mwarn[39m: [33m[MangaService] Mangahook search failed: [39m
+2026-05-14 13:04:15:415 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling&provider=Mangahook 200 96 - 4.882 ms[39m
+2026-05-14 13:04:20:420 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 271.505 ms[39m
+2026-05-14 13:04:20:420 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 309.291 ms[39m
+2026-05-14 13:04:20:420 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 315.923 ms[39m
+2026-05-14 13:04:20:420 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 267.562 ms[39m
+2026-05-14 13:04:20:420 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 295.707 ms[39m
+2026-05-14 13:04:20:420 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 304.219 ms[39m
+2026-05-14 13:04:23:423 [32minfo[39m: [32m[MangaService] Fetching info from MangaPill for ID: 8136/solo-leveling-novel[39m
+2026-05-14 13:04:24:424 [35mhttp[39m: [35mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=MangaPill 200 37964 - 1042.226 ms[39m
+2026-05-14 13:04:28:428 [32minfo[39m: [32m[MangaService] Fetching pages from MangaPill for chapter: 8136-20203000/solo-leveling-novel-chapter-203[39m
+2026-05-14 13:04:29:429 [35mhttp[39m: [35mGET /api/v1/manga/read?chapterId=8136-20203000%2Fsolo-leveling-novel-chapter-203&provider=MangaPill 200 3434 - 694.849 ms[39m
+2026-05-14 13:04:29:429 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F5.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 281.789 ms[39m
+2026-05-14 13:04:29:429 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F2.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 252.212 ms[39m
+2026-05-14 13:04:29:429 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F3.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 317.515 ms[39m
+2026-05-14 13:04:29:429 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F1.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 273.376 ms[39m
+2026-05-14 13:04:29:429 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F6.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 319.284 ms[39m
+2026-05-14 13:04:29:429 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F4.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 328.166 ms[39m
+2026-05-14 13:04:29:429 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F7.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 98.489 ms[39m
+2026-05-14 13:04:30:430 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F8.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 980.653 ms[39m
+2026-05-14 13:04:30:430 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F9.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 724.420 ms[39m
+2026-05-14 13:04:30:430 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F11.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 745.436 ms[39m
+2026-05-14 13:04:30:430 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F10.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 801.738 ms[39m
+2026-05-14 13:04:30:430 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F12.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 760.667 ms[39m
+2026-05-14 13:04:30:430 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F13.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 876.591 ms[39m
+2026-05-14 13:04:31:431 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F16.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 969.696 ms[39m
+2026-05-14 13:04:31:431 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F15.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 919.439 ms[39m
+2026-05-14 13:04:32:432 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F20203000%2F14.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 1104.408 ms[39m
+2026-05-14 13:04:40:440 [32minfo[39m: [32m[MangaService] Fetching pages from MangaPill for chapter: 8136-10001000/solo-leveling-novel-chapter-1[39m
+2026-05-14 13:04:41:441 [35mhttp[39m: [35mGET /api/v1/manga/read?chapterId=8136-10001000%2Fsolo-leveling-novel-chapter-1&provider=MangaPill 200 5122 - 887.001 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F6.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 293.715 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F3.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 334.337 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F5.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 326.935 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F2.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 302.708 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F4.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 317.694 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F1.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 273.552 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F9.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 130.569 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F7.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 102.072 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F12.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 85.932 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F10.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 112.991 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F11.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 106.499 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F8.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 144.284 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F15.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 104.697 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F13.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 106.458 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F16.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 118.155 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F18.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 97.773 ms[39m
+2026-05-14 13:04:42:442 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F17.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 101.915 ms[39m
+2026-05-14 13:04:43:443 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F19.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 141.323 ms[39m
+2026-05-14 13:04:43:443 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F22.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 86.329 ms[39m
+2026-05-14 13:04:43:443 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F21.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 104.267 ms[39m
+2026-05-14 13:04:43:443 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F14.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 140.724 ms[39m
+2026-05-14 13:04:43:443 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F24.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 91.531 ms[39m
+2026-05-14 13:04:43:443 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F23.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 108.190 ms[39m
+2026-05-14 13:04:44:444 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8136%2F10001000%2F20.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 724.706 ms[39m
+2026-05-14 13:05:23:523 [32minfo[39m: [32m[MangaService] Fetching info from Mangahook for ID: 8136/solo-leveling-novel[39m
+2026-05-14 13:05:23:523 [32minfo[39m: [32m[MangaHookProvider] GET http://localhost:4000/info/8136%2Fsolo-leveling-novel params={}[39m
+2026-05-14 13:05:23:523 [31merror[39m: [31m[MangaService] Fetch info failed for Mangahook: [39m
+2026-05-14 13:05:23:523 [31merror[39m: [31mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook - Failed to fetch manga details: [39m
+2026-05-14 13:05:23:523 [35mhttp[39m: [35mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook 500 461 - 6.000 ms[39m
+2026-05-14 13:05:24:524 [32minfo[39m: [32m[MangaService] Fetching info from Mangahook for ID: 8136/solo-leveling-novel[39m
+2026-05-14 13:05:24:524 [32minfo[39m: [32m[MangaHookProvider] GET http://localhost:4000/info/8136%2Fsolo-leveling-novel params={}[39m
+2026-05-14 13:05:24:524 [31merror[39m: [31m[MangaService] Fetch info failed for Mangahook: [39m
+2026-05-14 13:05:24:524 [31merror[39m: [31mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook - Failed to fetch manga details: [39m
+2026-05-14 13:05:24:524 [35mhttp[39m: [35mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook 500 461 - 3.947 ms[39m
+2026-05-14 13:05:26:526 [32minfo[39m: [32m[MangaService] Fetching info from Mangahook for ID: 8136/solo-leveling-novel[39m
+2026-05-14 13:05:26:526 [32minfo[39m: [32m[MangaHookProvider] GET http://localhost:4000/info/8136%2Fsolo-leveling-novel params={}[39m
+2026-05-14 13:05:26:526 [31merror[39m: [31m[MangaService] Fetch info failed for Mangahook: [39m
+2026-05-14 13:05:26:526 [31merror[39m: [31mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook - Failed to fetch manga details: [39m
+2026-05-14 13:05:26:526 [35mhttp[39m: [35mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook 500 461 - 4.255 ms[39m
+2026-05-14 13:05:33:533 [32minfo[39m: [32m[MangaService] Fetching info from Mangahook for ID: 8136/solo-leveling-novel[39m
+2026-05-14 13:05:33:533 [32minfo[39m: [32m[MangaHookProvider] GET http://localhost:4000/info/8136%2Fsolo-leveling-novel params={}[39m
+2026-05-14 13:05:33:533 [31merror[39m: [31m[MangaService] Fetch info failed for Mangahook: [39m
+2026-05-14 13:05:33:533 [31merror[39m: [31mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook - Failed to fetch manga details: [39m
+2026-05-14 13:05:33:533 [35mhttp[39m: [35mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook 500 461 - 4.441 ms[39m
+2026-05-14 13:05:34:534 [32minfo[39m: [32m[MangaService] Initialized provider: MangaPill[39m
+2026-05-14 13:05:34:534 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 13:05:35:535 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 13:05:35:535 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling&provider=MangaPill 200 2197 - 926.041 ms[39m
+2026-05-14 13:05:35:535 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 276.119 ms[39m
+2026-05-14 13:05:35:535 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 284.803 ms[39m
+2026-05-14 13:05:36:536 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 319.429 ms[39m
+2026-05-14 13:05:36:536 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 280.487 ms[39m
+2026-05-14 13:05:36:536 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 293.886 ms[39m
+2026-05-14 13:05:36:536 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 360.349 ms[39m
+2026-05-14 13:05:37:537 [32minfo[39m: [32m[MangaService] Initialized provider: MangaDex[39m
+2026-05-14 13:05:37:537 [32minfo[39m: [32m[MangaService] Searching MangaDex for: "Solo Leveling"[39m
+2026-05-14 13:05:48:548 [33mwarn[39m: [33m[MangaService] MangaDex search failed: getaddrinfo ENOTFOUND api.mangadex.org[39m
+2026-05-14 13:05:48:548 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling&provider=MangaDex 200 96 - 11084.932 ms[39m
+2026-05-14 13:05:57:557 [32minfo[39m: [32m[MangaService] Fetching info from MangaPill for ID: 8202/solo-leveling-ragnarok-novel[39m
+2026-05-14 13:05:58:558 [35mhttp[39m: [35mGET /api/v1/manga/info?id=8202%2Fsolo-leveling-ragnarok-novel&provider=MangaPill 200 7654 - 687.317 ms[39m
+2026-05-14 13:06:01:61 [32minfo[39m: [32m[MangaService] Fetching pages from MangaPill for chapter: 8202-10050000/solo-leveling-ragnarok-novel-chapter-50[39m
+2026-05-14 13:06:01:61 [35mhttp[39m: [35mGET /api/v1/manga/read?chapterId=8202-10050000%2Fsolo-leveling-ragnarok-novel-chapter-50&provider=MangaPill 200 1330 - 701.338 ms[39m
+2026-05-14 13:06:02:62 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8202%2F10050000%2F2.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 313.660 ms[39m
+2026-05-14 13:06:02:62 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8202%2F10050000%2F3.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 354.670 ms[39m
+2026-05-14 13:06:02:62 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8202%2F10050000%2F1.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 369.579 ms[39m
+2026-05-14 13:06:02:62 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8202%2F10050000%2F4.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 105.480 ms[39m
+2026-05-14 13:06:02:62 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8202%2F10050000%2F6.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 111.392 ms[39m
+2026-05-14 13:06:03:63 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangap%2F8202%2F10050000%2F5.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 200 - - 339.905 ms[39m
+2026-05-14 13:39:39:3939 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 13:39:39:3939 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 13:39:41:3941 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece - - - - ms[39m
+2026-05-14 13:39:42:3942 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 13:39:42:3942 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 13:39:50:3950 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece - - - - ms[39m
+2026-05-14 13:39:50:3950 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 13:39:50:3950 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 13:39:59:3959 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 13:39:59:3959 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 13:39:59:3959 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:39:59:3959 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 13:40:01:401 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 13:40:01:401 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "One Piece"...[39m
+2026-05-14 13:40:01:401 [32minfo[39m: [32m[ProviderService] AnimeKai found 30 results. Top 3: One Piece, One Piece: The Movie, One Piece Uncropped[39m
+2026-05-14 13:40:01:401 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "One Piece" (one-piece-dk6r)[39m
+2026-05-14 13:40:02:402 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 13:40:02:402 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 13:40:02:402 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:02:402 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 13:40:04:404 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 13:40:04:404 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "One Piece"...[39m
+2026-05-14 13:40:05:405 [32minfo[39m: [32m[ProviderService] AnimeKai found 30 results. Top 3: One Piece, One Piece: The Movie, One Piece Uncropped[39m
+2026-05-14 13:40:05:405 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "One Piece" (one-piece-dk6r)[39m
+2026-05-14 13:40:10:4010 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 13:40:10:4010 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 13:40:10:4010 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:10:4010 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "One Piece"...[39m
+2026-05-14 13:40:11:4011 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 13:40:11:4011 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "One Piece"...[39m
+2026-05-14 13:40:12:4012 [32minfo[39m: [32m[ProviderService] AnimeKai found 30 results. Top 3: One Piece, One Piece: The Movie, One Piece Uncropped[39m
+2026-05-14 13:40:12:4012 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "One Piece" (one-piece-dk6r)[39m
+2026-05-14 13:40:14:4014 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 200 175902 - 24287.785 ms[39m
+2026-05-14 13:40:15:4015 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 13:40:15:4015 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:16:4016 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 13:40:18:4018 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 13:40:18:4018 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 13:40:18:4018 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 13:40:18:4018 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=1$token=coDh9_Ly6U6v1W8Visvd?provider=Hianime&subOrDub=sub 304 - - 3347.165 ms[39m
+2026-05-14 13:40:27:4027 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 13:40:27:4027 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:28:4028 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 13:40:29:4029 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 13:40:29:4029 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:30:4030 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 13:40:31:4031 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 13:40:31:4031 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 13:40:31:4031 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 13:40:31:4031 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=2$token=dYXy8vL4ukrh1W9eyoaB?provider=Hianime&subOrDub=sub 200 279 - 4192.278 ms[39m
+2026-05-14 13:40:32:4032 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 13:40:32:4032 [32minfo[39m: [32m[StreamingController] Fetched 1 sources from Hianime[39m
+2026-05-14 13:40:32:4032 [32minfo[39m: [32m[StreamingController] First source sample: https://media.w3.org/2010/05/sintel/trailer_hd.mp4...[39m
+2026-05-14 13:40:32:4032 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r$ep=2$token=dYXy8vL4ukrh1W9eyoaB?provider=Hianime&subOrDub=dub 200 279 - 3493.002 ms[39m
+2026-05-14 13:40:56:4056 [32minfo[39m: [32m[MangaService] Initialized provider: MangaPill[39m
+2026-05-14 13:40:56:4056 [32minfo[39m: [32m[MangaService] Searching MangaPill for: "Solo Leveling"[39m
+2026-05-14 13:40:57:4057 [32minfo[39m: [32m[MangaService] SUCCESS: MangaPill found 6 items[39m
+2026-05-14 13:40:57:4057 [35mhttp[39m: [35mGET /api/v1/manga/search?q=Solo+Leveling&provider=MangaPill 304 - - 1017.320 ms[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 4.721 ms[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 1.842 ms[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 1.443 ms[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 1.657 ms[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 1.965 ms[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 2.401 ms[39m
+2026-05-14 13:40:59:4059 [32minfo[39m: [32m[MangaService] Fetching info from MangaPill for ID: 8136/solo-leveling-novel[39m
+2026-05-14 13:41:00:410 [35mhttp[39m: [35mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=MangaPill 304 - - 670.194 ms[39m
+2026-05-14 13:41:39:4139 [35mhttp[39m: [35mOPTIONS /api/v1/auth/signup 204 0 - 0.255 ms[39m
+2026-05-14 13:41:40:4140 [31merror[39m: [31mPOST /api/v1/auth/signup - next is not a function[39m
+2026-05-14 13:41:40:4140 [35mhttp[39m: [35mPOST /api/v1/auth/signup 500 953 - 293.774 ms[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 1.023 ms[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 0.811 ms[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 1.241 ms[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 1.248 ms[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 1.459 ms[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [35mhttp[39m: [35mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 401 1208 - 1.913 ms[39m

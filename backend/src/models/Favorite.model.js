@@ -23,6 +23,18 @@ const favoriteSchema = new mongoose.Schema({
   malId: {
     type: String,
   },
+  score: {
+    type: Number,
+  },
+  episodes: {
+    type: Number,
+  },
+  type: {
+    type: String,
+  },
+  genres: [{
+    type: String,
+  }],
   addedAt: {
     type: Date,
     default: Date.now,

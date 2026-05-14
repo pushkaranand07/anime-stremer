@@ -4,7 +4,7 @@ import { mangaService } from '../services/mangaService';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 
 export default function MangaReaderPage() {
-  const { chapterId } = useParams();
+  const { id, chapterId } = useParams();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const provider = searchParams.get('provider') || 'MangaPill';
@@ -30,9 +30,14 @@ export default function MangaReaderPage() {
           </svg>
           BACK TO INFO
         </button>
-        <span className="text-white font-black uppercase text-xs tracking-widest hidden md:block">
-          Reading Chapter
-        </span>
+        <div className="hidden md:flex flex-col items-center text-center">
+          <span className="text-white font-black uppercase text-xs tracking-widest">
+            Reading Chapter
+          </span>
+          <span className="text-[10px] uppercase tracking-widest text-gray-400">
+            Source: {provider}
+          </span>
+        </div>
         <div className="w-24" /> {/* Spacer */}
       </div>
 

@@ -40,7 +40,7 @@ export default function AppRouter() {
           {/* Manga Routes */}
           <Route path="/manga" element={<MangaPage />} />
           <Route path="/manga/:id" element={<MangaDetailPage />} />
-          <Route path="/manga/read/:chapterId" element={<MangaReaderPage />} />
+          <Route path="/manga/:id/read/:chapterId" element={<MangaReaderPage />} />
 
           <Route 
             path="/favorites" 

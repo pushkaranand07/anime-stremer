@@ -32,8 +32,7 @@ export default function AuthPage() {
         navigate('/');
       } else {
         await signup(formData);
-        setIsLogin(true); // Switch to login after successful signup
-        setFormData({ ...formData, password: '' });
+        navigate('/');
       }
     } catch (err) {
       setError(err.message || 'Authentication failed');

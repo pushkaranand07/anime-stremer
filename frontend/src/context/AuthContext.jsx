@@ -7,36 +7,62 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [user, setUser] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('user'));
+    } catch {
+      return null;
+    }
+  });
+  const [token, setToken] = useState(() => localStorage.getItem('token'));
+  const [refreshToken, setRefreshToken] = useState(() => localStorage.getItem('refreshToken'));
   const [loading, setLoading] = useState(true);
   const queryClient = useQueryClient();
 
   useEffect(() => {
     const initAuth = async () => {
       if (token) {
-        localStorage.setItem('token', token);
-        const savedUser = JSON.parse(localStorage.getItem('user'));
-        if (savedUser) setUser(savedUser);
+        // Optionally validate token here, but for now just set loading false
+        setLoading(false);
       } else {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
         setUser(null);
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     initAuth();
-  }, [token]);
+  }, []); // Remove [token] dependency to avoid circularity
 
   const login = async (credentials) => {
     try {
       const response = await authService.login(credentials);
-      const { user, token } = response.data;
+      const { user, token, refreshToken } = response.data;
       
       setUser(user);
       setToken(token);
+      setRefreshToken(refreshToken);
       localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', token);
+      localStorage.setItem('refreshToken', refreshToken);
+      
+      queryClient.invalidateQueries({ queryKey: ['favorites'] });
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const signup = async (userData) => {
+    try {
+      const response = await authService.signup(userData);
+      const { user, token, refreshToken } = response.data;
+      
+      setUser(user);
+      setToken(token);
+      setRefreshToken(refreshToken);
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', token);
+      localStorage.setItem('refreshToken', refreshToken);
       
       queryClient.invalidateQueries({ queryKey: ['favorites'] });
       return response;
@@ -48,26 +74,30 @@ export function AuthProvider({ children }) {
   const logout = () => {
     setToken(null);
     setUser(null);
+    setRefreshToken(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('refreshToken');
     queryClient.removeQueries({ queryKey: ['favorites'] });
   };
 
-  const signup = async (userData) => {
+  const refreshAccessToken = async () => {
+    const storedRefreshToken = localStorage.getItem('refreshToken');
+    if (!storedRefreshToken) throw new Error('No refresh token available');
     try {
-      const response = await authService.signup(userData);
-      const { user, token } = response.data;
-      
-      setUser(user);
-      setToken(token);
-      localStorage.setItem('user', JSON.stringify(user));
-      
-      return response;
+      const response = await authService.refreshToken(storedRefreshToken);
+      const { token: newToken } = response.data;
+      setToken(newToken);
+      localStorage.setItem('token', newToken);
+      return newToken;
     } catch (error) {
+      logout(); // If refresh fails, logout
       throw error;
     }
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, signup, loading, isAuthenticated: !!token }}>
+    <AuthContext.Provider value={{ user, token, login, logout, signup, refreshToken: refreshAccessToken, loading, isAuthenticated: !!token }}>
       {children}
     </AuthContext.Provider>
   );

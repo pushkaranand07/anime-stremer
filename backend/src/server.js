@@ -1,7 +1,7 @@
 require('dotenv').config();
-const app = require('./src/app');
-const connectDB = require('./src/database/connection');
-const appConfig = require('./src/config/app.config');
+const app = require('./app');
+const connectDB = require('./database/connection');
+const appConfig = require('./config/app.config');
 
 const startServer = async () => {
   try {

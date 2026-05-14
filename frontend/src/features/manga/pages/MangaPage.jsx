@@ -4,15 +4,28 @@ import { Link } from 'react-router-dom';
 import { mangaService } from '../services/mangaService';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 
+const MANGA_PROVIDERS = ['MangaPill', 'Mangahook', 'MangaKakalot', 'MangaDex'];
+
 export default function MangaPage() {
   const [searchQuery, setSearchQuery] = useState('Solo Leveling'); // Default trending manga
   const [inputValue, setInputValue] = useState('');
+  const [selectedProvider, setSelectedProvider] = useState('MangaPill');
 
   const { data: results, isLoading, isError } = useQuery({
-    queryKey: ['manga-search', searchQuery],
-    queryFn: () => mangaService.searchManga(searchQuery),
+    queryKey: ['manga-search', searchQuery, selectedProvider],
+    queryFn: () => mangaService.searchManga(searchQuery, selectedProvider),
     enabled: !!searchQuery,
   });
+
+  const cleanTitle = (title) => {
+    if (!title) return '';
+    // Fix MangaPill double title glitch (e.g. "TitleTitle")
+    const mid = Math.floor(title.length / 2);
+    const firstHalf = title.substring(0, mid);
+    const secondHalf = title.substring(mid);
+    if (firstHalf === secondHalf) return firstHalf;
+    return title;
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -28,10 +41,24 @@ export default function MangaPage() {
         <h1 className="text-5xl font-black text-white mb-4 uppercase tracking-tighter">
           Explore <span className="text-yellow-500">Manga</span>
         </h1>
-        <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+        <p className="text-gray-400 mb-4 max-w-2xl mx-auto">
           Read thousands of manga titles from around the world in high definition.
         </p>
-        
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <div className="text-sm text-gray-300 font-semibold uppercase tracking-widest">
+            Search provider
+          </div>
+          <select
+            value={selectedProvider}
+            onChange={(e) => setSelectedProvider(e.target.value)}
+            className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white outline-none focus:border-yellow-500 transition-all"
+          >
+            {MANGA_PROVIDERS.map((provider) => (
+              <option key={provider} value={provider}>{provider}</option>
+            ))}
+          </select>
+        </div>
+
         <form onSubmit={handleSearch} className="max-w-xl mx-auto relative group">
           <input 
             type="text"
@@ -64,13 +91,13 @@ export default function MangaPage() {
             {results?.results?.map((manga) => (
               <Link 
                 key={manga.id}
-                to={`/manga/${manga.id}?provider=${manga.provider || 'MangaPill'}`}
+                to={`/manga/${encodeURIComponent(manga.id)}?provider=${manga.provider || 'MangaPill'}`}
                 className="group relative flex flex-col gap-3 transition-transform hover:-translate-y-2"
               >
                 <div className="aspect-[2/3] rounded-2xl overflow-hidden bg-white/5 border border-white/10 shadow-xl relative">
                   <img 
                     src={manga.image} 
-                    alt={manga.title}
+                    alt={cleanTitle(manga.title)}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
                   />
@@ -79,9 +106,14 @@ export default function MangaPage() {
                   </div>
                 </div>
                 <div className="px-1">
-                  <h3 className="text-sm font-bold text-white line-clamp-2 group-hover:text-yellow-500 transition-colors">
-                    {manga.title}
-                  </h3>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <h3 className="text-sm font-bold text-white line-clamp-2 group-hover:text-yellow-500 transition-colors">
+                      {cleanTitle(manga.title)}
+                    </h3>
+                    <span className="text-[10px] px-2 py-1 bg-yellow-500 text-black font-black rounded-full uppercase">
+                      {manga.provider || selectedProvider}
+                    </span>
+                  </div>
                   {manga.releaseDate && (
                     <span className="text-[10px] text-gray-500 uppercase font-bold">{manga.releaseDate}</span>
                   )}

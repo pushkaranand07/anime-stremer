@@ -1,11 +1,14 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteAnime } from '../hooks/useInfiniteAnime';
 import AnimeCard from '../components/anime/AnimeCard';
 import MagnetButton from '../components/ui/MagnetButton';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import AnimatedCounter from '../components/ui/AnimatedCounter';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteAnime('airing');
@@ -20,15 +23,17 @@ export default function HomePage() {
     if (status === 'pending') return;
     
     const ctx = gsap.context(() => {
-      if (document.querySelector('.hero-content')) {
-        gsap.fromTo('.hero-content > *', 
+      const heroContent = heroRef.current?.querySelector('.hero-content');
+      if (heroContent) {
+        gsap.fromTo(heroContent.children, 
           { y: 50, opacity: 0 },
           { y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.2 }
         );
       }
       
-      if (document.querySelector('.hero-bg')) {
-        gsap.fromTo('.hero-bg',
+      const heroBg = heroRef.current?.querySelector('.hero-bg');
+      if (heroBg) {
+        gsap.fromTo(heroBg,
           { scale: 1.2, opacity: 0 },
           { scale: 1, opacity: 0.3, duration: 2, ease: 'power2.out' }
         );
@@ -37,6 +42,19 @@ export default function HomePage() {
 
     return () => ctx.revert();
   }, [status]);
+
+  // Card reveal animations
+  useEffect(() => {
+    ScrollTrigger.batch('.anime-card', {
+      onEnter: (elements) => gsap.fromTo(elements, 
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, stagger: 0.05, ease: 'power2.out' }
+      ),
+      start: 'top 95%',
+    });
+
+    return () => ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  }, [data]); // Re-run when data changes
 
   // Trigger next page when user scrolls to bottom
   useEffect(() => {

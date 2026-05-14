@@ -3,10 +3,16 @@ import { useQuery } from '@tanstack/react-query';
 import { mangaService } from '../services/mangaService';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 
+const MANGA_PROVIDERS = ['MangaPill', 'Mangahook', 'MangaKakalot', 'MangaDex'];
+
 export default function MangaDetailPage() {
   const { id } = useParams();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const provider = searchParams.get('provider') || 'MangaPill';
+
+  const handleProviderChange = (event) => {
+    setSearchParams({ provider: event.target.value });
+  };
 
   const { data: manga, isLoading, isError } = useQuery({
     queryKey: ['manga-detail', id, provider],
@@ -49,6 +55,18 @@ export default function MangaDetailPage() {
                 </span>
               ))}
             </div>
+            <div className="mb-8 flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+              <span className="text-xs uppercase tracking-widest text-gray-400 font-black">Provider</span>
+              <select
+                value={provider}
+                onChange={handleProviderChange}
+                className="bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-white outline-none focus:border-yellow-500 transition-all"
+              >
+                {MANGA_PROVIDERS.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
+              </select>
+            </div>
             <p className="text-gray-400 leading-relaxed max-w-3xl mb-8 line-clamp-6 md:line-clamp-none">
               {manga.description}
             </p>
@@ -76,7 +94,7 @@ export default function MangaDetailPage() {
             {manga.chapters?.map((chapter) => (
               <Link 
                 key={chapter.id}
-                to={`/manga/read/${chapter.id}?provider=${provider}`}
+                to={`/manga/${id}/read/${encodeURIComponent(chapter.id)}?provider=${provider}`}
                 className="group p-4 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between hover:bg-yellow-500 hover:border-yellow-500 transition-all"
               >
                 <div className="flex flex-col">

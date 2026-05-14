@@ -14,8 +14,13 @@ const login = asyncHandler(async (req, res) => {
 });
 
 const refreshToken = asyncHandler(async (req, res) => {
-  // To be implemented: Refresh token logic
-  res.status(501).json(new ApiResponse(501, 'Not implemented yet'));
+  const { refreshToken } = req.body;
+  if (!refreshToken) {
+    throw new ApiError(400, 'Refresh token is required');
+  }
+
+  const result = await authService.refreshAccessToken(refreshToken);
+  res.status(200).json(new ApiResponse(200, 'Token refreshed successfully', result));
 });
 
 module.exports = {

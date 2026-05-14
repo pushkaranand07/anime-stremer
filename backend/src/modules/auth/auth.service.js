@@ -61,20 +61,24 @@ class AuthService {
     };
   }
 
-  generateTokens(user) {
-    const token = jwt.sign(
-      { userId: user._id, username: user.username, role: user.role },
-      jwtConfig.secret,
-      { expiresIn: jwtConfig.expiry }
-    );
+  async refreshAccessToken(refreshToken) {
+    try {
+      const decoded = jwt.verify(refreshToken, jwtConfig.refreshSecret);
+      const user = await userRepository.findById(decoded.userId);
+      if (!user) {
+        throw new ApiError(401, 'Invalid refresh token');
+      }
 
-    const refreshToken = jwt.sign(
-      { userId: user._id },
-      jwtConfig.refreshSecret,
-      { expiresIn: jwtConfig.refreshExpiry }
-    );
+      const token = jwt.sign(
+        { userId: user._id, username: user.username, role: user.role },
+        jwtConfig.secret,
+        { expiresIn: jwtConfig.expiry }
+      );
 
-    return { token, refreshToken };
+      return { token };
+    } catch (error) {
+      throw new ApiError(401, 'Invalid or expired refresh token');
+    }
   }
 }
 

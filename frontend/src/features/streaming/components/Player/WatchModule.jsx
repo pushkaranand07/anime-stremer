@@ -40,7 +40,7 @@ export default function WatchModule({ animeId, episode, animeTitle, poster, onEp
     } finally {
       setLoading(false);
     }
-  }, [episode?.id, subOrDub, animeId]);
+  }, [episode?.id, subOrDub, animeId, provider]);
 
   useEffect(() => {
     loadSources();

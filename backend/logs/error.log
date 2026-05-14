@@ -190,3 +190,48 @@
 2026-05-14 11:44:06:446 [31merror[39m: [31mGET /api/v1/manga/search?q=solo+leveling - Manga search failed on all providers[39m
 2026-05-14 11:44:28:4428 [31merror[39m: [31m[MangaService] All manga providers failed: [MangaKakalot] Search failed: Cloudflare challenge persists after all retries[39m
 2026-05-14 11:44:28:4428 [31merror[39m: [31mGET /api/v1/manga/search?q=solo+leveling - Manga search failed on all providers[39m
+2026-05-14 13:04:09:49 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 13:04:10:410 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:04:11:411 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 13:05:23:523 [31merror[39m: [31m[MangaService] Fetch info failed for Mangahook: [39m
+2026-05-14 13:05:23:523 [31merror[39m: [31mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook - Failed to fetch manga details: [39m
+2026-05-14 13:05:24:524 [31merror[39m: [31m[MangaService] Fetch info failed for Mangahook: [39m
+2026-05-14 13:05:24:524 [31merror[39m: [31mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook - Failed to fetch manga details: [39m
+2026-05-14 13:05:26:526 [31merror[39m: [31m[MangaService] Fetch info failed for Mangahook: [39m
+2026-05-14 13:05:26:526 [31merror[39m: [31mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook - Failed to fetch manga details: [39m
+2026-05-14 13:05:33:533 [31merror[39m: [31m[MangaService] Fetch info failed for Mangahook: [39m
+2026-05-14 13:05:33:533 [31merror[39m: [31mGET /api/v1/manga/info?id=8136%2Fsolo-leveling-novel&provider=Mangahook - Failed to fetch manga details: [39m
+2026-05-14 13:39:59:3959 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 13:39:59:3959 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:01:401 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 13:40:02:402 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 13:40:02:402 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:04:404 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 13:40:10:4010 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 13:40:10:4010 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:11:4011 [31merror[39m: [31m[ProviderService] KickAssAnime failed: Request failed with status code 403[39m
+2026-05-14 13:40:15:4015 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 13:40:15:4015 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:16:4016 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 13:40:18:4018 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 13:40:27:4027 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 13:40:27:4027 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:28:4028 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 13:40:29:4029 [31merror[39m: [31m[ProviderService] Hianime watch failed: Invalid episode id[39m
+2026-05-14 13:40:29:4029 [31merror[39m: [31m[ProviderService] AnimePahe watch failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 13:40:30:4030 [31merror[39m: [31m[ProviderService] KickAssAnime watch failed: Request failed with status code 403[39m
+2026-05-14 13:40:31:4031 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 13:40:32:4032 [31merror[39m: [31m[ProviderService] AnimeKai watch failed: Request failed with status code 400[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:40:57:4057 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:40:4140 [31merror[39m: [31mPOST /api/v1/auth/signup - next is not a function[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8136.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F8202.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F6372.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F9176.jpeg%3Fh%3D01992e0c-0dab-77a7-a491-096134a6f245&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F7323.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m
+2026-05-14 13:41:45:4145 [31merror[39m: [31mGET /api/v1/streaming/proxy?url=https%3A%2F%2Fcdn.readdetectiveconan.com%2Ffile%2Fmangapill%2Fi%2F5525.jpeg&headers=eyJSZWZlcmVyIjoiaHR0cHM6Ly9tYW5nYXBpbGwuY29tLyJ9 - Unauthorized request[39m

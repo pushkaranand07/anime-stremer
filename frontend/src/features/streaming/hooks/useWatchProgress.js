@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 const STORAGE_KEY = 'anime_discovery_watch_progress';
 
@@ -12,6 +12,8 @@ export function useWatchProgress() {
     }
   });
 
+  const debounceRef = useRef(null);
+
   const saveProgress = useCallback((animeId, episodeNumber, time, duration) => {
     if (!animeId || !episodeNumber) return;
     
@@ -21,18 +23,22 @@ export function useWatchProgress() {
       return;
     }
 
-    const newProgress = {
-      ...progress,
-      [animeId]: {
-        episodeNumber,
-        time,
-        duration,
-        updatedAt: Date.now()
-      }
-    };
+    // Debounce saves to avoid excessive localStorage writes
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      const newProgress = {
+        ...progress,
+        [animeId]: {
+          episodeNumber,
+          time,
+          duration,
+          updatedAt: Date.now()
+        }
+      };
 
-    setProgress(newProgress);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newProgress));
+      setProgress(newProgress);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newProgress));
+    }, 1000); // Save after 1 second of no updates
   }, [progress]);
 
   const getProgress = useCallback((animeId) => {

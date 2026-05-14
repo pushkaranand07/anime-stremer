@@ -16,7 +16,19 @@ app.use(requestLogger);
 // Security Middleware
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
-  contentSecurityPolicy: false, // Disable for dev to allow various stream sources
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"], // For Tailwind
+      imgSrc: ["'self'", "data:", "https:"],
+      mediaSrc: ["'self'", "https:", "http:"], // For video streams
+      connectSrc: ["'self'", "https:"],
+      fontSrc: ["'self'", "https:"],
+      objectSrc: ["'none'"],
+      frameSrc: ["'none'"],
+    },
+  },
 }));
 app.use(cors({
   origin: appConfig.allowedOrigins,

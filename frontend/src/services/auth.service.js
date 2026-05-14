@@ -9,8 +9,8 @@ export const authService = {
     return await apiClient.post('/auth/login', credentials);
   },
 
-  async refreshToken() {
-    return await apiClient.post('/auth/refresh-token');
+  async refreshToken(refreshToken) {
+    return await apiClient.post('/auth/refresh-token', { refreshToken });
   },
 
   async getProfile() {
