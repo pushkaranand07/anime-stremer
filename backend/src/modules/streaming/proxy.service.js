@@ -1,6 +1,4 @@
 const axios = require('axios');
-const path = require('path');
-const { Parser } = require('m3u8-parser');
 
 class ProxyService {
   constructor() {

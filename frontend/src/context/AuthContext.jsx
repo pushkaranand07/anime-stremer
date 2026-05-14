@@ -1,103 +1,134 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { authService } from '../services/auth.service';
 
-const AuthContext = createContext();
+// Auth states: 'initializing' | 'authenticated' | 'unauthenticated'
+const AuthContext = createContext(null);
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error('useAuth must be used inside <AuthProvider>');
+  return ctx;
+};
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem('user'));
-    } catch {
-      return null;
-    }
-  });
-  const [token, setToken] = useState(() => localStorage.getItem('token'));
-  const [refreshToken, setRefreshToken] = useState(() => localStorage.getItem('refreshToken'));
-  const [loading, setLoading] = useState(true);
+  const [authState, setAuthState] = useState('initializing'); // explicit state machine
+  const [user, setUser] = useState(null);
   const queryClient = useQueryClient();
 
+  // ── Boot: verify token on startup ────────────────────────────────────────
   useEffect(() => {
-    const initAuth = async () => {
-      if (token) {
-        // Optionally validate token here, but for now just set loading false
-        setLoading(false);
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      setAuthState('unauthenticated');
+      return;
+    }
+
+    // Decode JWT without verifying signature (check expiry only)
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const isExpired = payload.exp * 1000 < Date.now();
+
+      if (isExpired) {
+        // Token is expired — try to refresh silently
+        _silentRefresh();
       } else {
-        setUser(null);
-        setLoading(false);
+        // Token looks valid — trust it and restore user from storage
+        const storedUser = localStorage.getItem('user');
+        setUser(storedUser ? JSON.parse(storedUser) : null);
+        setAuthState('authenticated');
       }
-    };
-
-    initAuth();
-  }, []); // Remove [token] dependency to avoid circularity
-
-  const login = async (credentials) => {
-    try {
-      const response = await authService.login(credentials);
-      const { user, token, refreshToken } = response.data;
-      
-      setUser(user);
-      setToken(token);
-      setRefreshToken(refreshToken);
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', token);
-      localStorage.setItem('refreshToken', refreshToken);
-      
-      queryClient.invalidateQueries({ queryKey: ['favorites'] });
-      return response;
-    } catch (error) {
-      throw error;
+    } catch {
+      // Malformed token — treat as unauthenticated
+      _clearStorage();
+      setAuthState('unauthenticated');
     }
-  };
+  }, []);
 
-  const signup = async (userData) => {
-    try {
-      const response = await authService.signup(userData);
-      const { user, token, refreshToken } = response.data;
-      
-      setUser(user);
-      setToken(token);
-      setRefreshToken(refreshToken);
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', token);
-      localStorage.setItem('refreshToken', refreshToken);
-      
-      queryClient.invalidateQueries({ queryKey: ['favorites'] });
-      return response;
-    } catch (error) {
-      throw error;
+  const _silentRefresh = async () => {
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (!refreshToken) {
+      _clearStorage();
+      setAuthState('unauthenticated');
+      return;
     }
-  };
 
-  const logout = () => {
-    setToken(null);
-    setUser(null);
-    setRefreshToken(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('refreshToken');
-    queryClient.removeQueries({ queryKey: ['favorites'] });
-  };
-
-  const refreshAccessToken = async () => {
-    const storedRefreshToken = localStorage.getItem('refreshToken');
-    if (!storedRefreshToken) throw new Error('No refresh token available');
     try {
-      const response = await authService.refreshToken(storedRefreshToken);
-      const { token: newToken } = response.data;
-      setToken(newToken);
+      const response = await authService.refreshToken(refreshToken);
+      // response is already unwrapped by apiClient interceptor → ApiResponse wrapper
+      const newToken = response?.data?.accessToken;
+      if (!newToken) throw new Error('No token in refresh response');
+
       localStorage.setItem('token', newToken);
-      return newToken;
-    } catch (error) {
-      logout(); // If refresh fails, logout
-      throw error;
+      const storedUser = localStorage.getItem('user');
+      setUser(storedUser ? JSON.parse(storedUser) : null);
+      setAuthState('authenticated');
+    } catch {
+      _clearStorage();
+      setAuthState('unauthenticated');
     }
   };
+
+  const _clearStorage = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('user');
+  };
+
+  // ── Public actions ────────────────────────────────────────────────────────
+  const login = useCallback(async (credentials) => {
+    const response = await authService.login(credentials);
+    // response.data = { user, accessToken, refreshToken }
+    const { user: userData, accessToken, refreshToken } = response.data;
+
+    setUser(userData);
+    setAuthState('authenticated');
+    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem('token', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+
+    queryClient.invalidateQueries({ queryKey: ['favorites'] });
+    return response;
+  }, [queryClient]);
+
+  const signup = useCallback(async (userData) => {
+    const response = await authService.signup(userData);
+    const { user: newUser, accessToken, refreshToken } = response.data;
+
+    setUser(newUser);
+    setAuthState('authenticated');
+    localStorage.setItem('user', JSON.stringify(newUser));
+    localStorage.setItem('token', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+
+    queryClient.invalidateQueries({ queryKey: ['favorites'] });
+    return response;
+  }, [queryClient]);
+
+  const logout = useCallback(async () => {
+    const refreshToken = localStorage.getItem('refreshToken');
+    try {
+      await authService.logout(refreshToken); // Revoke server-side
+    } catch {
+      // Even if the server call fails, clear local state
+    }
+
+    setUser(null);
+    setAuthState('unauthenticated');
+    _clearStorage();
+    queryClient.removeQueries({ queryKey: ['favorites'] });
+  }, [queryClient]);
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, signup, refreshToken: refreshAccessToken, loading, isAuthenticated: !!token }}>
+    <AuthContext.Provider value={{
+      user,
+      isAuthenticated: authState === 'authenticated',
+      isInitializing: authState === 'initializing',
+      login,
+      logout,
+      signup,
+    }}>
       {children}
     </AuthContext.Provider>
   );

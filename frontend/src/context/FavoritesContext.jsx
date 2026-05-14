@@ -15,10 +15,11 @@ export function FavoritesProvider({ children }) {
     addFavorite,
     removeFavorite,
     isFavorite,
-  } = useFavoritesBackend(isAuthenticated);  // ← gated by auth state
+    isMutating, // Exposed so buttons can disable during mutation
+  } = useFavoritesBackend(isAuthenticated);
 
   return (
-    <FavoritesContext.Provider value={{ favorites, isLoading, addFavorite, removeFavorite, isFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, isLoading, addFavorite, removeFavorite, isFavorite, isMutating }}>
       {children}
     </FavoritesContext.Provider>
   );

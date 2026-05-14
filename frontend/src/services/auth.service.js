@@ -13,7 +13,7 @@ export const authService = {
     return await apiClient.post('/auth/refresh-token', { refreshToken });
   },
 
-  async getProfile() {
-    return await apiClient.get('/users/me'); // To be implemented on backend
-  }
+  async logout(refreshToken) {
+    return await apiClient.post('/auth/logout', { refreshToken });
+  },
 };

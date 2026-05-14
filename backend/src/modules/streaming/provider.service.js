@@ -13,66 +13,67 @@ class ProviderService {
     ]);
   }
 
+  /**
+   * Fetch anime info by searching all providers in PARALLEL.
+   * Promise.any resolves with the FIRST success — reduces worst-case
+   * latency from N×timeout (sequential) to 1×timeout (parallel).
+   */
   async fetchAnimeInfo(query) {
-    const errors = [];
-    for (const { name, klass } of providerConfig.chain) {
-      try {
-        if (!klass) {
-          logger.warn(`[ProviderService] Skipping ${name}: Provider class is not defined.`);
-          continue;
-        }
+    const attempts = providerConfig.chain
+      .filter(({ klass }) => !!klass)
+      .map(async ({ name, klass }) => {
         logger.info(`[ProviderService] Searching ${name} for "${query}"...`);
         const provider = new klass();
-        
+
         const searchResult = await this.withTimeout(
-          provider.search(query), 
-          providerConfig.timeoutMs, 
+          provider.search(query),
+          providerConfig.timeoutMs,
           `${name}/search`
         );
-        
-        if (!searchResult || !searchResult.results || !Array.isArray(searchResult.results) || searchResult.results.length === 0) {
-           logger.warn(`[ProviderService] ${name} returned no results for "${query}"`);
-           continue;
+
+        if (!searchResult?.results?.length) {
+          throw new Error(`${name}: no results`);
         }
 
-        // Log search results for debugging
         logger.info(`[ProviderService] ${name} found ${searchResult.results.length} results. Top 3: ${searchResult.results.slice(0, 3).map(r => r.title).join(', ')}`);
 
         // Strategy: Find best title match
-        const searchResults = searchResult.results;
         const normalizedQuery = query.toLowerCase().trim();
-        
-        const bestMatch = searchResults.find(r => 
+        const bestMatch = searchResult.results.find(r =>
           r.title.toLowerCase() === normalizedQuery ||
           r.title.toLowerCase() === `${normalizedQuery} (tv)` ||
           r.title.toLowerCase().startsWith(normalizedQuery)
-        ) || searchResults[0];
+        ) || searchResult.results[0];
 
         logger.info(`[ProviderService] ${name} best match: "${bestMatch.title}" (${bestMatch.id})`);
 
         const info = await this.withTimeout(
-          provider.fetchAnimeInfo(bestMatch.id), 
-          providerConfig.timeoutMs, 
+          provider.fetchAnimeInfo(bestMatch.id),
+          providerConfig.timeoutMs,
           `${name}/info`
         );
-        
-        if (!info || !info.episodes || !Array.isArray(info.episodes) || info.episodes.length === 0) {
-           logger.warn(`[ProviderService] ${name} found no episodes for ${bestMatch.id}`);
-           continue;
+
+        if (!info?.episodes?.length) {
+          throw new Error(`${name}: no episodes`);
         }
 
-        return {
-          provider: name,
-          ...info
-        };
-      } catch (err) {
-        logger.error(`[ProviderService] ${name} failed: ${err.message}`, { stack: err.stack });
-        errors.push(`${name}: ${err.message}`);
-      }
+        logger.info(`[ProviderService] ${name} succeeded for "${query}" — ${info.episodes.length} episodes`);
+        return { provider: name, ...info };
+      });
+
+    try {
+      return await Promise.any(attempts);
+    } catch (aggregateError) {
+      // AggregateError: all providers failed
+      const messages = aggregateError.errors?.map(e => e.message).join('; ') || 'All providers failed';
+      throw new ApiError(503, `No streaming sources found: ${messages}`);
     }
-    throw new ApiError(503, `All providers failed: ${errors.join(', ')}`);
   }
 
+  /**
+   * Fetch episode sources — uses the preferred provider first (the one that
+   * issued the episode ID), then falls back to others.
+   */
   async fetchEpisodeSources(episodeId, preferredProvider, subOrDub) {
     const orderedProviders = [
       providerConfig.chain.find(p => p.name === preferredProvider),
@@ -93,7 +94,7 @@ class ProviderService {
           `${name}/watch`
         );
 
-        if (!sourcesData || !sourcesData.sources || !Array.isArray(sourcesData.sources) || sourcesData.sources.length === 0) {
+        if (!sourcesData?.sources?.length) {
            continue;
         }
 

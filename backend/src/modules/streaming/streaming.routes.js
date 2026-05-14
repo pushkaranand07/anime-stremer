@@ -1,12 +1,20 @@
 const { Router } = require('express');
 const streamingController = require('./streaming.controller');
 const verifyJWT = require('../../middlewares/auth.middleware');
+const { proxyGuard } = require('../../middlewares/proxyGuard.middleware');
 
 const router = Router();
 
+// ─── Public endpoints ────────────────────────────────────────────────────────
 router.get('/info', streamingController.getInfo);
 router.get('/watch/:episodeId', streamingController.getWatch);
-router.get('/proxy', verifyJWT, streamingController.proxyStream);
-router.get('/torrent', streamingController.streamTorrent);
+
+// Public proxy — used for streaming segments and subtitles.
+// Protected by SSRF guard + URL allowlist (NOT by JWT).
+router.get('/proxy', proxyGuard, streamingController.proxyStream);
+
+// ─── Authenticated endpoints ──────────────────────────────────────────────────
+// Torrent streaming is privileged — require login to prevent bandwidth abuse.
+router.get('/torrent', verifyJWT, streamingController.streamTorrent);
 
 module.exports = router;

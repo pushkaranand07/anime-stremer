@@ -39,6 +39,7 @@ export const streamingService = {
 
   /**
    * Fetches playable video sources for a specific episode.
+   * `provider` should be `episode.provider` — the provider that issued the episode ID.
    * Proxifies all source and subtitle URLs through the backend proxy.
    */
   async getEpisodeSources(episodeId, provider, subOrDub) {

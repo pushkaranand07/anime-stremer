@@ -17,12 +17,18 @@ jikanClient.interceptors.request.use(async (config) => {
   return config;
 });
 
-// Response interceptor: handle common errors
+// Response interceptor: handle common errors and retry on 429
 jikanClient.interceptors.response.use(
   response => response,
-  error => {
+  async error => {
     if (error.response?.status === 429) {
-      console.warn('Rate limit hit. Implement retry logic here.');
+      console.warn('Jikan Rate limit hit. Retrying...');
+      const retryAfterHeader = error.response.headers['retry-after'];
+      const retryAfter = retryAfterHeader ? parseInt(retryAfterHeader, 10) : 1;
+      
+      await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+      // Retry the original request
+      return jikanClient(error.config);
     }
     return Promise.reject(error);
   }

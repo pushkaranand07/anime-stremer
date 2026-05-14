@@ -3,37 +3,27 @@
  *
  * Replaces express-mongo-sanitize.
  * Recursively strips keys that start with '$' or contain '.'
- * from req.body and req.params — without touching req.query directly.
- * For req.query, we sanitize values only (keys are controlled by the URL router).
+ * from req.body and req.params — these are NoSQL injection vectors.
+ *
+ * IMPORTANT: Only KEY sanitization is needed for NoSQL injection prevention.
+ * String VALUES are left untouched — a value can legitimately start with '$'.
  */
-
-function sanitizeValue(value) {
-  if (value === null || value === undefined) return value;
-
-  if (typeof value === 'string') {
-    // Only remove $ prefix from string values if they are likely to be used as keys
-    // But since this is a value, it's generally safe. 
-    // However, for consistency with basic NoSQL injection prevention:
-    return value.replace(/^\$/, '');
-  }
-
-  if (Array.isArray(value)) {
-    return value.map(sanitizeValue);
-  }
-
-  if (typeof value === 'object') {
-    return sanitizeObject(value);
-  }
-
-  return value;
-}
 
 function sanitizeObject(obj) {
   const clean = {};
   for (const key of Object.keys(obj)) {
     // Drop keys starting with $ or containing . (NoSQL injection vectors)
     if (key.startsWith('$') || key.includes('.')) continue;
-    clean[key] = sanitizeValue(obj[key]);
+
+    const val = obj[key];
+    // Recursively sanitize nested objects (but NOT arrays of primitives)
+    if (val && typeof val === 'object' && !Array.isArray(val)) {
+      clean[key] = sanitizeObject(val);
+    } else if (Array.isArray(val)) {
+      clean[key] = val.map(v => (v && typeof v === 'object' && !Array.isArray(v)) ? sanitizeObject(v) : v);
+    } else {
+      clean[key] = val; // Leave string/number/boolean values untouched
+    }
   }
   return clean;
 }
@@ -49,11 +39,18 @@ function mongoSanitize(req, res, next) {
     req.params = sanitizeObject(req.params);
   }
 
-  // For req.query: DO NOT reassign the object reference.
-  // Instead sanitize values in-place, which is safe.
+  // For req.query: sanitize keys only (drop dangerous ones)
   if (req.query && typeof req.query === 'object') {
+    const cleanQuery = {};
     for (const key of Object.keys(req.query)) {
-      req.query[key] = sanitizeValue(req.query[key]);
+      if (key.startsWith('$') || key.includes('.')) continue;
+      cleanQuery[key] = req.query[key]; // Values left untouched
+    }
+    // Reassign sanitized query
+    for (const key of Object.keys(req.query)) {
+      if (key.startsWith('$') || key.includes('.')) {
+        delete req.query[key];
+      }
     }
   }
 

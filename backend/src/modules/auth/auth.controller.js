@@ -24,8 +24,15 @@ const refreshToken = asyncHandler(async (req, res) => {
   res.status(200).json(new ApiResponse(200, 'Token refreshed successfully', result));
 });
 
+const logout = asyncHandler(async (req, res) => {
+  const { refreshToken } = req.body;
+  await authService.logout(refreshToken);
+  res.status(200).json(new ApiResponse(200, 'Logged out successfully'));
+});
+
 module.exports = {
   signup,
   login,
   refreshToken,
+  logout,
 };

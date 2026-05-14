@@ -5,7 +5,10 @@ import Player from './Player';
 
 export default function WatchModule({ animeId, episode, animeTitle, poster, onEpisodeChange }) {
   const [subOrDub, setSubOrDub] = useState('sub');
-  const [provider, setProvider] = useState('Hianime');
+  // preferredProvider: what we REQUEST (stable — doesn't trigger refetch loops)
+  const [preferredProvider] = useState('Hianime');
+  // activeProvider: what the server actually used (display only)
+  const [activeProvider, setActiveProvider] = useState('Hianime');
   const [sources, setSources] = useState([]);
   const [subtitles, setSubtitles] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,10 +26,12 @@ export default function WatchModule({ animeId, episode, animeTitle, poster, onEp
     setError(null);
     
     try {
-      const data = await streamingService.getEpisodeSources(episode.id, provider, subOrDub);
+      // Use episode.provider (the issuer) if available, otherwise the preferred default
+      const providerToUse = episode.provider || preferredProvider;
+      const data = await streamingService.getEpisodeSources(episode.id, providerToUse, subOrDub);
       setSources(data.sources || []);
       setSubtitles(data.subtitles || []);
-      setProvider(data.provider);
+      setActiveProvider(data.provider || providerToUse); // Display only — not a fetch dependency
 
       // If we have saved progress for THIS episode, set it
       if (savedProgress && savedProgress.episodeNumber === episode.number) {
@@ -40,7 +45,9 @@ export default function WatchModule({ animeId, episode, animeTitle, poster, onEp
     } finally {
       setLoading(false);
     }
-  }, [episode?.id, subOrDub, animeId, provider]);
+  }, [episode?.id, episode?.provider, subOrDub, preferredProvider]);
+  // ↑ preferredProvider is stable (not set by this callback), so no loop
+  // ↑ activeProvider is NOT in deps — it's set by this callback, which would cause a loop
 
   useEffect(() => {
     loadSources();
@@ -125,7 +132,7 @@ export default function WatchModule({ animeId, episode, animeTitle, poster, onEp
           {/* Provider Badge */}
           <div className="hidden md:flex items-center gap-2 px-4 py-2.5 bg-white/5 border border-white/10 rounded-2xl">
             <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
-            <span className="text-[10px] font-black text-gray-400 uppercase">{provider}</span>
+            <span className="text-[10px] font-black text-gray-400 uppercase">{activeProvider}</span>
           </div>
         </div>
       </div>

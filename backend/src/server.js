@@ -1,23 +1,21 @@
-require('dotenv').config();
+require('dotenv').config(); // Load env FIRST — before any other require
+const validateEnv = require('./startup/validateEnv');
+validateEnv(); // Fail fast if env is broken
+
 const app = require('./app');
 const connectDB = require('./database/connection');
 const appConfig = require('./config/app.config');
+const logger = require('./utils/logger');
 
 const startServer = async () => {
   try {
-    // 1. Connect to Database
     await connectDB();
 
-    // 2. Start Listening
     app.listen(appConfig.port, () => {
-      console.log(`
-🚀 Server is running!
-📡 Mode: ${appConfig.nodeEnv}
-🔗 URL: http://localhost:${appConfig.port}/api/v1
-      `);
+      logger.info(`🚀 Server running at http://localhost:${appConfig.port}/api/v1 [${appConfig.nodeEnv}]`);
     });
   } catch (error) {
-    console.error('❌ Server failed to start:', error.message);
+    logger.error('❌ Server failed to start', { message: error.message, stack: error.stack });
     process.exit(1);
   }
 };

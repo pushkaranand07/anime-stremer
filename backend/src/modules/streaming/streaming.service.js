@@ -25,6 +25,7 @@ class StreamingService {
         number: ep.number,
         title: ep.title || `Episode ${ep.number}`,
         isFiller: ep.isFiller || false,
+        provider: info.provider, // CRITICAL: bind the issuing provider to each episode
       })),
     };
 

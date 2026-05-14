@@ -93,24 +93,32 @@ const proxyStream = asyncHandler(async (req, res) => {
 
 /**
  * Torrent Streaming Endpoint
+ * Protected by verifyJWT in routes to prevent bandwidth abuse.
  */
 const streamTorrent = asyncHandler(async (req, res) => {
   const { magnet } = req.query;
   if (!magnet) throw new ApiError(400, 'Magnet URI is required');
 
   const streamInfo = await torrentService.startStream(magnet);
-  
+
   const range = req.headers.range;
   if (!range) {
     res.setHeader('Content-Type', 'video/mp4');
     res.setHeader('Content-Length', streamInfo.length);
+    res.setHeader('Accept-Ranges', 'bytes');
     return res.status(200).end();
   }
 
-  const parts = range.replace(/bytes=/, "").split("-");
+  const parts = range.replace(/bytes=/, '').split('-');
   const start = parseInt(parts[0], 10);
   const end = parts[1] ? parseInt(parts[1], 10) : streamInfo.length - 1;
-  const chunksize = (end - start) + 1;
+  const chunksize = end - start + 1;
+
+  // FIX: Get stream FIRST, check for null before writing headers
+  const stream = torrentService.getStream(magnet, { start, end });
+  if (!stream) {
+    throw new ApiError(503, 'Torrent stream not available. Try again in a moment.');
+  }
 
   res.writeHead(206, {
     'Content-Range': `bytes ${start}-${end}/${streamInfo.length}`,
@@ -119,7 +127,12 @@ const streamTorrent = asyncHandler(async (req, res) => {
     'Content-Type': 'video/mp4',
   });
 
-  const stream = torrentService.getStream(magnet, { start, end });
+  stream.on('error', (err) => {
+    logger.error('[TorrentController] Stream error', { message: err.message });
+    if (!res.headersSent) res.status(500).end();
+    else res.end();
+  });
+
   stream.pipe(res);
 });
 

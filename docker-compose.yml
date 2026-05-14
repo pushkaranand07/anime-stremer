@@ -7,18 +7,29 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
+    volumes:
+      - backend_logs:/app/logs
     networks:
       - animestream-network
 
   mongo:
     image: mongo:7
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: anime-streamer
     volumes:
       - mongo_data:/data/db
-    ports:
-      - "27017:27017"
+    # NO ports: mapping — only accessible inside the Docker network (SSRF safe)
     networks:
       - animestream-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   frontend:
     build: ./frontend
@@ -33,3 +44,4 @@ networks:
 
 volumes:
   mongo_data:
+  backend_logs:

@@ -25,22 +25,24 @@ export default function WatchPage() {
     isError: streamError,
     error: streamErrorInfo 
   } = useQuery({
-    queryKey: ['streaming', id, anime?.title],
+    queryKey: ['streaming', id],
     queryFn: () => streamingService.getAnimeInfo(anime.title.trim()),
     enabled: !!anime?.title,
-    retry: 1
+    retry: 1,
+    staleTime: 10 * 60 * 1000,
   });
 
   // Restore episode from URL param, or default to first episode
   useEffect(() => {
-    if (streamInfo?.episodes?.length > 0 && !currentEpisode) {
-      const epParam = parseInt(searchParams.get('ep'), 10);
-      const targetEp = epParam
-        ? streamInfo.episodes.find(e => e.number === epParam) || streamInfo.episodes[0]
-        : streamInfo.episodes[0];
-      setCurrentEpisode(targetEp);
-    }
-  }, [streamInfo]);
+    if (!streamInfo?.episodes?.length) return;
+    if (currentEpisode) return; // Already set — don't reset
+
+    const epParam = parseInt(searchParams.get('ep'), 10);
+    const targetEp = epParam
+      ? streamInfo.episodes.find(e => e.number === epParam) ?? streamInfo.episodes[0]
+      : streamInfo.episodes[0];
+    setCurrentEpisode(targetEp);
+  }, [streamInfo, currentEpisode, searchParams]);
 
   const handleEpisodeSelect = (ep) => {
     setCurrentEpisode(ep);

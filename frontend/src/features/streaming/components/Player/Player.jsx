@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import ReactPlayer from 'react-player';
+import { useRef, useEffect, useState } from 'react';
+import Hls from 'hls.js';
 
 export default function Player({
   sources = [],
@@ -9,32 +9,98 @@ export default function Player({
   startTime = 0,
   onTimeUpdate,
   onEnded,
-  onError
+  onError,
 }) {
-  const playerRef = useRef(null);
+  const videoRef = useRef(null);
+  const hlsRef = useRef(null);
   const [playerError, setPlayerError] = useState(null);
-  const durationRef = useRef(0);
+  const [isReady, setIsReady] = useState(false);
 
   // Safely find the primary source — prefer M3U8/HLS, fall back to first available
-  const primarySource = sources.find(s => typeof s.url === 'string' && s.url.includes('.m3u8'))?.url
+  const m3u8Source = sources.find(s => typeof s.url === 'string' && s.url.includes('.m3u8'))?.url
     || sources.find(s => typeof s.url === 'string')?.url
     || null;
 
-  // Reset error state when the source URL changes
   useEffect(() => {
-    setPlayerError(null);
-    durationRef.current = 0;
-  }, [primarySource]);
+    const video = videoRef.current;
+    if (!video || !m3u8Source) return;
 
-  // Seek to saved progress position after the player is ready
-  useEffect(() => {
-    if (playerRef.current && startTime > 0 && primarySource) {
-      const timer = setTimeout(() => {
-        playerRef.current?.seekTo(startTime, 'seconds');
-      }, 600);
-      return () => clearTimeout(timer);
+    setPlayerError(null);
+    setIsReady(false);
+
+    // Destroy previous HLS instance
+    if (hlsRef.current) {
+      hlsRef.current.destroy();
+      hlsRef.current = null;
     }
-  }, [startTime, primarySource]);
+
+    if (Hls.isSupported()) {
+      const hls = new Hls({
+        maxBufferLength: 30,
+        maxMaxBufferLength: 60,
+        startLevel: -1,            // Auto quality selection
+        enableWorker: true,
+      });
+
+      hls.loadSource(m3u8Source);
+      hls.attachMedia(video);
+
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        setIsReady(true);
+        if (startTime > 0) video.currentTime = startTime;
+      });
+
+      hls.on(Hls.Events.ERROR, (event, data) => {
+        if (data.fatal) {
+          console.error('[HLS Error]', data);
+          setPlayerError('Stream error. Try switching providers.');
+          if (onError) onError(data);
+        }
+      });
+
+      hlsRef.current = hls;
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari native HLS
+      video.src = m3u8Source;
+      video.addEventListener('loadedmetadata', () => {
+        if (startTime > 0) video.currentTime = startTime;
+        setIsReady(true);
+      });
+    } else {
+      setPlayerError('HLS streaming is not supported in this browser.');
+    }
+
+    return () => {
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
+    };
+  }, [m3u8Source, startTime, onError]);
+
+  // Attach callbacks via separate effect (avoids HLS recreation on cb change)
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleTimeUpdate = () => {
+      if (onTimeUpdate && isReady) {
+        onTimeUpdate(video.currentTime, video.duration);
+      }
+    };
+    
+    const handleEnded = () => {
+      if (onEnded) onEnded();
+    };
+
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('ended', handleEnded);
+
+    return () => {
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('ended', handleEnded);
+    };
+  }, [onTimeUpdate, onEnded, isReady]);
 
   return (
     <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-white/5 group">
@@ -56,64 +122,32 @@ export default function Player({
         </div>
       )}
 
-      {!primarySource && !playerError && (
+      {!m3u8Source && !playerError && (
         <div className="absolute inset-0 flex items-center justify-center">
           <p className="text-gray-500 text-sm">No video source available</p>
         </div>
       )}
 
-      {primarySource && (
-        <ReactPlayer
-          ref={playerRef}
-          url={primarySource}
-          width="100%"
-          height="100%"
-          controls={true}
-          playing={false}
-          pip={true}
-          stopOnUnmount={false}
-          light={poster}
-          playIcon={
-            <div className="w-20 h-20 bg-yellow-500 rounded-full flex items-center justify-center shadow-2xl shadow-yellow-500/40 transform hover:scale-110 transition-transform">
-              <svg className="w-10 h-10 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          }
-          onDuration={(dur) => {
-            durationRef.current = dur;
-          }}
-          onProgress={({ playedSeconds }) => {
-            if (onTimeUpdate) onTimeUpdate(playedSeconds, durationRef.current);
-          }}
-          onEnded={onEnded}
-          onError={(err) => {
-            console.error('[Player Error]', err);
-            setPlayerError('The video source could not be reached. Try switching providers.');
-            if (onError) onError(err);
-          }}
-          config={{
-            file: {
-              attributes: {
-                crossOrigin: 'anonymous',
-                style: { width: '100%', height: '100%', objectFit: 'contain' },
-              },
-              forceHLS: true,
-              hlsOptions: {
-                enableWorker: true,
-                lowLatencyMode: false, // true can cause stuttering on slow connections
-              },
-              tracks: subtitles.map(sub => ({
-                kind: 'subtitles',
-                src: sub.url,
-                srcLang: (sub.lang || 'en').slice(0, 2),
-                label: sub.lang || 'English',
-                default: sub.lang === 'English',
-              })),
-            },
-          }}
-        />
-      )}
+      <video
+        ref={videoRef}
+        className="w-full h-full object-contain focus:outline-none"
+        poster={poster}
+        controls
+        playsInline
+        crossOrigin="anonymous"
+        style={{ display: m3u8Source ? 'block' : 'none' }}
+      >
+        {subtitles.map((sub, index) => (
+          <track
+            key={index}
+            kind="subtitles"
+            src={sub.url}
+            srcLang={(sub.lang || 'en').slice(0, 2)}
+            label={sub.lang || 'English'}
+            default={sub.lang === 'English'}
+          />
+        ))}
+      </video>
     </div>
   );
 }
