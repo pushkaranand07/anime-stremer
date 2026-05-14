@@ -38,7 +38,7 @@ class StreamingService {
     const result = {
       provider: sourcesData.provider,
       subOrDub: subOrDub,
-      sources: sourcesData.sources,
+      sources: sourcesData.sources || [],
       subtitles: sourcesData.subtitles || [],
       intro: sourcesData.intro || null,
       outro: sourcesData.outro || null,

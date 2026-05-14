@@ -49,3 +49,98 @@
 2026-05-14 00:35:19:3519 [35mhttp[39m: [35mGET /.well-known/appspecific/com.chrome.devtools.json 500 1251 - 2.235 ms[39m
 2026-05-14 00:40:58:4058 [31merror[39m: [31mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken - All providers failed: Hianime: Something went wrong. Please try again later., AnimeKai: Something went wrong. Please try again later., AnimePahe: getaddrinfo ENOTFOUND animepahe.si, KickAssAnime: getaddrinfo ENOTFOUND kickass-anime.ru[39m
 2026-05-14 00:40:58:4058 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Steel+Ball+Run:+JoJo+no+Kimyou+na+Bouken 503 1032 - 22265.184 ms[39m
+2026-05-14 08:31:21:3121 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 200 175902 - 19006.991 ms[39m
+2026-05-14 08:32:37:3237 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Youkoso+Jitsuryoku+Shijou+Shugi+no+Kyoushitsu+e+4th+Season:+2-nensei-hen+1+Gakki 200 2515 - 16966.908 ms[39m
+2026-05-14 08:40:14:4014 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Youkoso+Jitsuryoku+Shijou+Shugi+no+Kyoushitsu+e+4th+Season:+2-nensei-hen+1+Gakki 304 - - 12.808 ms[39m
+2026-05-14 08:42:16:4216 [32minfo[39m: [32m[ProviderService] Searching Hianime for "Tongari Boushi no Atelier"...[39m
+2026-05-14 08:42:31:4231 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 15000ms [Hianime/search][39m
+2026-05-14 08:42:31:4231 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "Tongari Boushi no Atelier"...[39m
+2026-05-14 08:42:33:4233 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Tongari+Boushi+no+Atelier 200 1885 - 16934.173 ms[39m
+2026-05-14 09:32:36:3236 [35mhttp[39m: [35mGET /api/v1 404 145 - 5.627 ms[39m
+2026-05-14 09:32:43:3243 [32minfo[39m: [32m[ProviderService] Searching Hianime for "Tongari Boushi no Atelier"...[39m
+2026-05-14 09:32:58:3258 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 15000ms [Hianime/search][39m
+2026-05-14 09:32:58:3258 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "Tongari Boushi no Atelier"...[39m
+2026-05-14 09:33:00:330 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Tongari+Boushi+no+Atelier 304 - - 16966.544 ms[39m
+2026-05-14 09:33:03:333 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Tongari+Boushi+no+Atelier 304 - - 2.497 ms[39m
+2026-05-14 09:33:25:3325 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 09:33:40:3340 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 15000ms [Hianime/search][39m
+2026-05-14 09:33:40:3340 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "One Piece"...[39m
+2026-05-14 09:33:43:3343 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 18283.018 ms[39m
+2026-05-14 09:33:58:3358 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 20.327 ms[39m
+2026-05-14 09:38:25:3825 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 28.540 ms[39m
+2026-05-14 09:38:28:3828 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 11.795 ms[39m
+2026-05-14 09:38:30:3830 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.648 ms[39m
+2026-05-14 09:38:30:3830 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.820 ms[39m
+2026-05-14 09:38:31:3831 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.513 ms[39m
+2026-05-14 09:38:32:3832 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 4.497 ms[39m
+2026-05-14 09:38:33:3833 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 4.482 ms[39m
+2026-05-14 09:40:21:4021 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 200 175902 - 21.386 ms[39m
+2026-05-14 09:42:02:422 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:42:02:422 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 200 175902 - 22.440 ms[39m
+2026-05-14 09:44:44:4444 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:44:44:4444 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 09:44:46:4446 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:44:46:4446 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 09:44:46:4446 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 09:44:46:4446 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 09:45:05:455 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:45:05:455 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "One Piece"...[39m
+2026-05-14 09:45:05:455 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 09:45:05:455 [32minfo[39m: [32m[ProviderService] Searching Hianime for "One Piece"...[39m
+2026-05-14 09:45:06:456 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 09:45:06:456 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "One Piece"...[39m
+2026-05-14 09:45:07:457 [32minfo[39m: [32m[ProviderService] AnimeKai found 30 results. Top 3: One Piece, One Piece: The Movie, One Piece Uncropped[39m
+2026-05-14 09:45:07:457 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "One Piece" (one-piece-dk6r)[39m
+2026-05-14 09:45:10:4510 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 200 175902 - 23540.760 ms[39m
+2026-05-14 09:45:25:4525 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 09:45:25:4525 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "One Piece"...[39m
+2026-05-14 09:45:25:4525 [32minfo[39m: [32m[ProviderService] AnimeKai found 30 results. Top 3: One Piece, One Piece: The Movie, One Piece Uncropped[39m
+2026-05-14 09:45:25:4525 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "One Piece" (one-piece-dk6r)[39m
+2026-05-14 09:45:28:4528 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 23707.342 ms[39m
+2026-05-14 09:46:03:463 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:46:03:463 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 15.189 ms[39m
+2026-05-14 09:46:08:468 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:46:08:468 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.926 ms[39m
+2026-05-14 09:46:12:4612 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:46:12:4612 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 6.456 ms[39m
+2026-05-14 09:46:17:4617 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:46:17:4617 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 6.622 ms[39m
+2026-05-14 09:47:30:4730 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:47:30:4730 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 8.088 ms[39m
+2026-05-14 09:47:33:4733 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:47:33:4733 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.904 ms[39m
+2026-05-14 09:50:04:504 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:50:04:504 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 9.865 ms[39m
+2026-05-14 09:50:07:507 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:50:07:507 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 6.805 ms[39m
+2026-05-14 09:50:09:509 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:50:09:509 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.257 ms[39m
+2026-05-14 09:50:12:5012 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:50:12:5012 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 7.210 ms[39m
+2026-05-14 09:56:18:5618 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:56:18:5618 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 7.038 ms[39m
+2026-05-14 09:56:21:5621 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:56:21:5621 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.162 ms[39m
+2026-05-14 09:56:22:5622 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:56:22:5622 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 4.629 ms[39m
+2026-05-14 09:56:25:5625 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:56:25:5625 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 7.769 ms[39m
+2026-05-14 09:56:26:5626 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 09:56:26:5626 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 5.776 ms[39m
+2026-05-14 10:00:28:028 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:00:28:028 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 11.845 ms[39m
+2026-05-14 10:00:30:030 [32minfo[39m: [32m[StreamingController] GET /info?q="One Piece"[39m
+2026-05-14 10:00:30:030 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=One+Piece 304 - - 4.425 ms[39m
+2026-05-14 10:00:45:045 [32minfo[39m: [32m[StreamingController] GET /info?q="Re:Zero kara Hajimeru Isekai Seikatsu 4th Season"[39m
+2026-05-14 10:00:45:045 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season"...[39m
+2026-05-14 10:00:46:046 [31merror[39m: [31m[ProviderService] AnimePahe failed: getaddrinfo EAI_AGAIN animepahe.si[39m
+2026-05-14 10:00:46:046 [32minfo[39m: [32m[ProviderService] Searching Hianime for "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season"...[39m
+2026-05-14 10:01:06:16 [31merror[39m: [31m[ProviderService] Hianime failed: Timeout after 20000ms [Hianime/search][39m
+2026-05-14 10:01:06:16 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season"...[39m
+2026-05-14 10:01:06:16 [32minfo[39m: [32m[ProviderService] AnimeKai found 30 results. Top 3: Re:ZERO -Starting Life in Another World- Season 4, Re:ZERO -Starting Life in Another World- The Frozen Bond, Re:ZERO -Starting Life in Another World- Memory Snow[39m
+2026-05-14 10:01:06:16 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "Re:ZERO -Starting Life in Another World- Season 4" (rezero-kara-hajimeru-isekai-seikatsu-4th-season-8lj0)[39m
+2026-05-14 10:01:07:17 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Re:Zero+kara+Hajimeru+Isekai+Seikatsu+4th+Season 200 1896 - 22181.791 ms[39m
+2026-05-14 10:01:10:110 [32minfo[39m: [32m[StreamingController] GET /info?q="Re:Zero kara Hajimeru Isekai Seikatsu 4th Season"[39m
+2026-05-14 10:01:10:110 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Re:Zero+kara+Hajimeru+Isekai+Seikatsu+4th+Season 304 - - 3.490 ms[39m
+2026-05-14 10:01:12:112 [32minfo[39m: [32m[StreamingController] GET /info?q="Re:Zero kara Hajimeru Isekai Seikatsu 4th Season"[39m
+2026-05-14 10:01:12:112 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Re:Zero+kara+Hajimeru+Isekai+Seikatsu+4th+Season 304 - - 12.288 ms[39m

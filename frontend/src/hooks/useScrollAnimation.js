@@ -36,7 +36,7 @@ export const useScrollAnimation = (animationConfig) => {
         },
         ...(animationConfig.scrub && { scrub: animationConfig.scrub }),
       });
-    }, elementRef);
+    }, elementRef.current);
 
     // Cleanup to prevent memory leaks
     return () => ctx.revert();

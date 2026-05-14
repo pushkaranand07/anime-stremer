@@ -29,10 +29,15 @@ export default function DetailPage() {
     enabled: !!anime,
   });
 
-  const { data: streamInfo } = useQuery({
+  const { 
+    data: streamInfo, 
+    isLoading: streamLoading, 
+    isError: streamError 
+  } = useQuery({
     queryKey: ['streaming', anime?.title],
     queryFn: () => streamingService.getAnimeInfo(anime?.title),
     enabled: !!anime?.title,
+    retry: 1,
   });
 
   if (animeLoading) return <LoadingSpinner />;
@@ -184,18 +189,30 @@ export default function DetailPage() {
                   <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">Rating</p>
                   <p className="text-gray-200 text-sm">{anime.rating || 'N/A'}</p>
                 </div>
-                {streamInfo && (
-                  <div className="pt-4 border-t border-white/5">
-                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-2">Stream Provider</p>
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                      <span className="text-green-400 font-bold text-sm">{streamInfo.provider}</span>
+                <div className="pt-4 border-t border-white/5">
+                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-2">Streaming Status</p>
+                  {streamLoading ? (
+                    <div className="flex items-center gap-2 animate-pulse">
+                      <div className="w-2 h-2 bg-gray-600 rounded-full" />
+                      <span className="text-gray-500 text-sm font-bold">Searching providers...</span>
                     </div>
-                    {streamInfo.hasDub && (
-                      <p className="text-xs text-blue-400 font-bold mt-1">🇺🇸 English Dub Available</p>
-                    )}
-                  </div>
-                )}
+                  ) : streamInfo?.episodes?.length > 0 ? (
+                    <>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                        <span className="text-green-400 font-bold text-sm">{streamInfo?.provider} (Online)</span>
+                      </div>
+                      {streamInfo?.hasDub && (
+                        <p className="text-xs text-blue-400 font-bold mt-1">🇺🇸 English Dub Available</p>
+                      )}
+                    </>
+                  ) : (
+                    <div className="flex items-center gap-2 opacity-50">
+                      <span className="w-2 h-2 bg-red-500 rounded-full" />
+                      <span className="text-gray-400 text-sm font-bold">No streams found</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

@@ -18,10 +18,16 @@ export default function WatchPage() {
     queryFn: () => fetchAnimeById(id),
   });
 
-  const { data: streamInfo, isLoading: streamLoading } = useQuery({
+  const { 
+    data: streamInfo, 
+    isLoading: streamLoading,
+    isError: streamError,
+    error: streamErrorInfo 
+  } = useQuery({
     queryKey: ['streaming', anime?.title],
     queryFn: () => streamingService.getAnimeInfo(anime?.title),
     enabled: !!anime?.title,
+    retry: 1
   });
 
   // Set first episode by default if not set
@@ -43,7 +49,10 @@ export default function WatchPage() {
     }
   };
 
-  if (animeLoading || streamLoading) return <LoadingSpinner />;
+  if (animeLoading) return <LoadingSpinner />;
+
+  // Even if stream failed, we want to show the anime info, 
+  // but we should show a clear error in the player area.
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] pb-24">
@@ -63,13 +72,39 @@ export default function WatchPage() {
       <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-[1fr_380px] gap-8 items-start">
         {/* Left: Player Section */}
         <div className="flex flex-col gap-8">
-          <WatchModule 
-            animeId={id}
-            episode={currentEpisode}
-            animeTitle={anime?.title}
-            poster={anime?.images?.jpg?.large_image_url}
-            onEpisodeChange={handleNextEpisode}
-          />
+          {streamLoading ? (
+            <div className="aspect-video bg-white/5 rounded-3xl flex items-center justify-center animate-pulse border border-white/10">
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-12 h-12 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin" />
+                <span className="text-xs font-black text-gray-500 uppercase tracking-widest">Searching Streams...</span>
+              </div>
+            </div>
+          ) : streamError || !streamInfo?.episodes?.length ? (
+            <div className="aspect-video bg-white/5 rounded-3xl flex flex-col items-center justify-center gap-6 p-12 text-center border border-dashed border-white/10">
+              <span className="text-6xl opacity-20">📡</span>
+              <div>
+                <h2 className="text-2xl font-black text-white mb-2">No Streams Available</h2>
+                <p className="text-gray-500 text-sm max-w-sm">
+                  We couldn't find any active streams for this title on our providers. 
+                  {streamErrorInfo?.message && <span className="block mt-2 text-red-500/50 font-mono text-[10px]">{streamErrorInfo.message}</span>}
+                </p>
+              </div>
+              <button 
+                onClick={() => window.location.reload()}
+                className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl transition-all border border-white/10"
+              >
+                RETRY SEARCH
+              </button>
+            </div>
+          ) : (
+            <WatchModule 
+              animeId={id}
+              episode={currentEpisode}
+              animeTitle={anime?.title}
+              poster={anime?.images?.jpg?.large_image_url}
+              onEpisodeChange={handleNextEpisode}
+            />
+          )}
 
           {/* Synopsis (Mobile) */}
           <div className="lg:hidden bg-white/5 rounded-3xl p-6 border border-white/10">
@@ -80,12 +115,26 @@ export default function WatchPage() {
 
         {/* Right: Sidebar (Episode List & Info) */}
         <aside className="flex flex-col gap-8 lg:sticky lg:top-24">
-          <div className="bg-white/5 border border-white/10 rounded-3xl p-6 shadow-xl">
-            <EpisodeList 
-              episodes={streamInfo?.episodes}
-              currentEpisode={currentEpisode}
-              onEpisodeSelect={handleEpisodeSelect}
-            />
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-6 shadow-xl min-h-[100px] flex flex-col justify-center">
+            {streamLoading ? (
+              <div className="space-y-4">
+                <div className="h-4 w-24 bg-white/10 rounded animate-pulse" />
+                <div className="grid grid-cols-5 gap-2">
+                  {[1,2,3,4,5].map(i => <div key={i} className="aspect-square bg-white/10 rounded-xl animate-pulse" />)}
+                </div>
+              </div>
+            ) : (
+              <EpisodeList 
+                episodes={streamInfo?.episodes}
+                currentEpisode={currentEpisode}
+                onEpisodeSelect={handleEpisodeSelect}
+              />
+            )}
+            {!streamLoading && !streamInfo?.episodes?.length && (
+              <div className="text-center py-4">
+                <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest">No Episodes Found</p>
+              </div>
+            )}
           </div>
 
           <div className="hidden lg:block bg-white/5 border border-white/10 rounded-3xl p-6">

@@ -1,5 +1,7 @@
 const providerConfig = require('../../config/provider.config');
 const ApiError = require('../../utils/ApiError');
+const logger = require('../../utils/logger');
+
 
 class ProviderService {
   async withTimeout(promise, ms, label = '') {
@@ -15,7 +17,7 @@ class ProviderService {
     const errors = [];
     for (const { name, klass } of providerConfig.chain) {
       try {
-        console.log(`[ProviderService] Searching ${name} for "${query}"...`);
+        logger.info(`[ProviderService] Searching ${name} for "${query}"...`);
         const provider = new klass();
         
         const searchResult = await this.withTimeout(
@@ -25,10 +27,22 @@ class ProviderService {
         );
         
         if (!searchResult || !searchResult.results || !Array.isArray(searchResult.results) || searchResult.results.length === 0) {
+           logger.warn(`[ProviderService] ${name} returned no results for "${query}"`);
            continue;
         }
 
-        const bestMatch = searchResult.results[0];
+        // Log search results for debugging
+        logger.info(`[ProviderService] ${name} found ${searchResult.results.length} results. Top 3: ${searchResult.results.slice(0, 3).map(r => r.title).join(', ')}`);
+
+        // Strategy: Find exact title match first, otherwise take the first result
+        const exactMatch = searchResult.results.find(r => 
+          r.title.toLowerCase() === query.toLowerCase() || 
+          (r.title.toLowerCase().includes(query.toLowerCase()) && r.type === 'TV')
+        );
+        
+        const bestMatch = exactMatch || searchResult.results[0];
+        logger.info(`[ProviderService] ${name} best match: "${bestMatch.title}" (${bestMatch.id})`);
+
         const info = await this.withTimeout(
           provider.fetchAnimeInfo(bestMatch.id), 
           providerConfig.timeoutMs, 
@@ -36,6 +50,7 @@ class ProviderService {
         );
         
         if (!info || !info.episodes || !Array.isArray(info.episodes) || info.episodes.length === 0) {
+           logger.warn(`[ProviderService] ${name} found no episodes for ${bestMatch.id}`);
            continue;
         }
 
@@ -44,7 +59,7 @@ class ProviderService {
           ...info
         };
       } catch (err) {
-        console.warn(`[ProviderService] ${name} failed: ${err.message}`);
+        logger.error(`[ProviderService] ${name} failed: ${err.message}`, { stack: err.stack });
         errors.push(`${name}: ${err.message}`);
       }
     }
@@ -76,7 +91,7 @@ class ProviderService {
           ...sourcesData
         };
       } catch (err) {
-        console.warn(`[ProviderService] ${name} watch failed: ${err.message}`);
+        logger.error(`[ProviderService] ${name} watch failed: ${err.message}`, { stack: err.stack });
         errors.push(`${name}: ${err.message}`);
       }
     }

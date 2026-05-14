@@ -11,8 +11,10 @@ function sanitizeValue(value) {
   if (value === null || value === undefined) return value;
 
   if (typeof value === 'string') {
-    // Remove $ prefix and dot notation from string values
-    return value.replace(/^\$/, '').replace(/\./g, '');
+    // Only remove $ prefix from string values if they are likely to be used as keys
+    // But since this is a value, it's generally safe. 
+    // However, for consistency with basic NoSQL injection prevention:
+    return value.replace(/^\$/, '');
   }
 
   if (Array.isArray(value)) {

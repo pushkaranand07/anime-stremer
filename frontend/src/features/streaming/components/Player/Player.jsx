@@ -51,6 +51,7 @@ export default function Player({
         onEnded={onEnded}
         onError={onMediaError}
         className="w-full h-full"
+        style={{ width: '100%', aspectRatio: '16/9' }}
       >
         <MediaProvider>
           <Poster
@@ -70,11 +71,7 @@ export default function Player({
           ))}
         </MediaProvider>
 
-        <DefaultVideoLayout 
-          icons={defaultLayoutIcons}
-          noMenu={false}
-          noSettings={false}
-        />
+        <DefaultVideoLayout icons={defaultLayoutIcons} />
       </MediaPlayer>
     </div>
   );
