@@ -223,7 +223,7 @@ const resetMagneto = (magneto, magnetoText) => {
 const navbarEnter = (id) => {
   gsap.to(id, {
     x: '0%',
-    opacity: 1,
+    autoAlpha: 1,
     duration: 0.7,
   });
 };
@@ -231,7 +231,8 @@ const navbarEnter = (id) => {
 const navbarLeave = (id) => {
   const x = '100%';
   gsap.to(id, {
-    opacity: 0,
+    autoAlpha: 0,
+    duration: 0.5,
     onComplete: () => {
       gsap.set(id, {
         x: x,
