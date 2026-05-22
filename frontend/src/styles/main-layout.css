@@ -9,3 +9,10 @@
   padding-left: 52px;
   min-height: calc(100vh - 58px);
 }
+
+/* Remove side nav padding on mobile */
+@media (max-width: 767px) {
+  .main-content-flow {
+    padding-left: 0 !important;
+  }
+}

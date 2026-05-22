@@ -57,3 +57,11 @@
   background: rgba(124, 58, 237, .15);
   box-shadow: 0 0 12px rgba(124, 58, 237, .3);
 }
+
+/* Hide side navigation bar on mobile */
+@media (max-width: 767px) {
+  .sidenav-container,
+  .sidenav-edge-glow {
+    display: none !important;
+  }
+}

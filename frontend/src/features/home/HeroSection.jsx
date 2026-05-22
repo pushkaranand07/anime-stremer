@@ -52,13 +52,13 @@ export default function HeroSection() {
           { num: '48', unit: 'K+', label: 'Episodes' },
           { num: '2',  unit: 'M+', label: 'Members' },
         ].map((s, i) => (
-          <div key={i} style={{ display: 'flex', gap: '36px', alignItems: 'center' }}>
+          <div key={i} className="hero-stats-group">
             {i > 0 && (
               <div className="hero-stats-divider" />
             )}
             <div className="hero-stats-item">
               <div className="hero-stats-num">
-                {s.num}<span style={{ color: 'var(--accent-violet)' }}>{s.unit}</span>
+                {s.num}<span className="hero-stats-unit">{s.unit}</span>
               </div>
               <div className="hero-stats-label">{s.label}</div>
             </div>
