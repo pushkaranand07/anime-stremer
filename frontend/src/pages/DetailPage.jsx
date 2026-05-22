@@ -1,27 +1,36 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAnimeById, fetchAnimeCharacters } from '../api/endpoints';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { useScrollTriggerRefresh } from '../hooks/useScrollTriggerRefresh';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import { useFavorites } from '../context/FavoritesContext';
 import { useAuth } from '../context/AuthContext';
 import MagnetButton from '../components/ui/MagnetButton';
+import gsap from 'gsap';
+import { activateMagneto, resetMagneto, animateSplitText } from '../animations/animation';
 
 import { streamingService } from '../features/streaming/services/streamingService';
+import '../styles/detail-page.css';
 
 export default function DetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   const { isAuthenticated } = useAuth();
-  const contentRef = useScrollAnimation({ start: 'top 80%', opacity: 1, y: 0 });
+  const contentRef = useScrollAnimation(animeLoading, { start: 'top 80%', opacity: 1, y: 0 });
+
+  const magnetoRef = useRef(null);
+  const magnetoTextRef = useRef(null);
 
   // ── MAL / Jikan metadata ────────────────────────────────────────────────
   const { data: anime, isLoading: animeLoading, isError: animeError } = useQuery({
     queryKey: ['anime', id],
     queryFn: () => fetchAnimeById(id),
   });
+
+  useScrollTriggerRefresh([!animeLoading, !!anime]);
 
   const { data: characters, isLoading: charactersLoading } = useQuery({
     queryKey: ['anime', id, 'characters'],
@@ -40,6 +49,37 @@ export default function DetailPage() {
     retry: 1,
   });
 
+  // Stagger title animation when metadata is loaded
+  useEffect(() => {
+    if (!animeLoading && anime?.title) {
+      const ctx = gsap.context(() => {
+        animateSplitText('.detail-title-letter', '.detail-title', 0.8, 0.02, 0.1);
+      });
+      return () => ctx.revert();
+    }
+  }, [animeLoading, anime?.title]);
+
+  const handleMouseMove = (e) => {
+    activateMagneto(e, magnetoRef, magnetoTextRef, 30, 15);
+  };
+
+  const handleMouseLeave = () => {
+    resetMagneto(magnetoRef, magnetoTextRef);
+  };
+
+  const splitTitle = (title) => {
+    if (!title) return '';
+    return title.split('').map((char, index) => (
+      <span
+        key={index}
+        className="detail-title-letter"
+        style={{ display: 'inline-block', opacity: 0, transform: 'translateY(24px)' }}
+      >
+        {char === ' ' ? '\u00A0' : char}
+      </span>
+    ));
+  };
+
   if (animeLoading) return <LoadingSpinner />;
   if (animeError || !anime) return <div className="text-center py-20 text-red-500">Failed to load anime details.</div>;
 
@@ -50,37 +90,57 @@ export default function DetailPage() {
   };
 
   return (
-    <div className="pb-24">
+    <div className="detail-page-container">
       {/* ── Hero Banner ────────────────────────────────────────────────── */}
-      <div className="relative h-[65vh] md:h-[75vh] overflow-hidden">
+      <div className="detail-hero-banner">
         <img
           src={anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url}
           alt={anime.title}
-          className="w-full h-full object-cover scale-105 blur-sm opacity-40"
+          className="detail-hero-blur-image"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent" />
+        <div className="detail-hero-gradient-overlay" />
 
-        <div className="absolute inset-0 flex items-center">
-          <div className="max-w-7xl mx-auto px-4 w-full grid md:grid-cols-[300px_1fr] gap-12 items-center">
-            <div className="hidden md:block rounded-2xl overflow-hidden shadow-2xl border border-white/10 aspect-[3/4]">
-              <img src={anime.images?.jpg?.large_image_url} alt={anime.title} className="w-full h-full object-cover" />
+        <div className="detail-hero-content-wrapper">
+          <div className="detail-hero-grid">
+            <div 
+              ref={magnetoRef}
+              className="detail-hero-poster-wrapper"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="detail-hero-poster">
+                <img 
+                  ref={magnetoTextRef}
+                  src={anime.images?.jpg?.large_image_url} 
+                  alt={anime.title} 
+                />
+              </div>
+              <div className="detail-vinyl-disk">
+                <div className="vinyl-center-art-wrapper">
+                  <img 
+                    className="vinyl-center-art"
+                    src={anime.images?.jpg?.large_image_url} 
+                    alt={anime.title} 
+                  />
+                </div>
+              </div>
             </div>
             <div>
-              <div className="flex flex-wrap gap-3 mb-6">
-                <span className="px-3 py-1 bg-yellow-500 text-black text-xs font-black rounded-full uppercase tracking-widest">{anime.type}</span>
-                <span className="px-3 py-1 bg-white/10 text-white text-xs font-bold rounded-full border border-white/10">{anime.status}</span>
-                <span className="px-3 py-1 bg-white/10 text-white text-xs font-bold rounded-full border border-white/10">{anime.season} {anime.year}</span>
+              <div className="detail-tag-list">
+                <span className="detail-tag-type">{anime.type}</span>
+                <span className="detail-tag-status">{anime.status}</span>
+                <span className="detail-tag-season">{anime.season} {anime.year}</span>
               </div>
-              <h1 className="text-4xl md:text-7xl font-black mb-6 text-white tracking-tighter leading-none">{anime.title}</h1>
-              <div className="flex items-center gap-8 text-lg font-bold mb-8">
-                <div className="flex items-center gap-2 text-yellow-400"><span className="text-2xl">⭐</span><span>{anime.score || 'N/A'}</span></div>
-                <div className="flex items-center gap-2 text-blue-400"><span className="text-2xl">📊</span><span>#{anime.rank || 'N/A'}</span></div>
-                <div className="flex items-center gap-2 text-purple-400"><span className="text-2xl">👥</span><span>{anime.members?.toLocaleString() || '0'}</span></div>
+              <h1 className="detail-title">{splitTitle(anime.title)}</h1>
+              <div className="detail-stats">
+                <div className="detail-stat-score"><span className="text-2xl">⭐</span><span>{anime.score || 'N/A'}</span></div>
+                <div className="detail-stat-rank"><span className="text-2xl">📊</span><span>#{anime.rank || 'N/A'}</span></div>
+                <div className="detail-stat-members"><span className="text-2xl">👥</span><span>{anime.members?.toLocaleString() || '0'}</span></div>
               </div>
-              <div className="flex flex-wrap gap-4">
+              <div className="detail-buttons">
                 <button 
                   onClick={() => navigate(`/watch/${id}`)}
-                  className="px-10 py-4 bg-yellow-500 hover:bg-yellow-400 text-black font-black rounded-2xl transition-all shadow-xl shadow-yellow-500/20 transform hover:-translate-y-1"
+                  className="detail-btn-watch"
                 >
                   WATCH ONLINE NOW
                 </button>
@@ -94,49 +154,48 @@ export default function DetailPage() {
       </div>
 
       {/* ── Main Content ────────────────────────────────────────────────── */}
-      <div ref={contentRef} className="max-w-7xl mx-auto px-4 -mt-10 relative z-10 opacity-0 translate-y-[50px]">
-        <div className="grid lg:grid-cols-[1fr_350px] gap-12">
+      <div ref={contentRef} className="detail-content-section">
+        <div className="detail-content-layout">
 
           {/* ── Left Column ──────────────────────────────────────────────── */}
           <div>
             {/* ── Synopsis ─────────────────────────────────────────────── */}
-            <div className="bg-gray-900/50 backdrop-blur-md border border-white/10 rounded-3xl p-8 mb-12">
-              <h2 className="text-2xl font-bold mb-6 text-yellow-400 flex items-center gap-3">
-                <span className="w-8 h-1 bg-yellow-500 rounded-full" />
+            <div className="detail-synopsis-card">
+              <h2 className="detail-synopsis-title">
+                <span />
                 Synopsis
               </h2>
-              <p className="text-gray-300 leading-relaxed text-lg mb-8">{anime.synopsis || 'No synopsis available.'}</p>
+              <p className="detail-synopsis-text">{anime.synopsis || 'No synopsis available.'}</p>
               {anime.background && (
                 <>
-                  <h2 className="text-2xl font-bold mb-6 text-yellow-400 flex items-center gap-3">
-                    <span className="w-8 h-1 bg-yellow-500 rounded-full" />
+                  <h2 className="detail-synopsis-title">
+                    <span />
                     Background
                   </h2>
-                  <p className="text-gray-400 leading-relaxed italic">{anime.background}</p>
+                  <p className="detail-background-text">{anime.background}</p>
                 </>
               )}
             </div>
 
             {/* ── Characters ───────────────────────────────────────────── */}
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold mb-8 text-white">Main Characters</h2>
+            <div className="detail-characters-section">
+              <h2 className="detail-characters-title">Main Characters</h2>
               {charactersLoading ? (
                 <div className="flex gap-4">
                   {[1, 2, 3].map(i => <div key={i} className="h-40 flex-1 bg-white/5 animate-pulse rounded-2xl" />)}
                 </div>
               ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <div className="detail-characters-grid">
                   {characters?.slice(0, 8).map((char) => (
-                    <div key={char.character.mal_id} className="group relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/5">
+                    <div key={char.character.mal_id} className="detail-character-card">
                       <img
                         src={char.character.images.jpg.image_url}
                         alt={char.character.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-                      <div className="absolute bottom-0 p-3 w-full">
-                        <p className="font-bold text-sm text-white line-clamp-1">{char.character.name}</p>
-                        <p className="text-[10px] text-yellow-500 font-bold uppercase tracking-wider">{char.role}</p>
+                      <div className="detail-character-overlay" />
+                      <div className="detail-character-info">
+                        <p className="name">{char.character.name}</p>
+                        <p className="role">{char.role}</p>
                       </div>
                     </div>
                   ))}
@@ -146,69 +205,69 @@ export default function DetailPage() {
 
             {/* ── Trailer ──────────────────────────────────────────────── */}
             {anime.trailer?.embed_url && (
-              <div>
-                <h2 className="text-3xl font-bold mb-8 text-white">Official Trailer</h2>
-                <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                  <iframe src={anime.trailer.embed_url} title={`${anime.title} Trailer`} className="w-full h-full" allowFullScreen />
+              <div className="detail-trailer-section">
+                <h2 className="detail-trailer-title">Official Trailer</h2>
+                <div className="detail-trailer-wrapper">
+                  <iframe src={anime.trailer.embed_url} title={`${anime.title} Trailer`} allowFullScreen />
                 </div>
               </div>
             )}
           </div>
 
           {/* ── Right Column: Info Sidebar ───────────────────────────────── */}
-          <div className="space-y-8">
-            <div className="bg-white/5 border border-white/10 rounded-3xl p-8 sticky top-24">
-              <h3 className="text-xl font-bold mb-6 text-white flex items-center gap-2">
-                <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+          <div>
+            <div className="detail-sidebar-info">
+              <h3 className="detail-sidebar-title">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
                 </svg>
                 Information
               </h3>
-              <div className="space-y-6">
-                <div>
-                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">Aired</p>
-                  <p className="text-gray-200">{anime.aired?.string || 'Unknown'}</p>
+              <div className="detail-sidebar-items">
+                <div className="detail-sidebar-item">
+                  <p className="label">Aired</p>
+                  <p className="value">{anime.aired?.string || 'Unknown'}</p>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">Studios</p>
-                  <p className="text-gray-200">{anime.studios?.map(s => s.name).join(', ') || 'Unknown'}</p>
+                <div className="detail-sidebar-item">
+                  <p className="label">Studios</p>
+                  <p className="value">{anime.studios?.map(s => s.name).join(', ') || 'Unknown'}</p>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">Genres</p>
-                  <div className="flex flex-wrap gap-2 mt-2">
+                <div className="detail-sidebar-item">
+                  <p className="label">Genres</p>
+                  <div className="detail-genre-tags">
                     {anime.genres?.map(g => (
-                      <span key={g.mal_id} className="px-2 py-1 bg-white/5 border border-white/10 rounded text-xs text-gray-300">{g.name}</span>
+                      <span key={g.mal_id} className="detail-genre-tag">{g.name}</span>
                     ))}
                   </div>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">Source</p>
-                  <p className="text-gray-200">{anime.source || 'N/A'}</p>
+                <div className="detail-sidebar-item">
+                  <p className="label">Source</p>
+                  <p className="value">{anime.source || 'N/A'}</p>
                 </div>
-                <div>
-                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1">Rating</p>
-                  <p className="text-gray-200 text-sm">{anime.rating || 'N/A'}</p>
+                <div className="detail-sidebar-item">
+                  <p className="label">Rating</p>
+                  <p className="value">{anime.rating || 'N/A'}</p>
                 </div>
-                <div className="pt-4 border-t border-white/5">
-                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-2">Streaming Status</p>
+                <div className="detail-stream-status">
+                  <p className="label">Streaming Status</p>
                   {streamLoading ? (
-                    <div className="flex items-center gap-2 animate-pulse">
-                      <div className="w-2 h-2 bg-gray-600 rounded-full" />
-                      <span className="text-gray-500 text-sm font-bold">Searching providers...</span>
+                    <div className="stream-status-loading">
+                      <div className="stream-status-dot loading animate-pulse" />
+                      <span>Searching providers...</span>
                     </div>
                   ) : streamInfo?.episodes?.length > 0 ? (
                     <>
                       <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                        <span className="text-green-400 font-bold text-sm">{streamInfo?.provider} (Online)</span>
+                        <span className="stream-status-dot online" />
+                        <span className="stream-status-provider">{streamInfo?.provider} (Online)</span>
                       </div>
                       {streamInfo?.hasDub && (
-                        <p className="text-xs text-blue-400 font-bold mt-1">🇺🇸 English Dub Available</p>
+                        <p className="stream-status-dub">🇺🇸 English Dub Available</p>
                       )}
                     </>
                   ) : (
                     <div className="flex items-center gap-2 opacity-50">
-                      <span className="w-2 h-2 bg-red-500 rounded-full" />
+                      <span className="stream-status-dot offline" />
                       <span className="text-gray-400 text-sm font-bold">No streams found</span>
                     </div>
                   )}

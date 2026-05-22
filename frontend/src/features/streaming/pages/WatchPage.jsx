@@ -7,6 +7,8 @@ import WatchModule from '../components/Player/WatchModule';
 import EpisodeList from '../components/EpisodeList/EpisodeList';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 
+import '../../../styles/watch-page.css';
+
 export default function WatchPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -63,43 +65,41 @@ export default function WatchPage() {
   // but we should show a clear error in the player area.
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pb-24">
+    <div className="watch-page-container">
       {/* Header Info */}
-      <div className="max-w-7xl mx-auto px-4 pt-8 pb-6">
+      <div className="watch-header">
         <button 
           onClick={() => navigate(`/anime/${id}`)}
-          className="flex items-center gap-2 text-gray-500 hover:text-white transition-colors mb-4 text-sm font-bold group"
+          className="watch-back-btn"
         >
-          <span className="group-hover:-translate-x-1 transition-transform">←</span> BACK TO DETAILS
+          <span>←</span> BACK TO DETAILS
         </button>
-        <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight">
+        <h1 className="watch-title">
           {anime?.title}
         </h1>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-[1fr_380px] gap-8 items-start">
+      <div className="watch-layout">
         {/* Left: Player Section */}
-        <div className="flex flex-col gap-8">
+        <div className="watch-main-col">
           {streamLoading ? (
-            <div className="aspect-video bg-white/5 rounded-3xl flex items-center justify-center animate-pulse border border-white/10">
-              <div className="flex flex-col items-center gap-4">
-                <div className="w-12 h-12 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin" />
-                <span className="text-xs font-black text-gray-500 uppercase tracking-widest">Searching Streams...</span>
-              </div>
+            <div className="watch-loader-wrapper">
+              <div className="watch-loader-spinner" />
+              <span className="watch-loader-text">Searching Streams...</span>
             </div>
           ) : streamError || !streamInfo?.episodes?.length ? (
-            <div className="aspect-video bg-white/5 rounded-3xl flex flex-col items-center justify-center gap-6 p-12 text-center border border-dashed border-white/10">
-              <span className="text-6xl opacity-20">📡</span>
+            <div className="watch-error-wrapper">
+              <span className="watch-error-icon">📡</span>
               <div>
-                <h2 className="text-2xl font-black text-white mb-2">No Streams Available</h2>
-                <p className="text-gray-500 text-sm max-w-sm">
+                <h2 className="watch-error-title">No Streams Available</h2>
+                <p className="watch-error-text">
                   We couldn't find any active streams for this title on our providers. 
-                  {streamErrorInfo?.message && <span className="block mt-2 text-red-500/50 font-mono text-[10px]">{streamErrorInfo.message}</span>}
+                  {streamErrorInfo?.message && <span className="watch-error-details">{streamErrorInfo.message}</span>}
                 </p>
               </div>
               <button 
                 onClick={() => window.location.reload()}
-                className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-2xl transition-all border border-white/10"
+                className="watch-btn-retry"
               >
                 RETRY SEARCH
               </button>
@@ -115,15 +115,15 @@ export default function WatchPage() {
           )}
 
           {/* Synopsis (Mobile) */}
-          <div className="lg:hidden bg-white/5 rounded-3xl p-6 border border-white/10">
-            <h2 className="text-lg font-black text-white uppercase tracking-tighter mb-4">Synopsis</h2>
-            <p className="text-sm text-gray-400 leading-relaxed">{anime?.synopsis}</p>
+          <div className="lg:hidden watch-synopsis-card">
+            <h2 className="watch-synopsis-title">Synopsis</h2>
+            <p className="watch-synopsis-text">{anime?.synopsis}</p>
           </div>
         </div>
 
         {/* Right: Sidebar (Episode List & Info) */}
-        <aside className="flex flex-col gap-8 lg:sticky lg:top-24">
-          <div className="bg-white/5 border border-white/10 rounded-3xl p-6 shadow-xl min-h-[100px] flex flex-col justify-center">
+        <aside className="watch-sidebar-col">
+          <div className="watch-sidebar-card">
             {streamLoading ? (
               <div className="space-y-4">
                 <div className="h-4 w-24 bg-white/10 rounded animate-pulse" />
@@ -145,16 +145,16 @@ export default function WatchPage() {
             )}
           </div>
 
-          <div className="hidden lg:block bg-white/5 border border-white/10 rounded-3xl p-6">
-            <h2 className="text-lg font-black text-white uppercase tracking-tighter mb-4">Quick Info</h2>
-            <div className="flex flex-col gap-4">
-              <div>
-                <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Status</p>
-                <p className="text-sm font-bold text-white">{anime?.status}</p>
+          <div className="hidden lg:block watch-sidebar-card">
+            <h2 className="watch-synopsis-title">Quick Info</h2>
+            <div className="watch-quick-info">
+              <div className="watch-info-item">
+                <p className="label">Status</p>
+                <p className="value">{anime?.status}</p>
               </div>
-              <div>
-                <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Aired</p>
-                <p className="text-sm font-bold text-white">{anime?.aired?.string}</p>
+              <div className="watch-info-item">
+                <p className="label">Aired</p>
+                <p className="value">{anime?.aired?.string}</p>
               </div>
             </div>
           </div>

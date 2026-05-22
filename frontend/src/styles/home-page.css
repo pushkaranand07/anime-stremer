@@ -1,0 +1,41 @@
+/* ── HOME PAGE & CONTENT STYLES ── */
+.home-container {
+  position: relative;
+}
+
+.home-bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.home-cinematic-tint {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  background: rgba(6, 6, 26, 0.70);
+  pointer-events: none;
+}
+
+.home-content-wrapper {
+  position: relative;
+  z-index: 3;
+}
+
+.home-trending-wrap {
+  background: rgba(6, 6, 26, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.home-grid-section {
+  background: rgba(6, 6, 26, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(124, 58, 237, 0.15);
+}

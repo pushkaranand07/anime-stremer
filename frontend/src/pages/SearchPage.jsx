@@ -7,6 +7,8 @@ import AnimeCard from '../components/anime/AnimeCard';
 import SearchBar from '../components/ui/SearchBar';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 
+import '../styles/search-page.css';
+
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
@@ -26,10 +28,10 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="py-20 min-h-screen max-w-7xl mx-auto px-4">
-      <div className="text-center mb-16">
-        <h1 className="text-5xl font-black mb-4 text-white tracking-tight">GLOBAL SEARCH</h1>
-        <p className="text-gray-400 max-w-xl mx-auto">
+    <div className="search-page-container">
+      <div className="search-header">
+        <h1 className="search-title">GLOBAL SEARCH</h1>
+        <p className="search-subtitle">
           Search across our entire database of over 25,000 anime titles. 
           Enter at least 3 characters to begin.
         </p>
@@ -38,31 +40,31 @@ export default function SearchPage() {
       <SearchBar value={searchTerm} onChange={handleSearch} />
 
       {debouncedSearch.length >= 3 && (
-        <div className="mt-12">
+        <div className="search-results-section">
           {status === 'pending' || isFetching ? (
             <LoadingSpinner />
           ) : status === 'error' ? (
             <div className="text-center text-red-500 py-10">An error occurred while searching.</div>
           ) : (
             <>
-              <div className="flex items-center gap-4 mb-10">
-                <h2 className="text-2xl font-bold text-white">
+              <div className="search-results-header">
+                <h2 className="search-results-title">
                   Results for "{debouncedSearch}"
                 </h2>
-                <span className="px-3 py-1 bg-yellow-500/10 text-yellow-500 text-sm font-bold rounded-full border border-yellow-500/20">
+                <span className="search-results-badge">
                   {data?.pagination?.items?.total || 0} Found
                 </span>
               </div>
 
               {data?.data?.length > 0 ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                <div className="search-results-grid">
                   {data.data.map(anime => (
                     <AnimeCard key={anime.mal_id} anime={anime} />
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-20 bg-white/5 rounded-3xl border border-dashed border-white/10">
-                   <p className="text-gray-400 text-lg">No anime found matching your search.</p>
+                <div className="search-empty-state">
+                   <p>No anime found matching your search.</p>
                 </div>
               )}
             </>
@@ -71,21 +73,21 @@ export default function SearchPage() {
       )}
 
       {debouncedSearch.length > 0 && debouncedSearch.length < 3 && (
-        <div className="text-center py-20 text-gray-500 italic">
+        <div className="search-typing-state">
           Keep typing... search requires at least 3 characters.
         </div>
       )}
       
       {debouncedSearch.length === 0 && (
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 opacity-40 grayscale">
-           <div className="p-8 rounded-3xl bg-white/5 border border-white/10 h-64 flex items-end">
-              <span className="text-4xl font-black">ACTION</span>
+        <div className="search-placeholder-grid">
+           <div className="search-placeholder-card">
+              <span>ACTION</span>
            </div>
-           <div className="p-8 rounded-3xl bg-white/5 border border-white/10 h-64 flex items-end">
-              <span className="text-4xl font-black">ROMANCE</span>
+           <div className="search-placeholder-card">
+              <span>ROMANCE</span>
            </div>
-           <div className="p-8 rounded-3xl bg-white/5 border border-white/10 h-64 flex items-end">
-              <span className="text-4xl font-black">DRAMA</span>
+           <div className="search-placeholder-card">
+              <span>DRAMA</span>
            </div>
         </div>
       )}

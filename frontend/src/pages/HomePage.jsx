@@ -1,132 +1,98 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteAnime } from '../hooks/useInfiniteAnime';
 import AnimeCard from '../components/anime/AnimeCard';
-import MagnetButton from '../components/ui/MagnetButton';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
-import AnimatedCounter from '../components/ui/AnimatedCounter';
-
-gsap.registerPlugin(ScrollTrigger);
+import HeroSection from '../features/home/HeroSection';
+import TrendingSection from '../features/home/TrendingSection';
+import '../styles/home-page.css';
 
 export default function HomePage() {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteAnime('airing');
-  const heroRef = useRef(null);
-  const { ref: bottomRef, inView } = useInView({
-    threshold: 0,
-    rootMargin: '100px',
-  });
+  const { ref: bottomRef, inView } = useInView({ threshold: 0, rootMargin: '100px' });
 
-  // Hero reveal animation
   useEffect(() => {
-    if (status === 'pending') return;
-    
-    const ctx = gsap.context(() => {
-      const heroContent = heroRef.current?.querySelector('.hero-content');
-      if (heroContent) {
-        gsap.fromTo(heroContent.children, 
-          { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.2 }
-        );
-      }
-      
-      const heroBg = heroRef.current?.querySelector('.hero-bg');
-      if (heroBg) {
-        gsap.fromTo(heroBg,
-          { scale: 1.2, opacity: 0 },
-          { scale: 1, opacity: 0.3, duration: 2, ease: 'power2.out' }
-        );
-      }
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, [status]);
-
-  // Card reveal animations
-  useEffect(() => {
-    ScrollTrigger.batch('.anime-card', {
-      onEnter: (elements) => gsap.fromTo(elements, 
-        { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, stagger: 0.05, ease: 'power2.out' }
-      ),
-      start: 'top 95%',
-    });
-
-    return () => ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-  }, [data]); // Re-run when data changes
-
-  // Trigger next page when user scrolls to bottom
-  useEffect(() => {
-    if (inView && hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
-    }
+    if (inView && hasNextPage && !isFetchingNextPage) fetchNextPage();
   }, [inView, hasNextPage, isFetchingNextPage]);
 
   if (status === 'pending') return <LoadingSpinner />;
-  if (status === 'error') return <div className="text-center py-20 text-red-500">Failed to load anime. Please check your connection.</div>;
+  if (status === 'error') return (
+    <div className="text-center py-20 text-red-500">Failed to load anime. Please check your connection.</div>
+  );
 
   const allAnime = data?.pages.flatMap(page => page.data) || [];
 
+  const mappedAnime = allAnime.map(anime => ({
+    id: anime.mal_id,
+    title: anime.title,
+    episode: anime.episodes ? `Ep ${anime.episodes} • Sub` : 'Airing',
+    image: anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url || '/api/placeholder/160/220',
+  }));
+
+  const trendingAnime = mappedAnime.slice(0, 10);
+
   return (
-    <div className="overflow-hidden">
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[90vh] flex items-center justify-center text-center px-4">
-        <div className="hero-bg absolute inset-0 bg-[url('https://images.unsplash.com/photo-1578632292335-df3abbb0d586?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-[#0a0a0a]" />
-        
-        <div className="hero-content relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent tracking-tighter">
-            THE ANIME <br /> ARCHIVE
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-10 font-medium leading-relaxed max-w-2xl mx-auto">
-            Your premium gateway to the world of Japanese animation. Discover, track, and explore thousands of titles.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <MagnetButton onClick={() => document.getElementById('anime-grid').scrollIntoView({ behavior: 'smooth' })}>
-              Start Exploring
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </MagnetButton>
-          </div>
-        </div>
-      </section>
+    <div className="home-container">
 
-      {/* Stats Section */}
-      <section className="py-24 bg-[#0a0a0a] border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <AnimatedCounter targetValue={25000} label="Anime Titles" suffix="+" />
-          <AnimatedCounter targetValue={150000} label="Episodes" suffix="+" />
-          <AnimatedCounter targetValue={8000} label="Characters" suffix="+" />
-          <AnimatedCounter targetValue={100} label="Genres" />
-        </div>
-      </section>
+      {/* ── Full-page Your Name background video ── */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="home-bg-video"
+      >
+        <source src="/bg-video.mp4" type="video/mp4" />
+      </video>
 
-      {/* Anime Grid */}
-      <section id="anime-grid" className="py-24 max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-12">
-          <div>
-            <h2 className="text-4xl font-bold text-white mb-2 tracking-tight">Currently Airing</h2>
-            <p className="text-gray-400">Handpicked top-rated shows airing right now</p>
-          </div>
-          <div className="hidden md:block h-px flex-1 mx-12 bg-gradient-to-r from-yellow-500/50 to-transparent" />
-        </div>
+      {/* ── Dark cinematic tint across entire page ── */}
+      <div className="home-cinematic-tint" />
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-          {allAnime.map((anime, index) => (
-            <AnimeCard key={`${anime.mal_id}-${index}`} anime={anime} index={index} />
-          ))}
-        </div>
+      {/* ── Page Content ── */}
+      <div className="home-content-wrapper">
+        {/* ── Hero Section ── */}
+        <HeroSection />
 
-        {/* Sentinel for Infinite Scroll */}
-        <div ref={bottomRef} className="mt-12 flex justify-center">
-          {isFetchingNextPage && <LoadingSpinner />}
-          {!hasNextPage && allAnime.length > 0 && (
-            <p className="text-gray-500 font-medium">You've reached the end of the list</p>
+        {/* ── Content below hero (frosted dark panels) ── */}
+        <div>
+
+          {/* Trending */}
+          {trendingAnime.length > 0 && (
+            <div className="home-trending-wrap">
+              <TrendingSection animeList={trendingAnime} />
+            </div>
           )}
+
+          {/* Anime grid */}
+          <section
+            id="anime-grid"
+            className="home-grid-section py-16 max-w-7xl mx-auto px-8"
+          >
+            <div className="flex items-center justify-between mb-12">
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-2 tracking-wide flex items-center gap-2">
+                  <span className="text-[#a855f7]">✦</span> CURRENTLY AIRING
+                </h2>
+                <p className="text-gray-400 text-sm">Handpicked top-rated shows airing right now</p>
+              </div>
+              <div className="hidden md:block h-px flex-1 mx-12 bg-gradient-to-r from-purple-500/30 to-transparent" />
+            </div>
+
+            <div className="flex flex-wrap gap-6 justify-center">
+              {mappedAnime.map((anime, index) => (
+                <AnimeCard key={`${anime.id}-${index}`} anime={anime} />
+              ))}
+            </div>
+
+            <div ref={bottomRef} className="mt-12 flex justify-center">
+              {isFetchingNextPage && <LoadingSpinner />}
+              {!hasNextPage && allAnime.length > 0 && (
+                <p className="text-gray-500 font-medium">You've reached the end of the list</p>
+              )}
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

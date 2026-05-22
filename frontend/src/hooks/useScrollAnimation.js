@@ -1,50 +1,60 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Register the ScrollTrigger plugin once globally
 gsap.registerPlugin(ScrollTrigger);
 
-export const useScrollAnimation = (animationConfig) => {
+/**
+ * A custom hook to trigger GSAP scroll animations on a DOM element.
+ * Safe for React asynchronous loading states using callback refs.
+ * 
+ * @param {boolean} isLoading - State that postpones mounting ScrollTrigger until rendering is complete.
+ * @param {Object} animationConfig - Custom animation variables like start, end, opacity, ease, etc.
+ * @returns {Function} A callback ref (setRef) to attach to the target DOM node.
+ */
+export function useScrollAnimation(isLoading = false, animationConfig = {}) {
   const elementRef = useRef(null);
-  const configRef = useRef(animationConfig);
 
-  // Update config ref when config changes
-  configRef.current = animationConfig;
+  // Callback ref that executes whenever the DOM element mounts or unmounts
+  const setRef = useCallback((node) => {
+    elementRef.current = node;
+  }, []);
 
   useEffect(() => {
-    const element = elementRef.current;
-    if (!element) return;
+    // Only initialize the animation when data loading is finished and the node is fully mounted
+    if (isLoading || !elementRef.current) return;
 
-    // Create the animation using gsap.context() — crucial for React cleanup
+    const element = elementRef.current;
+    
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: element,
-        start: configRef.current.start || 'top 80%',
-        end: configRef.current.end || 'bottom 20%',
+        start: animationConfig.start || 'top 80%',
+        end: animationConfig.end || 'bottom 20%',
         toggleActions: 'play none none reverse',
         onEnter: () => {
           gsap.to(element, {
-            opacity: configRef.current.opacity || 1,
-            y: configRef.current.y || 0,
-            duration: configRef.current.duration || 0.8,
-            ease: configRef.current.ease || 'power2.out',
+            opacity: animationConfig.opacity !== undefined ? animationConfig.opacity : 1,
+            y: animationConfig.y !== undefined ? animationConfig.y : 0,
+            duration: animationConfig.duration || 0.8,
+            ease: animationConfig.ease || 'power2.out',
           });
         },
         onLeaveBack: () => {
           gsap.to(element, {
             opacity: 0,
-            y: configRef.current.yOut || 50,
+            y: animationConfig.yOut !== undefined ? animationConfig.yOut : 50,
             duration: 0.5,
           });
         },
-        ...(configRef.current.scrub && { scrub: configRef.current.scrub }),
+        ...(animationConfig.scrub && { scrub: animationConfig.scrub }),
       });
-    }, elementRef.current);
+    }, element);
 
-    // Cleanup to prevent memory leaks
+    // Revert context and clean up to prevent memory leaks on state changes
     return () => ctx.revert();
-  }, []); // No dependencies since we use ref
+  }, [isLoading, animationConfig.start, animationConfig.end, animationConfig.opacity, animationConfig.y, animationConfig.duration, animationConfig.ease, animationConfig.yOut, animationConfig.scrub]);
 
-  return elementRef;
-};
+  return setRef;
+}
+

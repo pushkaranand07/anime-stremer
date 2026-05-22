@@ -1,0 +1,11 @@
+.main-layout-container {
+  min-height: 100vh;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.main-content-flow {
+  padding-top: 58px;
+  padding-left: 52px;
+  min-height: calc(100vh - 58px);
+}

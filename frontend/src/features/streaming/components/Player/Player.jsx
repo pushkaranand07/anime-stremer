@@ -103,19 +103,19 @@ export default function Player({
   }, [onTimeUpdate, onEnded, isReady]);
 
   return (
-    <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-white/5 group">
+    <div className="video-player-container">
       {playerError && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/90 p-8 text-center">
-          <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mb-4 text-3xl">
+        <div className="video-player-error-overlay">
+          <div className="video-player-error-icon">
             ⚠️
           </div>
-          <h3 className="text-xl font-black text-white mb-2 uppercase tracking-tighter">Playback Failed</h3>
-          <p className="text-gray-400 text-xs max-w-sm mb-6 leading-relaxed">
+          <h3 className="video-player-error-title">Playback Failed</h3>
+          <p className="video-player-error-text">
             {playerError}
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="px-6 py-2.5 bg-white text-black text-xs font-black rounded-xl hover:bg-yellow-500 transition-all"
+            className="video-player-btn-reload"
           >
             RELOAD PLAYER
           </button>
@@ -123,14 +123,14 @@ export default function Player({
       )}
 
       {!m3u8Source && !playerError && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-gray-500 text-sm">No video source available</p>
+        <div className="video-player-empty">
+          <p>No video source available</p>
         </div>
       )}
 
       <video
         ref={videoRef}
-        className="w-full h-full object-contain focus:outline-none"
+        className="video-player-element"
         poster={poster}
         controls
         playsInline

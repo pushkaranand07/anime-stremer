@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { useAuth } from '../context/AuthContext';
-import MagnetButton from '../components/ui/MagnetButton';
+import '../styles/auth-page.css';
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -42,54 +42,54 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-20 bg-[#0a0a0a]">
-      <div ref={containerRef} className="w-full max-w-md bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-[2rem] p-10 shadow-2xl">
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-black mb-3 bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-transparent">
+    <div className="auth-page-container">
+      <div ref={containerRef} className="auth-card">
+        <div className="auth-header">
+          <h1 className="auth-title">
             {isLogin ? 'WELCOME BACK' : 'CREATE ACCOUNT'}
           </h1>
-          <p className="text-gray-400">
+          <p className="auth-subtitle">
             {isLogin ? 'Enter your credentials to access your archive' : 'Join the global community of anime discoverers'}
           </p>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 text-red-500 text-sm rounded-xl text-center">
+          <div className="auth-error">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="auth-form">
           {!isLogin && (
-            <div>
-              <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 ml-1">Username</label>
+            <div className="auth-form-group">
+              <label className="auth-label">Username</label>
               <input
                 type="text"
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-yellow-500/50 transition-all"
+                className="auth-input"
                 placeholder="otaku_explorer"
               />
             </div>
           )}
-          <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 ml-1">Email Address</label>
+          <div className="auth-form-group">
+            <label className="auth-label">Email Address</label>
             <input
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-yellow-500/50 transition-all"
+              className="auth-input"
               placeholder="name@example.com"
               required
             />
           </div>
-          <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 ml-1">Password</label>
+          <div className="auth-form-group">
+            <label className="auth-label">Password</label>
             <input
               type="password"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-yellow-500/50 transition-all"
+              className="auth-input"
               placeholder="••••••••"
               required
             />
@@ -98,16 +98,16 @@ export default function AuthPage() {
           <button 
             type="submit"
             disabled={isLoading}
-            className="w-full py-5 text-lg bg-yellow-500 text-black font-black rounded-2xl hover:bg-yellow-400 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="auth-submit-btn"
           >
             {isLoading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
           </button>
         </form>
 
-        <div className="mt-8 text-center">
+        <div className="auth-toggle-container">
           <button 
             onClick={() => setIsLogin(!isLogin)}
-            className="text-sm text-gray-400 hover:text-yellow-400 transition-colors font-medium"
+            className="auth-toggle-btn"
           >
             {isLogin ? "Don't have an account? Sign up" : "Already have an account? Log in"}
           </button>

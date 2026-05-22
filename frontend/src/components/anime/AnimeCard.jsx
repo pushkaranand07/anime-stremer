@@ -1,94 +1,55 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { useFavorites } from '../../context/FavoritesContext';
-import { useAuth } from '../../context/AuthContext';
+import { motion } from 'framer-motion';
 
-export default function AnimeCard({ anime, index }) {
-  const { isFavorite, addFavorite, removeFavorite } = useFavorites();
-  const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
-  const favorited = isFavorite(anime.mal_id);
-
-  const cardRef = useScrollAnimation({
-    start: 'top 95%',
-    opacity: 1,
-    y: 0,
-    duration: 0.6,
-    yOut: 30,
-  });
-
-  const handleToggleFavorite = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    if (!isAuthenticated) {
-      navigate('/auth');
-      return;
-    }
-
-    if (favorited) {
-      removeFavorite(anime.mal_id);
-    } else {
-      addFavorite(anime);
-    }
-  };
-
+export default function AnimeCard({ anime, rank }) {
   return (
-    <div ref={cardRef} className="relative block group opacity-0 translate-y-[30px]">
-      {/* Favorite button — positioned absolute OUTSIDE the Link to avoid invalid nesting */}
-      <button
-        onClick={handleToggleFavorite}
-        aria-label={favorited ? 'Remove from favorites' : 'Add to favorites'}
-        className={`absolute top-2 right-2 z-20 p-2 rounded-full backdrop-blur-md transition-all duration-300 ${
-          favorited ? 'bg-red-500 text-white' : 'bg-black/50 text-white hover:bg-white hover:text-black'
-        }`}
-      >
-        {favorited ? (
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-          </svg>
-        ) : (
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-          </svg>
-        )}
-      </button>
+    <motion.div
+      whileHover={{ y: -8, scale: 1.03 }}
+      transition={{ type: 'spring', stiffness: 300 }}
+      style={{
+        position: 'relative', borderRadius: '12px', overflow: 'hidden',
+        cursor: 'pointer', flexShrink: 0, width: '160px',
+        border: '1px solid rgba(124,58,237,0.2)',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
+      }}
+    >
+      <img src={anime.image} alt={anime.title}
+        style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }} />
 
-      <Link to={`/anime/${anime.mal_id}`} className="relative block">
-        <div className="relative overflow-hidden rounded-xl bg-gray-900 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/10 border border-white/5 hover:border-white/20">
-          {/* Image with gradient overlay */}
-          <div className="aspect-[3/4] overflow-hidden">
-            <img
-              src={anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url}
-              alt={anime.title}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-              loading="lazy"
-            />
-          </div>
+      {/* Gradient overlay */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to top, rgba(7,7,26,0.95) 0%, transparent 50%)',
+      }} />
 
-          {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-          {/* Content — slides up on hover */}
-          <div className="absolute bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 w-full">
-            <h3 className="text-sm font-bold text-white line-clamp-2 mb-2">{anime.title}</h3>
-            <div className="flex items-center gap-3 text-xs text-yellow-400 font-semibold">
-              <span className="flex items-center gap-1">⭐ {anime.score || 'N/A'}</span>
-              <span className="text-gray-400">|</span>
-              <span>🎬 {anime.episodes || '?'} eps</span>
-            </div>
-          </div>
-
-          {/* Static Info — visible when not hovering */}
-          <div className="p-3 group-hover:opacity-0 transition-opacity duration-300">
-            <h3 className="text-sm font-bold text-white line-clamp-1">{anime.title}</h3>
-            <div className="flex items-center justify-between mt-1 text-[10px] text-gray-400 uppercase tracking-wider">
-              <span>{anime.type}</span>
-              <span className="text-yellow-500/80">⭐ {anime.score || 'N/A'}</span>
-            </div>
-          </div>
+      {/* Rank number */}
+      {rank && (
+        <div style={{
+          position: 'absolute', bottom: '48px', left: '12px',
+          fontSize: '40px', fontWeight: 700, color: '#7c3aed',
+          textShadow: '0 0 20px rgba(124,58,237,0.8)', lineHeight: 1
+        }}>
+          {String(rank).padStart(2, '0')}
         </div>
-      </Link>
-    </div>
+      )}
+
+      {/* Title */}
+      <div style={{ position: 'absolute', bottom: '12px', left: '12px', right: '12px' }}>
+        <p style={{ fontSize: '13px', fontWeight: 600, color: '#f1f0ff', marginBottom: '2px' }}>
+          {anime.title}
+        </p>
+        <p style={{ fontSize: '11px', color: '#6b7280' }}>{anime.episode}</p>
+      </div>
+
+      {/* Hover glow */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        style={{
+          position: 'absolute', inset: 0,
+          boxShadow: 'inset 0 0 30px rgba(124,58,237,0.3)',
+          borderRadius: '12px', pointerEvents: 'none'
+        }}
+      />
+    </motion.div>
   );
 }

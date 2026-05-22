@@ -1,0 +1,59 @@
+/* ── SIDE NAVIGATION STYLES ── */
+.sidenav-edge-glow {
+  position: fixed;
+  left: 0;
+  top: 58px;
+  bottom: 0;
+  width: 52px;
+  background: linear-gradient(to bottom, rgba(124,58,237,0), rgba(124,58,237,.12) 30%, rgba(124,58,237,.12) 70%, rgba(124,58,237,0));
+  pointer-events: none;
+  z-index: 49;
+}
+
+.sidenav-container {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 0;
+  width: 52px;
+  background: rgba(6, 6, 26, .6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(124, 58, 237, .12);
+  border-radius: 0 12px 12px 0;
+  animation: fadeIn 1s .5s both;
+}
+
+.sidenav-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color .2s, background .2s, box-shadow .2s;
+  cursor: pointer;
+}
+
+.sidenav-icon-wrapper.inactive {
+  color: var(--text-muted);
+  background: transparent;
+  box-shadow: none;
+}
+
+.sidenav-icon-wrapper.inactive:hover {
+  color: var(--accent-violet);
+  background: rgba(124, 58, 237, 0.06);
+}
+
+.sidenav-icon-wrapper.active {
+  color: var(--accent-violet);
+  background: rgba(124, 58, 237, .15);
+  box-shadow: 0 0 12px rgba(124, 58, 237, .3);
+}

@@ -66,24 +66,24 @@ export default function WatchModule({ animeId, episode, animeTitle, poster, onEp
   if (!episode) return null;
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="watch-module-container">
       {/* Player Wrapper */}
-      <div className="relative">
+      <div className="watch-player-wrapper">
         {loading && (
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 bg-black/80 backdrop-blur-sm rounded-xl">
-            <div className="w-12 h-12 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin" />
-            <span className="text-sm font-black text-white uppercase tracking-widest">Initialising Stream...</span>
+          <div className="watch-player-loader">
+            <div className="watch-player-loader-spinner" />
+            <span className="watch-player-loader-text">Initialising Stream...</span>
           </div>
         )}
 
         {error && !loading && (
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-black/90 backdrop-blur-sm rounded-xl p-8 text-center border border-red-500/20">
-            <span className="text-5xl">📡</span>
-            <h3 className="text-xl font-black text-white">Stream Connection Lost</h3>
-            <p className="text-gray-400 text-sm max-w-md">{error}</p>
+          <div className="watch-player-error">
+            <span className="watch-player-error-icon">📡</span>
+            <h3 className="watch-player-error-title">Stream Connection Lost</h3>
+            <p className="watch-player-error-text">{error}</p>
             <button 
               onClick={loadSources}
-              className="mt-2 px-8 py-3 bg-yellow-500 hover:bg-yellow-400 text-black font-black rounded-2xl transition-all shadow-lg shadow-yellow-500/20"
+              className="watch-player-btn-retry"
             >
               RETRY CONNECTION
             </button>
@@ -102,37 +102,35 @@ export default function WatchModule({ animeId, episode, animeTitle, poster, onEp
       </div>
 
       {/* Quick Controls Under Player */}
-      <div className="flex items-center justify-between gap-4 px-2">
-        <div className="flex items-center gap-3">
-          <div className="flex flex-col">
-            <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Currently Playing</span>
-            <span className="text-sm font-bold text-white">
-              Episode {episode.number}: {episode.title}
-            </span>
-          </div>
+      <div className="watch-controls-row">
+        <div className="watch-playing-info">
+          <span className="label">Currently Playing</span>
+          <span className="value">
+            Episode {episode.number}: {episode.title}
+          </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="watch-btn-group">
           {/* Sub/Dub Selector */}
-          <div className="flex p-1 bg-white/5 border border-white/10 rounded-2xl">
+          <div className="watch-subdub-selector">
             <button 
               onClick={() => setSubOrDub('sub')}
-              className={`px-4 py-2 rounded-xl text-xs font-black transition-all ${subOrDub === 'sub' ? 'bg-yellow-500 text-black' : 'text-gray-400 hover:text-white'}`}
+              className={`watch-subdub-btn ${subOrDub === 'sub' ? 'active' : ''}`}
             >
               SUB
             </button>
             <button 
               onClick={() => setSubOrDub('dub')}
-              className={`px-4 py-2 rounded-xl text-xs font-black transition-all ${subOrDub === 'dub' ? 'bg-yellow-500 text-black' : 'text-gray-400 hover:text-white'}`}
+              className={`watch-subdub-btn ${subOrDub === 'dub' ? 'active' : ''}`}
             >
               DUB
             </button>
           </div>
           
           {/* Provider Badge */}
-          <div className="hidden md:flex items-center gap-2 px-4 py-2.5 bg-white/5 border border-white/10 rounded-2xl">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
-            <span className="text-[10px] font-black text-gray-400 uppercase">{activeProvider}</span>
+          <div className="watch-provider-badge">
+            <div className="watch-provider-dot" />
+            <span className="watch-provider-name">{activeProvider}</span>
           </div>
         </div>
       </div>
