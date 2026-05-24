@@ -67,7 +67,7 @@ export default function MainContentGrid({ liveAiringAnime }) {
             
             {/* Filter Tabs */}
             <div className="section-tabs-pills">
-              {['All', 'Sub', 'Dub', 'Chinese', 'Trending', 'Random'].map((tab) => (
+              {['All', 'Sub', 'Dub', 'Trending', 'Random'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setLatestTab(tab)}

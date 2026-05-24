@@ -303,18 +303,18 @@
 }
 
 .rank-number-col.rank-1 {
-  color: rgba(236, 72, 149, 0.15);
-  text-shadow: 0 0 10px rgba(236, 72, 149, 0.8), 0 0 20px rgba(236, 72, 149, 0.3);
+  color: #ec4899;
+  text-shadow: 0 0 8px rgba(236, 72, 149, 0.9), 0 0 24px rgba(236, 72, 149, 0.5);
 }
 
 .rank-number-col.rank-2 {
-  color: rgba(234, 179, 8, 0.15);
-  text-shadow: 0 0 10px rgba(234, 179, 8, 0.8), 0 0 20px rgba(234, 179, 8, 0.3);
+  color: #eab308;
+  text-shadow: 0 0 8px rgba(234, 179, 8, 0.9), 0 0 24px rgba(234, 179, 8, 0.5);
 }
 
 .rank-number-col.rank-3 {
-  color: rgba(0, 240, 255, 0.15);
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.3);
+  color: #00f0ff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.9), 0 0 24px rgba(0, 240, 255, 0.5);
 }
 
 .ranked-item-thumb-wrap {

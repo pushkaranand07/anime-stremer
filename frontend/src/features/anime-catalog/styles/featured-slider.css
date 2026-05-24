@@ -35,8 +35,8 @@
   background-position: center 20%;
   z-index: 1;
   /* Vibrant blurred atmosphere — NOT nearly black */
-  filter: blur(18px) brightness(0.45) saturate(1.6);
-  transform: scale(1.12);
+  filter: none;
+  transform: none;
   transition: background-image 0.4s ease;
 }
 
@@ -45,7 +45,7 @@
   position: absolute;
   right: 0;
   left: auto;
-  width: 62%;
+  width: 100%;
   height: 100%;
   filter: none;
   transform: none;
@@ -61,10 +61,8 @@
     90deg,
     #06061a 0%,
     #06061a 30%,
-    rgba(6, 6, 26, 0.92) 44%,
-    rgba(6, 6, 26, 0.55) 58%,
-    rgba(6, 6, 26, 0.1) 75%,
-    transparent 100%
+    rgba(6, 6, 26, 0.6) 40%,
+    transparent 70%
   );
   z-index: 2;
 }
@@ -77,7 +75,7 @@
     #06061a 28%,
     rgba(6, 6, 26, 0.9) 42%,
     rgba(6, 6, 26, 0.5) 58%,
-    transparent 100%
+    transparent 70%
   );
 }
 

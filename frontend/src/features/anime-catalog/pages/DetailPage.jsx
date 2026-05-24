@@ -19,7 +19,6 @@ export default function DetailPage() {
   const navigate = useNavigate();
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   const { isAuthenticated } = useAuth();
-  const contentRef = useScrollAnimation(animeLoading, { start: 'top 80%', opacity: 1, y: 0 });
 
   const magnetoRef = useRef(null);
   const magnetoTextRef = useRef(null);
@@ -29,6 +28,8 @@ export default function DetailPage() {
     queryKey: ['anime', id],
     queryFn: () => fetchAnimeById(id),
   });
+
+  const contentRef = useScrollAnimation(animeLoading, { start: 'top 80%', opacity: 1, y: 0 });
 
   useScrollTriggerRefresh([!animeLoading, !!anime]);
 

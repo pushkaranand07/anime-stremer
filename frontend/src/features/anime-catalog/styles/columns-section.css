@@ -2,6 +2,9 @@
 .columns-section-container {
   padding: 24px 32px;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .columns-grid-layout {
@@ -64,6 +67,9 @@
   cursor: pointer;
   gap: 12px;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .column-row-card:hover {
@@ -89,6 +95,7 @@
 
 .row-card-info {
   flex: 1;
+  min-width: 0;
   overflow: hidden;
 }
 
@@ -150,5 +157,87 @@
   .columns-grid-layout {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .columns-section-container {
+    padding: 12px 16px;
+  }
+
+  .column-title-label {
+    font-size: 14px;
+  }
+
+  .column-row-card {
+    padding: 8px;
+    gap: 10px;
+  }
+
+  .row-card-thumb-wrap {
+    width: 38px;
+    height: 50px;
+  }
+
+  .row-card-title {
+    font-size: 12.5px;
+  }
+
+  .row-meta-badge {
+    font-size: 9px;
+    padding: 1px 4px;
+  }
+
+  .row-meta-year {
+    font-size: 9.5px;
+  }
+}
+
+@media (max-width: 500px) {
+  .columns-section-container {
+    padding: 10px 12px;
+  }
+
+  .columns-grid-layout {
+    gap: 20px;
+  }
+
+  .column-row-card {
+    padding: 7px 4px;
+    gap: 8px;
+  }
+
+  .row-card-thumb-wrap {
+    width: 34px;
+    height: 46px;
+    flex-shrink: 0;
+  }
+
+  .row-card-info {
+    min-width: 0;
+  }
+
+  .row-card-title {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .row-card-meta {
+    gap: 4px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .row-meta-badge {
+    font-size: 8.5px;
+    padding: 1px 4px;
+    flex-shrink: 0;
+  }
+
+  .row-meta-year {
+    font-size: 9px;
+    white-space: nowrap;
   }
 }
