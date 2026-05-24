@@ -1,44 +1,55 @@
 /* ── SIDE NAVIGATION STYLES ── */
 .sidenav-edge-glow {
   position: fixed;
-  left: 0;
-  top: 58px;
-  bottom: 0;
-  width: 52px;
-  background: linear-gradient(to bottom, rgba(124,58,237,0), rgba(124,58,237,.12) 30%, rgba(124,58,237,.12) 70%, rgba(124,58,237,0));
+  left: var(--sidebar-offset);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--sidebar-width);
+  height: 320px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.16) 0%, transparent 70%);
   pointer-events: none;
   z-index: 49;
+  filter: blur(16px);
+  animation: portalPulse 4s infinite ease-in-out;
 }
 
 .sidenav-container {
   position: fixed;
-  left: 0;
+  left: var(--sidebar-offset);
   top: 50%;
   transform: translateY(-50%);
   z-index: 50;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 20px 0;
-  width: 52px;
-  background: rgba(6, 6, 26, .6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-right: 1px solid rgba(124, 58, 237, .12);
-  border-radius: 0 12px 12px 0;
+  gap: 10px;
+  padding: 22px 0;
+  width: var(--sidebar-width);
+  background: rgba(6, 6, 26, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(124, 58, 237, 0.2);
+  border-radius: 16px;
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   animation: fadeIn 1s .5s both;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sidenav-icon-wrapper {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color .2s, background .2s, box-shadow .2s;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
+}
+
+.sidenav-icon-wrapper:hover {
+  transform: scale(1.1);
 }
 
 .sidenav-icon-wrapper.inactive {
@@ -49,13 +60,15 @@
 
 .sidenav-icon-wrapper.inactive:hover {
   color: var(--accent-violet);
-  background: rgba(124, 58, 237, 0.06);
+  background: rgba(168, 85, 247, 0.08);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.15);
 }
 
 .sidenav-icon-wrapper.active {
   color: var(--accent-violet);
-  background: rgba(124, 58, 237, .15);
-  box-shadow: 0 0 12px rgba(124, 58, 237, .3);
+  background: rgba(168, 85, 247, 0.18);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
 }
 
 /* Hide side navigation bar on mobile */

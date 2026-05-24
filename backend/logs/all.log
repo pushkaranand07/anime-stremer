@@ -27,3 +27,5 @@
 2026-05-14 16:59:33:5933 [35mhttp[39m: [35mGET /api/v1/streaming/watch/one-piece-dk6r%24ep%3D1%24token%3DcoDh9_Ly6U6v1W8Visvd?provider=AnimeKai&subOrDub=dub 503 1027 - 2934.093 ms[39m
 2026-05-24 15:38:21:3821 [32minfo[39m: [32mMongoDB connected: localhost[39m
 2026-05-24 15:38:21:3821 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m
+2026-05-24 16:16:23:1623 [32minfo[39m: [32mMongoDB connected: localhost[39m
+2026-05-24 16:16:23:1623 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m

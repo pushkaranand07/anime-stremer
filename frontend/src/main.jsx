@@ -6,6 +6,15 @@ import { FavoritesProvider } from './features/favorites/context/FavoritesContext
 import App from './App';
 import './index.css';
 
+// ── Suppress cosmetic THREE.Clock deprecation warning from @react-three/fiber internals ──
+// We are already on three@latest + r3f@latest. This is a known upstream noise warning
+// (see github.com/pmndrs/react-three-fiber/issues). Filter it without hiding real errors.
+const _origWarn = console.warn.bind(console);
+console.warn = (...args) => {
+  if (typeof args[0] === 'string' && args[0].includes('THREE.Clock')) return;
+  _origWarn(...args);
+};
+
 // Create a client with aggressive caching
 const queryClient = new QueryClient({
   defaultOptions: {

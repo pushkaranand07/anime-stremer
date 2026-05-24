@@ -1,0 +1,400 @@
+/* ── MAIN CONTENT DUAL-COLUMN GRID STYLES ── */
+.main-content-grid-section {
+  padding: 24px 32px;
+  width: 100%;
+}
+
+.grid-container-layout {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+}
+
+/* ── LEFT COLUMN: Latest Episodes Grid ── */
+.latest-episodes-col {
+  flex: 1;
+}
+
+.section-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid rgba(124, 58, 237, 0.18);
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.section-title-tag {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  position: relative;
+  text-shadow: var(--glow-sm);
+}
+
+.section-title-tag::after {
+  content: '';
+  position: absolute;
+  bottom: -15.5px;
+  left: 0;
+  width: 80px;
+  height: 2px;
+  background: var(--accent-pink);
+  box-shadow: 0 0 8px var(--accent-pink);
+}
+
+/* Filter Tab Pills */
+.section-tabs-pills {
+  display: flex;
+  gap: 6px;
+  background: rgba(6, 6, 26, 0.5);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  padding: 4px;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.tab-pill-btn {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #9ca3af;
+  background: transparent;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tab-pill-btn:hover {
+  color: #ffffff;
+  background: rgba(168, 85, 247, 0.08);
+}
+
+.tab-pill-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+/* Episodes Grid */
+.latest-episodes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+}
+
+.episode-grid-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(6, 6, 26, 0.45);
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.episode-grid-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(168, 85, 247, 0.35);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(168, 85, 247, 0.15);
+}
+
+.card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #000;
+}
+
+.card-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.episode-grid-card:hover .card-thumb-img {
+  transform: scale(1.08);
+}
+
+/* Badges styling */
+.card-badges-row {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  gap: 4px;
+  z-index: 5;
+}
+
+.card-badge {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card-badge.sub {
+  background: #7c3aed;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4);
+}
+
+.card-badge.dub {
+  background: #00f0ff;
+  color: #06061a;
+  box-shadow: 0 2px 6px rgba(0, 240, 255, 0.4);
+}
+
+.card-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 6, 26, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 4;
+}
+
+.episode-grid-card:hover .card-hover-overlay {
+  opacity: 1;
+}
+
+.hover-play-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.6);
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.episode-grid-card:hover .hover-play-circle {
+  transform: scale(1);
+}
+
+.card-info-wrap {
+  padding: 12px;
+}
+
+.card-title-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s;
+}
+
+.episode-grid-card:hover .card-title-text {
+  color: var(--accent-violet);
+}
+
+.card-meta-type {
+  font-size: 10.5px;
+  color: #7b7a9a;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* ── RIGHT COLUMN: Top Anime Sidebar ── */
+.top-anime-sidebar-col {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+.sidebar-tabs-pills {
+  display: flex;
+  background: rgba(6, 6, 26, 0.5);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  padding: 2px;
+  border-radius: 6px;
+}
+
+.sidebar-tab-btn {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #7b7a9a;
+  background: transparent;
+  border: none;
+  padding: 3px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sidebar-tab-btn.active {
+  color: #ffffff;
+  background: rgba(168, 85, 247, 0.18);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.15);
+}
+
+.sidebar-ranked-list {
+  background: rgba(6, 6, 26, 0.25);
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  border-radius: 12px;
+  padding: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.sidebar-ranked-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ranked-list-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 12px;
+}
+
+.ranked-list-item:hover {
+  background: rgba(168, 85, 247, 0.05);
+  border-color: rgba(168, 85, 247, 0.18);
+  transform: translateX(4px);
+}
+
+/* Giant Neon Ranks */
+.rank-number-col {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  width: 40px;
+  text-align: center;
+  line-height: 1;
+  color: #151140;
+  text-shadow: 
+    -1px -1px 0 rgba(168, 85, 247, 0.4),  
+     1px -1px 0 rgba(168, 85, 247, 0.4),
+    -1px  1px 0 rgba(168, 85, 247, 0.4),
+     1px  1px 0 rgba(168, 85, 247, 0.4);
+}
+
+.rank-number-col.rank-1 {
+  color: rgba(236, 72, 149, 0.15);
+  text-shadow: 0 0 10px rgba(236, 72, 149, 0.8), 0 0 20px rgba(236, 72, 149, 0.3);
+}
+
+.rank-number-col.rank-2 {
+  color: rgba(234, 179, 8, 0.15);
+  text-shadow: 0 0 10px rgba(234, 179, 8, 0.8), 0 0 20px rgba(234, 179, 8, 0.3);
+}
+
+.rank-number-col.rank-3 {
+  color: rgba(0, 240, 255, 0.15);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.ranked-item-thumb-wrap {
+  width: 44px;
+  height: 58px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  flex-shrink: 0;
+}
+
+.ranked-item-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ranked-item-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.ranked-item-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.ranked-list-item:hover .ranked-item-title {
+  color: var(--accent-violet);
+}
+
+.ranked-item-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.meta-badge {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.meta-badge.rating {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.meta-badge.type {
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+/* ── RESPONSIVENESS ── */
+@media (max-width: 1024px) {
+  .main-content-grid-section {
+    padding: 16px 20px;
+  }
+
+  .grid-container-layout {
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .top-anime-sidebar-col {
+    width: 100%;
+  }
+
+  .latest-episodes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}

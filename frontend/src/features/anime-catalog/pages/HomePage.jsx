@@ -1,19 +1,15 @@
-import { useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
 import { useInfiniteAnime } from '../hooks/useInfiniteAnime';
-import AnimeCard from '../components/AnimeCard';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
+import ScrollReveal from '../../../components/ui/ScrollReveal';
 import HeroSection from '../components/HeroSection';
-import TrendingSection from '../components/TrendingSection';
+import FeaturedSlider from '../components/FeaturedSlider';
+import MainContentGrid from '../components/MainContentGrid';
+import ColumnsSection from '../components/ColumnsSection';
+import EstimatedSchedule from '../components/EstimatedSchedule';
 import '../styles/home-page.css';
 
 export default function HomePage() {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteAnime('airing');
-  const { ref: bottomRef, inView } = useInView({ threshold: 0, rootMargin: '100px' });
-
-  useEffect(() => {
-    if (inView && hasNextPage && !isFetchingNextPage) fetchNextPage();
-  }, [inView, hasNextPage, isFetchingNextPage]);
+  const { data, status } = useInfiniteAnime('airing');
 
   const allAnime = data?.pages.flatMap(page => page.data) || [];
 
@@ -23,8 +19,6 @@ export default function HomePage() {
     episode: anime.episodes ? `Ep ${anime.episodes} • Sub` : 'Airing',
     image: anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url || '/api/placeholder/160/220',
   }));
-
-  const trendingAnime = mappedAnime.slice(0, 10);
 
   return (
     <div className="home-container">
@@ -45,11 +39,14 @@ export default function HomePage() {
 
       {/* ── Page Content ── */}
       <div className="home-content-wrapper">
-        {/* ── Hero Section ── */}
-        <HeroSection />
+
+        {/* ── Hero Section — slides up on mount ── */}
+        <ScrollReveal direction="up" distance={60} duration={0.9} delay={0.1}>
+          <HeroSection />
+        </ScrollReveal>
 
         {/* ── Content below hero (frosted dark panels) ── */}
-        <div>
+        <div className="home-sections-flow">
           {status === 'pending' ? (
             <div className="flex flex-col items-center justify-center py-20 text-center">
               <LoadingSpinner />
@@ -61,41 +58,25 @@ export default function HomePage() {
             </div>
           ) : (
             <>
-              {/* Trending */}
-              {trendingAnime.length > 0 && (
-                <div className="home-trending-wrap">
-                  <TrendingSection animeList={trendingAnime} />
-                </div>
-              )}
+              {/* ── 1. Featured Slideshow Slider — fades up ── */}
+              <ScrollReveal direction="up" distance={56} duration={0.7} threshold={0.08}>
+                <FeaturedSlider />
+              </ScrollReveal>
 
-              {/* Anime grid */}
-              <section
-                id="anime-grid"
-                className="home-grid-section py-16 mx-auto px-8"
-              >
-                <div className="flex items-center justify-between mb-12">
-                  <div>
-                    <h2 className="text-2xl font-bold text-white mb-2 tracking-wide flex items-center gap-2">
-                      <span className="text-[#a855f7]">✦</span> CURRENTLY AIRING
-                    </h2>
-                    <p className="text-gray-400 text-sm">Handpicked top-rated shows airing right now</p>
-                  </div>
-                  <div className="hidden md:block h-px flex-1 mx-12 bg-gradient-to-r from-purple-500/30 to-transparent" />
-                </div>
+              {/* ── 2. Latest Episodes & Top Anime — slides in from left ── */}
+              <ScrollReveal direction="left" distance={64} duration={0.7} delay={0.05} threshold={0.06}>
+                <MainContentGrid liveAiringAnime={mappedAnime} />
+              </ScrollReveal>
 
-                <div className="flex flex-wrap gap-6 justify-center">
-                  {mappedAnime.map((anime, index) => (
-                    <AnimeCard key={`${anime.id}-${index}`} anime={anime} />
-                  ))}
-                </div>
+              {/* ── 3. Estimated Weekly Schedule — slides in from right ── */}
+              <ScrollReveal direction="right" distance={64} duration={0.7} delay={0.05} threshold={0.06}>
+                <EstimatedSchedule />
+              </ScrollReveal>
 
-                <div ref={bottomRef} className="mt-12 flex justify-center">
-                  {isFetchingNextPage && <LoadingSpinner />}
-                  {!hasNextPage && allAnime.length > 0 && (
-                    <p className="text-gray-500 font-medium">You've reached the end of the list</p>
-                  )}
-                </div>
-              </section>
+              {/* ── 4. Multi-List Columns — fades up last ── */}
+              <ScrollReveal direction="up" distance={48} duration={0.65} delay={0.08} threshold={0.05}>
+                <ColumnsSection />
+              </ScrollReveal>
             </>
           )}
         </div>

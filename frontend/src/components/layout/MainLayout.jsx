@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
-import SideNav from './SideNav';
+import Footer from './Footer';
 import '../../features/anime-catalog/styles/main-layout.css';
 
 export default function MainLayout() {
@@ -12,11 +12,11 @@ export default function MainLayout() {
       <div className="overlay-vignette" />
 
       <Header />
-      <SideNav />
 
       {/* Main content wrapper */}
       <main className="main-content-flow">
         <Outlet />
+        <Footer />
       </main>
     </div>
   );

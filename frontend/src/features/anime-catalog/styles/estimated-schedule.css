@@ -1,0 +1,265 @@
+/* ── ESTIMATED SCHEDULE PANEL STYLES ── */
+.estimated-schedule-section {
+  padding: 24px 32px;
+  width: 100%;
+}
+
+.schedule-card-panel {
+  position: relative;
+  width: 100%;
+  background: rgba(6, 6, 26, 0.25);
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 24px;
+}
+
+.schedule-header {
+  border-bottom: 1.5px solid rgba(124, 58, 237, 0.18);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.schedule-panel-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-shadow: var(--glow-sm);
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.schedule-timezone-tag {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 4px;
+  padding: 1px 6px;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+
+/* Day Carousel Selector */
+.schedule-days-navbar {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+  padding-bottom: 4px;
+  margin-bottom: 24px;
+  gap: 8px;
+  overflow-x: auto;
+  /* Hide scrollbar */
+  scrollbar-width: none;
+}
+
+.schedule-days-navbar::-webkit-scrollbar {
+  display: none;
+}
+
+.schedule-day-btn {
+  flex: 1;
+  min-width: 60px;
+  background: transparent;
+  border: none;
+  padding: 10px 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.day-name-short {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #7b7a9a;
+  letter-spacing: 0.05em;
+}
+
+.schedule-day-btn:hover .day-name-short {
+  color: #ffffff;
+}
+
+.schedule-day-btn.active .day-name-short {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+}
+
+.schedule-day-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.schedule-day-btn.active::after {
+  background: var(--accent-pink);
+  box-shadow: 0 0 8px var(--accent-pink);
+}
+
+/* Timeline Rows Layout */
+.schedule-timeline-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-wrapper-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timeline-item-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(6, 6, 26, 0.15);
+  border: 1px solid transparent;
+}
+
+.timeline-item-row:hover {
+  background: rgba(168, 85, 247, 0.04);
+  border-color: rgba(168, 85, 247, 0.15);
+}
+
+/* Timeline Dot Connector Track */
+.timeline-dot-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 16px;
+  align-self: stretch;
+}
+
+.timeline-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #a855f7;
+  box-shadow: 0 0 8px #a855f7;
+  z-index: 2;
+  margin-top: 10px;
+}
+
+.timeline-item-row:hover .timeline-pulse-dot {
+  background: #ec4899;
+  box-shadow: 0 0 10px #ec4899;
+}
+
+.timeline-vertical-line {
+  position: absolute;
+  top: 18px;
+  bottom: -18px;
+  width: 2px;
+  background: rgba(124, 58, 237, 0.15);
+  z-index: 1;
+}
+
+.timeline-time-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #00f0ff;
+  width: 80px;
+  flex-shrink: 0;
+  text-shadow: 0 0 6px rgba(0, 240, 255, 0.3);
+}
+
+.timeline-info-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  overflow: hidden;
+  gap: 16px;
+}
+
+.timeline-show-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.timeline-item-row:hover .timeline-show-title {
+  color: var(--accent-pink);
+}
+
+.timeline-ep-badge {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #9ca3af;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 2px 10px;
+  flex-shrink: 0;
+}
+
+.timeline-item-row:hover .timeline-ep-badge {
+  color: #ffffff;
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.35);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.25);
+}
+
+.empty-schedule-state {
+  text-align: center;
+  padding: 40px;
+  color: #7b7a9a;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ── RESPONSIVENESS ── */
+@media (max-width: 1024px) {
+  .estimated-schedule-section {
+    padding: 16px 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .timeline-item-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 14px;
+  }
+
+  .timeline-dot-connector {
+    display: none; /* Hide vertical connectors on mobile for space */
+  }
+
+  .timeline-time-label {
+    width: auto;
+  }
+
+  .timeline-info-card {
+    width: 100%;
+  }
+}

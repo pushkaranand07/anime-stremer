@@ -1,0 +1,154 @@
+/* ── THREE-COLUMN SECTION STYLES ── */
+.columns-section-container {
+  padding: 24px 32px;
+  width: 100%;
+}
+
+.columns-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  width: 100%;
+}
+
+.list-column-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-column-header {
+  border-bottom: 1.5px solid rgba(124, 58, 237, 0.18);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.column-title-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.column-title-label:hover {
+  color: var(--accent-violet);
+}
+
+.column-title-arrow {
+  color: var(--accent-pink);
+  transition: transform 0.2s ease;
+}
+
+.column-title-label:hover .column-title-arrow {
+  transform: translateX(4px);
+}
+
+.column-rows-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.column-row-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: rgba(6, 6, 26, 0.25);
+  border: 1px solid rgba(124, 58, 237, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  gap: 12px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.column-row-card:hover {
+  background: rgba(168, 85, 247, 0.05);
+  border-color: rgba(168, 85, 247, 0.18);
+  transform: translateY(-2px);
+}
+
+.row-card-thumb-wrap {
+  width: 42px;
+  height: 56px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  flex-shrink: 0;
+}
+
+.row-card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.row-card-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.row-card-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+}
+
+.column-row-card:hover .row-card-title {
+  color: var(--accent-violet);
+}
+
+.row-card-meta {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.row-meta-badge {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.row-meta-badge.ep {
+  background: rgba(124, 58, 237, 0.1);
+  color: #c084fc;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.row-meta-badge.type {
+  background: rgba(255, 255, 255, 0.04);
+  color: #9ca3af;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.row-meta-year {
+  font-size: 10.5px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+/* ── RESPONSIVENESS ── */
+@media (max-width: 1024px) {
+  .columns-section-container {
+    padding: 16px 20px;
+  }
+
+  .columns-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

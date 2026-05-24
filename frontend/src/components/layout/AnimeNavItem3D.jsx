@@ -30,7 +30,7 @@ export function AnimeNavItem3D({ label, index, totalItems, path }) {
           <boxGeometry args={[2.8, 1.15, 0.15]} />
 
           <meshPhysicalMaterial
-            color={isActive ? 'r' : hovered ? '#00f0ff' : '#0b0920'}
+            color={isActive ? '#a855f7' : hovered ? '#00f0ff' : '#0b0920'}
             roughness={0.1}
             metalness={0.8}
             clearcoat={1.0}

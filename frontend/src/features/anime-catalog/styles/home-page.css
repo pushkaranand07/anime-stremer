@@ -1,10 +1,12 @@
 /* ── HOME PAGE & CONTENT STYLES ── */
 .home-container {
   position: relative;
+  min-height: 100vh; /* gives the absolute-positioned video a proper parent height */
+  overflow: hidden;  /* clips video to this container only */
 }
 
 .home-bg-video {
-  position: fixed;
+  position: absolute; /* was: fixed — fixed covers the whole viewport including footer */
   top: 0;
   left: 0;
   width: 100%;
@@ -15,10 +17,10 @@
 }
 
 .home-cinematic-tint {
-  position: fixed;
+  position: absolute; /* was: fixed — same issue as the video */
   inset: 0;
   z-index: 2;
-  background: rgba(6, 6, 26, 0.70);
+  background: rgba(6, 6, 26, 0.28);
   pointer-events: none;
 }
 
@@ -27,15 +29,14 @@
   z-index: 3;
 }
 
-.home-trending-wrap {
-  background: rgba(6, 6, 26, 0.55);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+.home-sections-flow {
+  background: rgba(6, 6, 26, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(124, 58, 237, 0.15);
+  padding: 16px 0 48px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.home-grid-section {
-  background: rgba(6, 6, 26, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(124, 58, 237, 0.15);
-}
