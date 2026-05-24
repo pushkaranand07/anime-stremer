@@ -151,7 +151,6 @@ export default function Header() {
             <span className="logo-wordmark">YORU</span>
             <span className="logo-kanji">夜</span>
           </div>
-          <button className="mobile-drawer-close" onClick={toggleNavbar} aria-label="Close menu">&times;</button>
         </div>
 
         <nav id="navLinks" className="mobile-drawer-nav">

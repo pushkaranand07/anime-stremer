@@ -6,7 +6,7 @@
 }
 
 .home-bg-video {
-  position: absolute; /* was: fixed — fixed covers the whole viewport including footer */
+  position: fixed; /* fixed covers the viewport and doesn't stretch to document height */
   top: 0;
   left: 0;
   width: 100%;
@@ -17,7 +17,7 @@
 }
 
 .home-cinematic-tint {
-  position: absolute; /* was: fixed — same issue as the video */
+  position: fixed; /* fixed keeps tint covering the viewport dynamically */
   inset: 0;
   z-index: 2;
   background: rgba(6, 6, 26, 0.28);
