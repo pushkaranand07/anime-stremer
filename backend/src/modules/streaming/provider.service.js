@@ -1,4 +1,4 @@
-const providerConfig = require('../../config/provider.config');
+const providerConfig = require('./provider.config');
 const ApiError = require('../../utils/ApiError');
 const logger = require('../../utils/logger');
 

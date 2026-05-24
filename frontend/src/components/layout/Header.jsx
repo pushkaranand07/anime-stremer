@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
 import { Search, LogOut, User } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../features/auth/context/AuthContext';
 import { useState, useEffect } from 'react';
 import GlowButton from '../ui/GlowButton';
 import gsap from 'gsap';
 import { animateNavbarEnter, animateNavbarLeave, navbarScale } from '../../animations/animation';
-import '../../styles/header.css';
+import { Canvas } from '@react-three/fiber';
+import { AnimeNavItem3D } from './AnimeNavItem3D';
+import '../../features/anime-catalog/styles/header.css';
 
 export default function Header() {
   const { isAuthenticated, user, logout } = useAuth();
@@ -75,21 +77,24 @@ export default function Header() {
         <span className="logo-kanji">夜</span>
       </Link>
 
-      {/* Nav */}
-      <nav className="header-nav">
-        {navItems.map(item => {
-          const isActive = location.pathname === item.path;
-          return (
-            <Link key={item.label} to={item.path} style={{ textDecoration: 'none' }}>
-              <motion.span
-                whileHover={{ color: '#a855f7' }}
-                className={`nav-link-text ${isActive ? 'active' : 'inactive'}`}
-              >
-                {item.label}
-              </motion.span>
-            </Link>
-          );
-        })}
+      <nav className="header-nav" style={{ width: '620px', height: '58px', zIndex: 10 }}>
+        <Canvas camera={{ position: [0, 0, 10], fov: 12 }} style={{ background: 'transparent' }}>
+          <ambientLight intensity={0.9} />
+          <pointLight position={[8, 5, 5]} intensity={1.5} color="#00f0ff" />
+          <pointLight position={[-8, -5, 5]} intensity={1.5} color="#a855f7" />
+
+          <group>
+            {navItems.map((item, index) => (
+              <AnimeNavItem3D
+                key={item.label}
+                label={item.label}
+                index={index}
+                totalItems={navItems.length}
+                path={item.path}
+              />
+            ))}
+          </group>
+        </Canvas>
       </nav>
 
       {/* Actions (Search + Auth) */}
@@ -127,8 +132,8 @@ export default function Header() {
       </div>
 
       {/* Mobile Hamburger Burger */}
-      <button 
-        id="burger" 
+      <button
+        id="burger"
         className="mobile-burger-btn"
         onClick={toggleNavbar}
         aria-label="Toggle Navigation Menu"
@@ -154,8 +159,8 @@ export default function Header() {
             const isActive = location.pathname === item.path;
             return (
               <li key={item.label} className="mobile-nav-li">
-                <Link 
-                  to={item.path} 
+                <Link
+                  to={item.path}
                   onClick={toggleNavbar}
                   className={`mobile-nav-link ${isActive ? 'active' : ''}`}
                 >
@@ -178,7 +183,7 @@ export default function Header() {
               className="mobile-search-input"
             />
           </div>
-          
+
           <div className="mobile-auth-wrapper">
             {isAuthenticated ? (
               <div className="mobile-user-actions">

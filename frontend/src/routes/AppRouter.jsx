@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../features/auth/context/AuthContext';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import ErrorBoundary from '../components/common/ErrorBoundary';
 import PageErrorBoundary from '../components/common/PageErrorBoundary';
@@ -8,12 +8,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import MainLayout from '../components/layout/MainLayout';
 
 // Lazy load pages
-const HomePage = lazy(() => import('../pages/HomePage'));
-const SearchPage = lazy(() => import('../pages/SearchPage'));
-const DetailPage = lazy(() => import('../pages/DetailPage'));
+const HomePage = lazy(() => import('../features/anime-catalog/pages/HomePage'));
+const SearchPage = lazy(() => import('../features/anime-catalog/pages/SearchPage'));
+const DetailPage = lazy(() => import('../features/anime-catalog/pages/DetailPage'));
 const WatchPage = lazy(() => import('../features/streaming/pages/WatchPage'));
-const FavoritesPage = lazy(() => import('../pages/FavoritesPage'));
-const AuthPage = lazy(() => import('../pages/AuthPage'));
+const FavoritesPage = lazy(() => import('../features/favorites/pages/FavoritesPage'));
+const AuthPage = lazy(() => import('../features/auth/pages/AuthPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 const pageVariants = {

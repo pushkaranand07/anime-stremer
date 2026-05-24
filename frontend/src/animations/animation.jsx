@@ -77,24 +77,14 @@ const animateSplitText = (
 };
 
 const navbarScale = (selector, trigger) => {
-  const triggerEl = document.querySelector(trigger);
-  
-  // If viewport is smaller than 1024px (mobile/tablet), keep the burger menu always visible
-  if (typeof window !== 'undefined' && (window.innerWidth <= 1024 || !triggerEl)) {
-    gsap.set(selector, { scale: 1, opacity: 1 });
+  // If viewport is greater than 1024px (desktop), keep the burger menu hidden to prevent overlapping with auth buttons
+  if (typeof window !== 'undefined' && window.innerWidth > 1024) {
+    gsap.set(selector, { scale: 0, opacity: 0 });
     return;
   }
 
-  gsap.to(selector, {
-    scrollTrigger: {
-      trigger: trigger,
-      start: 'bottom center',
-      toggleActions: 'play none none reverse',
-    },
-    duration: 0.6,
-    scale: 1,
-    ease: 'power1',
-  });
+  // On mobile/tablet (<= 1024px), keep the burger menu always visible
+  gsap.set(selector, { scale: 1, opacity: 1 });
 };
 
 // ! common animations

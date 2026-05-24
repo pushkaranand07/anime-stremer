@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const favoriteController = require('./favorite.controller');
-const verifyJWT = require('../../middlewares/auth.middleware');
+const verifyJWT = require('../auth/auth.middleware');
 const validate = require('../../middlewares/validate.middleware');
 const { addFavoriteSchema } = require('./favorite.validator');
 

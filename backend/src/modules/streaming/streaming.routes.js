@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const streamingController = require('./streaming.controller');
-const verifyJWT = require('../../middlewares/auth.middleware');
-const { proxyGuard } = require('../../middlewares/proxyGuard.middleware');
+const verifyJWT = require('../auth/auth.middleware');
+const { proxyGuard } = require('./proxyGuard.middleware');
 
 const router = Router();
 

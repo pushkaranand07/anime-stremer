@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { AuthProvider } from './context/AuthContext';
-import { FavoritesProvider } from './context/FavoritesContext';
+import { AuthProvider } from './features/auth/context/AuthContext';
+import { FavoritesProvider } from './features/favorites/context/FavoritesContext';
 import App from './App';
 import './index.css';
 

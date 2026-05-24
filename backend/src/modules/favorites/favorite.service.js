@@ -1,4 +1,4 @@
-const favoriteRepository = require('../../repositories/favorite.repository');
+const favoriteRepository = require('./favorite.repository');
 const ApiError = require('../../utils/ApiError');
 
 class FavoriteService {

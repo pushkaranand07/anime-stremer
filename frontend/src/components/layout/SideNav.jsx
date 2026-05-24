@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import '../../styles/side-nav.css';
+import '../../features/anime-catalog/styles/side-nav.css';
 
 const icons = [
   {

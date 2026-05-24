@@ -1,6 +1,6 @@
 const cacheService = require('./cache.service');
 const providerService = require('./provider.service');
-const providerConfig = require('../../config/provider.config');
+const providerConfig = require('./provider.config');
 
 class StreamingService {
   async getAnimeInfo(query) {

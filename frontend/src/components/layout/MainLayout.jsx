@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import SideNav from './SideNav';
-import '../../styles/main-layout.css';
+import '../../features/anime-catalog/styles/main-layout.css';
 
 export default function MainLayout() {
   return (

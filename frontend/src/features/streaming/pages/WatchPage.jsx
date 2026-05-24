@@ -3,11 +3,11 @@ import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAnimeById } from '../../../api/endpoints';
 import { streamingService } from '../services/streamingService';
-import WatchModule from '../components/Player/WatchModule';
-import EpisodeList from '../components/EpisodeList/EpisodeList';
+import WatchModule from '../components/WatchModule';
+import EpisodeList from '../components/EpisodeList';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 
-import '../../../styles/watch-page.css';
+import '../styles/watch-page.css';
 
 export default function WatchPage() {
   const { id } = useParams();

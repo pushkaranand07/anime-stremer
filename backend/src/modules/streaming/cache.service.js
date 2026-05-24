@@ -1,5 +1,5 @@
-const cacheRepository = require('../../repositories/cache.repository');
-const providerConfig = require('../../config/provider.config');
+const cacheRepository = require('./cache.repository');
+const providerConfig = require('./provider.config');
 
 class CacheService {
   async get(key) {

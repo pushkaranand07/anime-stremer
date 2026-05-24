@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
-const User = require('../../models/User.model');
-const RefreshToken = require('../../models/RefreshToken.model');
-const userRepository = require('../../repositories/user.repository');
+const User = require('./User.model');
+const RefreshToken = require('./RefreshToken.model');
+const userRepository = require('./user.repository');
 const ApiError = require('../../utils/ApiError');
-const jwtConfig = require('../../config/jwt.config');
+const jwtConfig = require('./jwt.config');
 
 class AuthService {
   async register(userData) {

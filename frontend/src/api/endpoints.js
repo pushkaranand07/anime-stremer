@@ -1,5 +1,5 @@
-import jikanClient from './jikanClient';
-import { filterHentai } from '../utils/filters';
+import jikanClient from '../features/anime-catalog/services/jikanClient';
+import { filterHentai } from '../features/anime-catalog/utils/filters';
 
 // Fetch top anime with pagination (page = 1,2,3...)
 export const fetchTopAnime = async (page = 1, filter = 'airing') => {
