@@ -16,12 +16,19 @@ export const favoriteService = {
     });
   },
 
-  async addFavorite(anime: any): Promise<any> {
+  async addFavorite(item: any): Promise<any> {
+    const isManga = item.type === 'manga' || item.type === 'manhua' || item.type === 'manhwa' || !!item.attributes;
+    const itemId = isManga ? String(item.id) : String(item.mal_id);
+    const title = isManga ? (item.attributes?.canonicalTitle || item.title) : item.title;
+    const imageUrl = isManga 
+      ? (item.attributes?.posterImage?.large || item.attributes?.posterImage?.medium || item.image)
+      : (item.images?.jpg?.large_image_url || item.images?.jpg?.image_url || item.image);
+
     const favoriteData: FavoriteItem = {
-      anime_id: String(anime.mal_id),
-      title: anime.title,
-      image_url: anime.images?.jpg?.large_image_url || anime.images?.jpg?.image_url || undefined,
-      mal_id: String(anime.mal_id),
+      anime_id: itemId,
+      title: title,
+      image_url: imageUrl || undefined,
+      mal_id: itemId,
     };
     return await axiosInstance.post('/favorites/', favoriteData);
   },

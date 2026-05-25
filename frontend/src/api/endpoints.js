@@ -1,59 +1,88 @@
-import { jikan } from '../features/anime-catalog/services/jikanClient';
+import apiClient from '../services/api.client';
+import { kitsuService } from '../services/kitsuService';
 import { mal, hasMalClientId } from '../features/anime-catalog/services/malClient';
 import { filterHentai } from '../features/anime-catalog/utils/filters';
 
-// NOTE: jikan.get() returns res.data (the Jikan JSON payload) directly,
-// not the full axios response. So payload.data is the anime array,
-// and payload itself has pagination metadata.
+// NOTE: Manga and Kitsu-specific features now use the Django backend proxy.
 
-// Fetch top anime with pagination (page = 1,2,3...)
 export const fetchTopAnime = async (page = 1, filter = 'airing') => {
-  const payload = await jikan.get('/top/anime', { page, filter, limit: 25 });
+  const payload = await apiClient.get('/catalog/top/anime', {
+    params: { page, filter, limit: 25 },
+  });
   payload.data = filterHentai(payload.data);
   return payload;
 };
 
-// Search anime by query string
 export const searchAnime = async (query, page = 1) => {
-  const payload = await jikan.get('/anime', { q: query, page, limit: 25 });
+  const payload = await apiClient.get('/catalog/anime', {
+    params: { q: query, page, limit: 25 },
+  });
   payload.data = filterHentai(payload.data);
   return payload;
 };
 
 export const searchManga = async (query, page = 1) => {
-  if (hasMalClientId) {
-    const payload = await mal.get('/manga', { q: query, limit: 25, offset: (page - 1) * 25 });
-    const data = (payload?.data || []).map((item) => item.node || item);
+  const params = {
+    'filter[text]': query,
+    'page[limit]': 25,
+    'page[offset]': (page - 1) * 25,
+  };
+  const payload = await kitsuService.getManga(params);
+  return {
+    data: payload.items,
+    pagination: {
+      items: {
+        total: payload.meta?.count || 0,
+      },
+    },
+  };
+};
+
+export const fetchMangaById = async (id) => {
+  return kitsuService.getMangaById(id);
+};
+
+export const fetchMangaChapters = async (id) => {
+  return kitsuService.getMangaChapters(id, { 'page[limit]': 100, sort: 'number' });
+};
+
+export const fetchMangaCharacters = async (id) => {
+  const response = await fetch(`https://kitsu.io/api/edge/manga/${id}/characters?include=character&page[limit]=12`);
+  const payload = await response.json();
+  if (!payload.data) return [];
+  const includedCharacters = payload.included || [];
+  return payload.data.map((mediaChar) => {
+    const charId = mediaChar.relationships?.character?.data?.id;
+    const charData = includedCharacters.find((c) => c.type === 'characters' && c.id === charId);
     return {
-      data,
-      paging: payload?.paging || {},
+      role: mediaChar.attributes?.role || 'Supporting',
+      character: {
+        id: charId,
+        name: charData?.attributes?.canonicalName || charData?.attributes?.name || 'Unknown Character',
+        image: charData?.attributes?.image?.medium || charData?.attributes?.image?.original || '/api/placeholder/120/120',
+      },
     };
-  }
-
-  const payload = await jikan.get('/manga', { q: query, page, limit: 25 });
-  return payload;
+  });
 };
 
-// Get full details for a single anime by MAL ID
 export const fetchAnimeById = async (id) => {
-  const payload = await jikan.get(`/anime/${id}/full`);
+  const payload = await apiClient.get(`/catalog/anime/${id}/full`);
   return payload.data;
 };
 
-// Get characters for an anime
 export const fetchAnimeCharacters = async (id) => {
-  const payload = await jikan.get(`/anime/${id}/characters`);
+  const payload = await apiClient.get(`/catalog/anime/${id}/characters`);
   return payload.data;
 };
 
-// Get seasonal anime (current season is the default)
 export const fetchSeasonalAnime = async (year, season, page = 1) => {
-  const payload = await jikan.get(`/seasons/${year}/${season}`, { page, limit: 25 });
+  const payload = await apiClient.get(`/catalog/seasons/${year}/${season}`, {
+    params: { page, limit: 25 },
+  });
   return payload;
 };
 
-// Get anime recommendations (similar titles)
 export const fetchRecommendations = async (id) => {
-  const payload = await jikan.get(`/anime/${id}/recommendations`);
+  const payload = await apiClient.get(`/catalog/anime/${id}/recommendations`);
   return payload.data;
 };

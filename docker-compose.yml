@@ -5,31 +5,42 @@ services:
     build: ./backend
     env_file: ./backend/.env
     ports:
-      - "5000:5000"
+      - "5000:8000"  # Expose Django on port 5000 externally for the frontend
+    environment:
+      - DATABASE_URL=postgres://postgres:${DB_PASSWORD:-postgres}@db:5432/animestreamer
+      - REDIS_URL=redis://redis:6379/1
     depends_on:
-      mongo:
+      db:
         condition: service_healthy
+      redis:
+        condition: service_started
     volumes:
       - backend_logs:/app/logs
     networks:
       - animestream-network
 
-  mongo:
-    image: mongo:7
+  db:
+    image: postgres:15-alpine
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
-      MONGO_INITDB_DATABASE: anime-streamer
+      - POSTGRES_DB=animestreamer
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-postgres}
     volumes:
-      - mongo_data:/data/db
-    # NO ports: mapping — only accessible inside the Docker network (SSRF safe)
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - animestream-network
     healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 10s
+      test: ["CMD-SHELL", "pg_isready -U postgres -d animestreamer"]
+      interval: 5s
       timeout: 5s
       retries: 5
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - animestream-network
 
   frontend:
     build: ./frontend
@@ -43,5 +54,6 @@ networks:
     driver: bridge
 
 volumes:
-  mongo_data:
+  postgres_data:
+  redis_data:
   backend_logs:

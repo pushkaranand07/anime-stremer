@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from datetime import timedelta
+from urllib.parse import urlparse
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -34,6 +35,8 @@ INSTALLED_APPS = [
     'apps.auth_system',
     'apps.sessions_app',
     'apps.favorites',
+    'apps.streaming',
+    'apps.anime_catalog',
 ]
 
 MIDDLEWARE = [
@@ -72,19 +75,32 @@ WSGI_APPLICATION = 'config.wsgi.application'
 ASGI_APPLICATION = 'config.asgi.application'
 
 # Database Setup
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='animestreamer'),
-        'USER': config('DB_USER', default='postgres'),
-        'PASSWORD': config('DB_PASSWORD', default='postgres'),
-        'HOST': config('DB_HOST', default='db'),
-        'PORT': config('DB_PORT', default='5432'),
-        'OPTIONS': {
-            'conn_max_age': 600,  # Connection reuse for up to 10 minutes
+DATABASE_URL = config('DATABASE_URL', default=None)
+if DATABASE_URL:
+    parsed_db_url = urlparse(DATABASE_URL)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': parsed_db_url.path.lstrip('/') or config('DB_NAME', default='animestreamer'),
+            'USER': parsed_db_url.username or config('DB_USER', default='postgres'),
+            'PASSWORD': parsed_db_url.password or config('DB_PASSWORD', default='postgres'),
+            'HOST': parsed_db_url.hostname or config('DB_HOST', default='localhost'),
+            'PORT': parsed_db_url.port or config('DB_PORT', default='5432'),
+            'CONN_MAX_AGE': 600,  # Connection reuse for up to 10 minutes
         }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME', default='animestreamer'),
+            'USER': config('DB_USER', default='postgres'),
+            'PASSWORD': config('DB_PASSWORD', default='postgres'),
+            'HOST': config('DB_HOST', default='localhost'),
+            'PORT': config('DB_PORT', default='5432'),
+            'CONN_MAX_AGE': 600,  # Connection reuse for up to 10 minutes
+        }
+    }
 
 # Custom User Model
 AUTH_USER_MODEL = 'user.CustomUser'
@@ -174,6 +190,14 @@ CACHES = {
             }
         }
     }
+}
+
+# Kitsu API configuration
+KITSU_BASE_URL = config('KITSU_BASE_URL', default='https://kitsu.io/api/edge')
+KITSU_OAUTH_URL = config('KITSU_OAUTH_URL', default='https://kitsu.io/api/oauth')
+KITSU_HEADERS = {
+    'Accept': 'application/vnd.api+json',
+    'Content-Type': 'application/vnd.api+json',
 }
 
 # CORS configuration

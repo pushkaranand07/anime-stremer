@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { jikan } from '../services/jikanClient';
+import apiClient from '../../../services/api.client';
 import { mal, hasMalClientId } from '../services/malClient';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 import SearchBar from '../../../components/ui/SearchBar';
@@ -59,14 +59,14 @@ export default function SchedulePage() {
         const normalizedMalList = malList.map((item) => item.node ?? item);
         const hasBroadcastDay = normalizedMalList.some((anime) => Boolean(anime.broadcast?.day));
         if (!hasBroadcastDay) {
-          const fallback = await jikan.get('/schedules');
+          const fallback = await apiClient.get('/catalog/schedules');
           return fallback?.data ?? [];
         }
 
         return normalizedMalList;
       }
 
-      const response = await jikan.get('/schedules');
+      const response = await apiClient.get('/catalog/schedules');
       return response?.data ?? [];
     },
     staleTime: 5 * 60 * 1000,

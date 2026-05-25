@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 
-export default function AnimeCard({ anime, rank }) {
+export default function AnimeCard({ anime, rank, onClick }) {
   return (
     <motion.div
+      onClick={onClick}
       whileHover={{ y: -8, scale: 1.03 }}
       transition={{ type: 'spring', stiffness: 300 }}
       style={{

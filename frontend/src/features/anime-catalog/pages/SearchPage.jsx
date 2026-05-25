@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { searchAnime, searchManga } from '../../../api/endpoints';
 import { useDebounce } from '../../../hooks/useDebounce';
@@ -10,6 +10,7 @@ import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 import '../styles/search-page.css';
 
 export default function SearchPage() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchType = searchParams.get('type')?.toLowerCase() === 'manga' ? 'manga' : 'anime';
   const initialQuery = searchParams.get('q') || '';
@@ -33,6 +34,14 @@ export default function SearchPage() {
     }
   };
 
+  const handleCardClick = (item) => {
+    if (searchType === 'manga') {
+      navigate(`/manga/${item.id}`);
+    } else {
+      navigate(`/anime/${item.id || item.mal_id}`);
+    }
+  };
+
   const isMangaSearch = searchType === 'manga';
   const pageTitle = isMangaSearch ? 'MANGA SEARCH' : 'GLOBAL SEARCH';
   const pageSubtitle = isMangaSearch
@@ -41,9 +50,9 @@ export default function SearchPage() {
   const totalResults = data?.pagination?.items?.total ?? data?.paging?.items?.total ?? data?.data?.length ?? 0;
   const normalizedResults = (data?.data || []).map((item) => ({
     ...item,
-    image: item.image || item.main_picture?.medium || item.main_picture?.large || item.images?.jpg?.image_url || '/api/placeholder/160/220',
-    title: item.title || item.name || item.title_english || 'Untitled',
-    episode: item.episodes ? `Vol ${item.volumes ?? item.episodes}` : item.volumes ? `Vol ${item.volumes}` : 'Manga',
+    image: item.attributes?.posterImage?.medium || item.attributes?.posterImage?.large || item.image || item.main_picture?.medium || item.main_picture?.large || item.images?.jpg?.image_url || '/api/placeholder/160/220',
+    title: item.attributes?.canonicalTitle || item.title || item.name || item.title_english || 'Untitled',
+    episode: item.attributes ? (item.attributes.chapterCount ? `${item.attributes.chapterCount} Chapters` : 'Manga') : (item.episodes ? `Vol ${item.volumes ?? item.episodes}` : item.volumes ? `Vol ${item.volumes}` : 'Manga'),
   }));
 
   return (
@@ -71,7 +80,7 @@ export default function SearchPage() {
               {normalizedResults.length > 0 ? (
                 <div className="search-results-grid">
                   {normalizedResults.map((anime) => (
-                    <AnimeCard key={anime.id || anime.mal_id} anime={anime} />
+                    <AnimeCard key={anime.id || anime.mal_id} anime={anime} onClick={() => handleCardClick(anime)} />
                   ))}
                 </div>
               ) : (

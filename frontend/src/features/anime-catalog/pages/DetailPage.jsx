@@ -50,6 +50,37 @@ export default function DetailPage() {
     retry: 1,
   });
 
+  const { data: kitsuStreams, isLoading: kitsuLoading } = useQuery({
+    queryKey: ['kitsuStreams', anime?.title],
+    queryFn: async () => {
+      if (!anime?.title) return [];
+      try {
+        const res = await fetch(`https://kitsu.io/api/edge/anime?filter[text]=${encodeURIComponent(anime.title.trim())}&include=streamingLinks,streamingLinks.streamer&page[limit]=1`);
+        const payload = await res.json();
+        if (!payload.data || payload.data.length === 0) return [];
+        
+        const included = payload.included || [];
+        const links = included.filter(item => item.type === 'streamingLinks');
+        const streamers = included.filter(item => item.type === 'streamers');
+        
+        return links.map(link => {
+          const streamerId = link.relationships?.streamer?.data?.id;
+          const streamer = streamers.find(s => s.id === streamerId);
+          return {
+            url: link.attributes?.url,
+            subs: link.attributes?.subs || [],
+            dubs: link.attributes?.dubs || [],
+            siteName: streamer?.attributes?.siteName || 'Official Source',
+          };
+        }).filter(item => !!item.url);
+      } catch (err) {
+        console.error('Failed to fetch Kitsu streams', err);
+        return [];
+      }
+    },
+    enabled: !!anime?.title,
+  });
+
   // Stagger title animation when metadata is loaded
   useEffect(() => {
     if (!animeLoading && anime?.title) {
@@ -273,6 +304,62 @@ export default function DetailPage() {
                     </div>
                   )}
                 </div>
+
+                {/* Official Streams */}
+                {!kitsuLoading && kitsuStreams?.length > 0 && (
+                  <div className="detail-official-streams" style={{ marginTop: '24px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '20px' }}>
+                    <p className="label" style={{ fontSize: '10px', fontWeight: 900, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '12px' }}>
+                      Official Streams
+                    </p>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      {kitsuStreams.map((stream, idx) => (
+                        <a
+                          key={idx}
+                          href={stream.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            padding: '10px 14px',
+                            background: 'rgba(255, 255, 255, 0.03)',
+                            border: '1px solid rgba(255, 255, 255, 0.08)',
+                            borderRadius: '12px',
+                            color: '#fff',
+                            textDecoration: 'none',
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            transition: 'all 0.2s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'rgba(124, 58, 237, 0.15)';
+                            e.currentTarget.style.borderColor = 'rgba(124, 58, 237, 0.4)';
+                            e.currentTarget.style.transform = 'translateY(-1px)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                            e.currentTarget.style.transform = 'none';
+                          }}
+                        >
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <span style={{ fontSize: '14px' }}>📺</span>
+                            {stream.siteName}
+                          </span>
+                          <div style={{ display: 'flex', gap: '4px' }}>
+                            {stream.dubs?.length > 0 && (
+                              <span style={{ fontSize: '9px', padding: '2px 6px', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', border: '1px solid rgba(59, 130, 246, 0.2)', borderRadius: '4px', fontWeight: 700 }}>DUB</span>
+                            )}
+                            {stream.subs?.length > 0 && (
+                              <span style={{ fontSize: '9px', padding: '2px 6px', background: 'rgba(16, 185, 129, 0.15)', color: '#34d399', border: '1px solid rgba(16, 185, 129, 0.2)', borderRadius: '4px', fontWeight: 700 }}>SUB</span>
+                            )}
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

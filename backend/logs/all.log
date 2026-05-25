@@ -89,3 +89,7 @@
 2026-05-25 20:15:08:158 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Death+Note 200 5954 - 2809.914 ms[39m
 2026-05-25 20:24:23:2423 [32minfo[39m: [32mMongoDB connected: localhost[39m
 2026-05-25 20:24:23:2423 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m
+2026-05-25 20:53:46:5346 [32minfo[39m: [32mMongoDB connected: localhost[39m
+2026-05-25 20:53:46:5346 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m
+2026-05-25 20:55:11:5511 [32minfo[39m: [32mMongoDB connected: localhost[39m
+2026-05-25 20:55:11:5511 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m

@@ -12,6 +12,8 @@ const HomePage = lazy(() => import('../features/anime-catalog/pages/HomePage'));
 const SearchPage = lazy(() => import('../features/anime-catalog/pages/SearchPage'));
 const SchedulePage = lazy(() => import('../features/anime-catalog/pages/SchedulePage'));
 const DetailPage = lazy(() => import('../features/anime-catalog/pages/DetailPage'));
+const MangaDetailPage = lazy(() => import('../features/anime-catalog/pages/MangaDetailPage'));
+const MangaListPage = lazy(() => import('../features/anime-catalog/pages/MangaListPage'));
 const WatchPage = lazy(() => import('../features/streaming/pages/WatchPage'));
 const FavoritesPage = lazy(() => import('../features/favorites/pages/FavoritesPage'));
 const AuthPage = lazy(() => import('../features/auth/pages/AuthPage'));
@@ -54,8 +56,10 @@ export default function AppRouter() {
             <Route element={<MainLayout />}>
               <Route path="/" element={<Page Component={HomePage} />} />
               <Route path="/search" element={<Page Component={SearchPage} />} />
+              <Route path="/manga" element={<Page Component={MangaListPage} />} />
               <Route path="/schedule" element={<Page Component={SchedulePage} />} />
               <Route path="/anime/:id" element={<Page Component={DetailPage} />} />
+              <Route path="/manga/:id" element={<Page Component={MangaDetailPage} />} />
               <Route path="/watch/:id" element={<Page Component={WatchPage} />} />
               <Route
                 path="/favorites"
