@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Search, LogOut, User } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../../features/auth/context/AuthContext';
+import { useAuth } from '../../auth/authHooks';
 import { useState, useEffect } from 'react';
 import GlowButton from '../ui/GlowButton';
 import gsap from 'gsap';
@@ -30,7 +30,11 @@ export default function Header() {
 
   const handleSearchSubmit = (e) => {
     if (e.key === 'Enter' && searchQuery.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      const params = new URLSearchParams(location.search);
+      const query = `q=${encodeURIComponent(searchQuery.trim())}`;
+      const type = params.get('type');
+      const searchPath = type ? `/search?${query}&type=${encodeURIComponent(type)}` : `/search?${query}`;
+      navigate(searchPath);
       if (isNavbarOpen) {
         toggleNavbar();
       }

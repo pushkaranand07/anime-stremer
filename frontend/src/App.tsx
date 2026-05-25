@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, useNavigate } from 'react-router-dom';
 import SmoothScroll from './components/layout/SmoothScroll';
 import AppRouter from './routes/AppRouter';
+import { useAuthStore } from './auth/authStore';
 
 /**
  * Listens for 'auth:logout' events dispatched by the API client
@@ -10,12 +11,16 @@ import AppRouter from './routes/AppRouter';
  */
 function AuthLogoutListener() {
   const navigate = useNavigate();
+  const clearAuth = useAuthStore((state) => state.clearAuth);
 
   useEffect(() => {
-    const handler = () => navigate('/auth', { replace: true });
+    const handler = () => {
+      clearAuth();
+      navigate('/auth', { replace: true });
+    };
     window.addEventListener('auth:logout', handler);
     return () => window.removeEventListener('auth:logout', handler);
-  }, [navigate]);
+  }, [navigate, clearAuth]);
 
   return null;
 }

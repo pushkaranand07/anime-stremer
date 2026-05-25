@@ -47,3 +47,45 @@
 2026-05-24 18:10:20:1020 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m
 2026-05-24 18:10:50:1050 [32minfo[39m: [32mMongoDB connected: localhost[39m
 2026-05-24 18:10:50:1050 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m
+2026-05-24 21:47:01:471 [32minfo[39m: [32mMongoDB connected: localhost[39m
+2026-05-24 21:47:01:471 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m
+2026-05-24 22:15:10:1510 [32minfo[39m: [32mMongoDB connected: localhost[39m
+2026-05-24 22:15:10:1510 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m
+2026-05-24 22:18:04:184 [32minfo[39m: [32mMongoDB connected: localhost[39m
+2026-05-24 22:18:04:184 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m
+2026-05-24 22:20:50:2050 [32minfo[39m: [32m[StreamingController] GET /info?q="Fullmetal Alchemist: Brotherhood"[39m
+2026-05-24 22:20:50:2050 [32minfo[39m: [32m[ProviderService] Searching Hianime for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:20:50:2050 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:20:50:2050 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:20:50:2050 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:21:05:215 [31merror[39m: [31mGET /api/v1/streaming/info?q=Fullmetal+Alchemist:+Brotherhood - No streaming sources found: Timeout after 15000ms [Hianime/search]; getaddrinfo EAI_AGAIN animepahe.si; Request failed with status code 403; AnimeKai: no results[39m
+2026-05-24 22:21:05:215 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Fullmetal+Alchemist:+Brotherhood 503 977 - 15092.878 ms[39m
+2026-05-24 22:21:06:216 [32minfo[39m: [32m[StreamingController] GET /info?q="Fullmetal Alchemist: Brotherhood"[39m
+2026-05-24 22:21:06:216 [32minfo[39m: [32m[ProviderService] Searching Hianime for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:21:06:216 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:21:06:216 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:21:06:216 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:21:21:2121 [31merror[39m: [31mGET /api/v1/streaming/info?q=Fullmetal+Alchemist:+Brotherhood - No streaming sources found: Timeout after 15000ms [Hianime/search]; getaddrinfo EAI_AGAIN animepahe.si; Request failed with status code 403; AnimeKai: no results[39m
+2026-05-24 22:21:21:2121 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Fullmetal+Alchemist:+Brotherhood 503 977 - 15012.854 ms[39m
+2026-05-24 22:21:21:2121 [32minfo[39m: [32m[StreamingController] GET /info?q="Fullmetal Alchemist: Brotherhood"[39m
+2026-05-24 22:21:21:2121 [32minfo[39m: [32m[ProviderService] Searching Hianime for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:21:21:2121 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:21:21:2121 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:21:21:2121 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "Fullmetal Alchemist: Brotherhood"...[39m
+2026-05-24 22:21:36:2136 [31merror[39m: [31mGET /api/v1/streaming/info?q=Fullmetal+Alchemist:+Brotherhood - No streaming sources found: Timeout after 15000ms [Hianime/search]; getaddrinfo EAI_AGAIN animepahe.si; Request failed with status code 403; AnimeKai: no results[39m
+2026-05-24 22:21:36:2136 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Fullmetal+Alchemist:+Brotherhood 503 977 - 15009.097 ms[39m
+2026-05-24 22:24:48:2448 [32minfo[39m: [32mMongoDB connected: localhost[39m
+2026-05-24 22:24:48:2448 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m
+2026-05-25 20:13:58:1358 [32minfo[39m: [32mMongoDB connected: localhost[39m
+2026-05-25 20:13:58:1358 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m
+2026-05-25 20:15:05:155 [32minfo[39m: [32m[StreamingController] GET /info?q="Death Note"[39m
+2026-05-25 20:15:05:155 [32minfo[39m: [32m[ProviderService] Searching Hianime for "Death Note"...[39m
+2026-05-25 20:15:06:156 [32minfo[39m: [32m[ProviderService] Searching AnimePahe for "Death Note"...[39m
+2026-05-25 20:15:06:156 [32minfo[39m: [32m[ProviderService] Searching KickAssAnime for "Death Note"...[39m
+2026-05-25 20:15:06:156 [32minfo[39m: [32m[ProviderService] Searching AnimeKai for "Death Note"...[39m
+2026-05-25 20:15:07:157 [32minfo[39m: [32m[ProviderService] AnimeKai found 25 results. Top 3: Death Note, Death Note: Relight, Death Billiards[39m
+2026-05-25 20:15:07:157 [32minfo[39m: [32m[ProviderService] AnimeKai best match: "Death Note" (death-note-616q)[39m
+2026-05-25 20:15:08:158 [32minfo[39m: [32m[ProviderService] AnimeKai succeeded for "Death Note" — 37 episodes[39m
+2026-05-25 20:15:08:158 [35mhttp[39m: [35mGET /api/v1/streaming/info?q=Death+Note 200 5954 - 2809.914 ms[39m
+2026-05-25 20:24:23:2423 [32minfo[39m: [32mMongoDB connected: localhost[39m
+2026-05-25 20:24:23:2423 [32minfo[39m: [32m🚀 Server running at http://localhost:5000/api/v1 [development][39m

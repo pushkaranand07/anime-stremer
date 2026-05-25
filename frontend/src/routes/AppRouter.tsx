@@ -1,15 +1,16 @@
-import { lazy, Suspense } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../features/auth/context/AuthContext';
+import React, { lazy, Suspense } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import ErrorBoundary from '../components/common/ErrorBoundary';
 import PageErrorBoundary from '../components/common/PageErrorBoundary';
 import { motion, AnimatePresence } from 'framer-motion';
 import MainLayout from '../components/layout/MainLayout';
+import ProtectedRoute from '../components/shared/ProtectedRoute/ProtectedRoute';
 
 // Lazy load pages
 const HomePage = lazy(() => import('../features/anime-catalog/pages/HomePage'));
 const SearchPage = lazy(() => import('../features/anime-catalog/pages/SearchPage'));
+const SchedulePage = lazy(() => import('../features/anime-catalog/pages/SchedulePage'));
 const DetailPage = lazy(() => import('../features/anime-catalog/pages/DetailPage'));
 const WatchPage = lazy(() => import('../features/streaming/pages/WatchPage'));
 const FavoritesPage = lazy(() => import('../features/favorites/pages/FavoritesPage'));
@@ -22,10 +23,11 @@ const pageVariants = {
   exit: { opacity: 0, y: -15, transition: { duration: 0.18, ease: 'easeIn' } }
 };
 
-/**
- * Wraps each page in its own error boundary and page transition animation.
- */
-function Page({ Component }) {
+interface PageProps {
+  Component: React.ComponentType<any>;
+}
+
+function Page({ Component }: PageProps) {
   return (
     <PageErrorBoundary>
       <motion.div
@@ -40,12 +42,6 @@ function Page({ Component }) {
   );
 }
 
-function ProtectedRoute({ children }) {
-  const { isAuthenticated, isInitializing } = useAuth();
-  if (isInitializing) return <LoadingSpinner />;
-  return isAuthenticated ? children : <Navigate to="/auth" replace />;
-}
-
 export default function AppRouter() {
   const location = useLocation();
 
@@ -58,6 +54,7 @@ export default function AppRouter() {
             <Route element={<MainLayout />}>
               <Route path="/" element={<Page Component={HomePage} />} />
               <Route path="/search" element={<Page Component={SearchPage} />} />
+              <Route path="/schedule" element={<Page Component={SchedulePage} />} />
               <Route path="/anime/:id" element={<Page Component={DetailPage} />} />
               <Route path="/watch/:id" element={<Page Component={WatchPage} />} />
               <Route

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { searchAnime } from '../../../api/endpoints';
+import { searchAnime, searchManga } from '../../../api/endpoints';
 import { useDebounce } from '../../../hooks/useDebounce';
 import AnimeCard from '../components/AnimeCard';
 import SearchBar from '../../../components/ui/SearchBar';
@@ -11,30 +11,46 @@ import '../styles/search-page.css';
 
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const searchType = searchParams.get('type')?.toLowerCase() === 'manga' ? 'manga' : 'anime';
   const initialQuery = searchParams.get('q') || '';
   const [searchTerm, setSearchTerm] = useState(initialQuery);
   const debouncedSearch = useDebounce(searchTerm, 600);
 
   const { data, status, isFetching } = useQuery({
-    queryKey: ['anime', 'search', debouncedSearch],
-    queryFn: () => searchAnime(debouncedSearch, 1),
+    queryKey: ['search', searchType, debouncedSearch],
+    queryFn: () => (searchType === 'manga' ? searchManga(debouncedSearch, 1) : searchAnime(debouncedSearch, 1)),
     enabled: debouncedSearch.length >= 3,
   });
 
   const handleSearch = (term) => {
     setSearchTerm(term);
-    if (term) setSearchParams({ q: term });
-    else setSearchParams({});
+    if (term) {
+      const nextParams = { q: term };
+      if (searchType === 'manga') nextParams.type = 'manga';
+      setSearchParams(nextParams);
+    } else {
+      setSearchParams(searchType === 'manga' ? { type: 'manga' } : {});
+    }
   };
+
+  const isMangaSearch = searchType === 'manga';
+  const pageTitle = isMangaSearch ? 'MANGA SEARCH' : 'GLOBAL SEARCH';
+  const pageSubtitle = isMangaSearch
+    ? 'Search across our manga database. Enter at least 3 characters to begin.'
+    : 'Search across our entire database of over 25,000 anime titles. Enter at least 3 characters to begin.';
+  const totalResults = data?.pagination?.items?.total ?? data?.paging?.items?.total ?? data?.data?.length ?? 0;
+  const normalizedResults = (data?.data || []).map((item) => ({
+    ...item,
+    image: item.image || item.main_picture?.medium || item.main_picture?.large || item.images?.jpg?.image_url || '/api/placeholder/160/220',
+    title: item.title || item.name || item.title_english || 'Untitled',
+    episode: item.episodes ? `Vol ${item.volumes ?? item.episodes}` : item.volumes ? `Vol ${item.volumes}` : 'Manga',
+  }));
 
   return (
     <div className="search-page-container">
       <div className="search-header">
-        <h1 className="search-title">GLOBAL SEARCH</h1>
-        <p className="search-subtitle">
-          Search across our entire database of over 25,000 anime titles. 
-          Enter at least 3 characters to begin.
-        </p>
+        <h1 className="search-title">{pageTitle}</h1>
+        <p className="search-subtitle">{pageSubtitle}</p>
       </div>
 
       <SearchBar value={searchTerm} onChange={handleSearch} />
@@ -48,23 +64,19 @@ export default function SearchPage() {
           ) : (
             <>
               <div className="search-results-header">
-                <h2 className="search-results-title">
-                  Results for "{debouncedSearch}"
-                </h2>
-                <span className="search-results-badge">
-                  {data?.pagination?.items?.total || 0} Found
-                </span>
+                <h2 className="search-results-title">Results for "{debouncedSearch}"</h2>
+                <span className="search-results-badge">{totalResults} Found</span>
               </div>
 
-              {data?.data?.length > 0 ? (
+              {normalizedResults.length > 0 ? (
                 <div className="search-results-grid">
-                  {data.data.map(anime => (
-                    <AnimeCard key={anime.mal_id} anime={anime} />
+                  {normalizedResults.map((anime) => (
+                    <AnimeCard key={anime.id || anime.mal_id} anime={anime} />
                   ))}
                 </div>
               ) : (
                 <div className="search-empty-state">
-                   <p>No anime found matching your search.</p>
+                  <p>No {isMangaSearch ? 'manga' : 'anime'} found matching your search.</p>
                 </div>
               )}
             </>

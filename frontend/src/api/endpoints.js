@@ -1,4 +1,5 @@
 import { jikan } from '../features/anime-catalog/services/jikanClient';
+import { mal, hasMalClientId } from '../features/anime-catalog/services/malClient';
 import { filterHentai } from '../features/anime-catalog/utils/filters';
 
 // NOTE: jikan.get() returns res.data (the Jikan JSON payload) directly,
@@ -16,6 +17,20 @@ export const fetchTopAnime = async (page = 1, filter = 'airing') => {
 export const searchAnime = async (query, page = 1) => {
   const payload = await jikan.get('/anime', { q: query, page, limit: 25 });
   payload.data = filterHentai(payload.data);
+  return payload;
+};
+
+export const searchManga = async (query, page = 1) => {
+  if (hasMalClientId) {
+    const payload = await mal.get('/manga', { q: query, limit: 25, offset: (page - 1) * 25 });
+    const data = (payload?.data || []).map((item) => item.node || item);
+    return {
+      data,
+      paging: payload?.paging || {},
+    };
+  }
+
+  const payload = await jikan.get('/manga', { q: query, page, limit: 25 });
   return payload;
 };
 

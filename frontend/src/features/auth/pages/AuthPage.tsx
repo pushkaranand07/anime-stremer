@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../../auth/authHooks';
 import '../styles/auth-page.css';
 
 export default function AuthPage() {
@@ -12,16 +12,18 @@ export default function AuthPage() {
   
   const { login, signup } = useAuth();
   const navigate = useNavigate();
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.fromTo(containerRef.current, 
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
-    );
+    if (containerRef.current) {
+      gsap.fromTo(containerRef.current, 
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
+      );
+    }
   }, [isLogin]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
@@ -34,7 +36,7 @@ export default function AuthPage() {
         await signup(formData);
         navigate('/');
       }
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message || 'Authentication failed');
     } finally {
       setIsLoading(false);

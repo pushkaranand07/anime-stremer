@@ -6,7 +6,7 @@ import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import { useScrollTriggerRefresh } from '../../../hooks/useScrollTriggerRefresh';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 import { useFavorites } from '../../favorites/context/FavoritesContext';
-import { useAuth } from '../../auth/context/AuthContext';
+import { useAuth } from '../../../auth/authHooks';
 import MagnetButton from '../../../components/ui/MagnetButton';
 import gsap from 'gsap';
 import { activateMagneto, resetMagneto, animateSplitText } from '../../../animations/animation';

@@ -100,8 +100,7 @@ export default function EstimatedSchedule() {
       const normalizedDay = rawDay.trim().replace(/s$/, '').substring(0, 3);
       
       if (grouped[normalizedDay]) {
-        // Broadcast time (JST)
-        const rawTime = anime.broadcast?.time || '12:00';
+        const rawTime = anime.broadcast?.time || '99:99';
         // Convert "17:00" to "05:00 PM"
         const [hours, minutes] = rawTime.split(':');
         const h = parseInt(hours, 10);
@@ -113,6 +112,7 @@ export default function EstimatedSchedule() {
           id: anime.mal_id,
           title: anime.title_english || anime.title,
           time: formattedTime,
+          sortKey: rawTime,
           ep: anime.episodes || '?'
         });
       }
@@ -124,7 +124,7 @@ export default function EstimatedSchedule() {
         grouped[dayKey] = fallbackSchedules[dayKey];
       } else {
         // Sort items by release time chronologically
-        grouped[dayKey].sort((a, b) => a.time.localeCompare(b.time));
+        grouped[dayKey].sort((a, b) => a.sortKey.localeCompare(b.sortKey));
       }
     });
 
@@ -149,6 +149,9 @@ export default function EstimatedSchedule() {
             <h3 className="schedule-panel-title">Estimated Schedule</h3>
             <span className="schedule-timezone-tag">Broadcasts (JST / Local)</span>
           </div>
+          <button className="schedule-full-btn" onClick={() => navigate('/schedule')}>
+            View full schedule
+          </button>
         </div>
 
         {/* Days Carousel Selector — stagger in */}
