@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useInfiniteAnime } from '../hooks/useInfiniteAnime';
 import LoadingSpinner from '../../../components/ui/LoadingSpinner';
 import ScrollReveal from '../../../components/ui/ScrollReveal';
@@ -9,7 +10,16 @@ import EstimatedSchedule from '../components/EstimatedSchedule';
 import '../styles/home-page.css';
 
 export default function HomePage() {
-  const { data, status } = useInfiniteAnime('airing');
+  const [visibleCount, setVisibleCount] = useState(12);
+  const {
+    data,
+    status,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    refetch,
+  } = useInfiniteAnime('airing');
 
   const allAnime = data?.pages.flatMap(page => page.data) || [];
 
@@ -54,7 +64,14 @@ export default function HomePage() {
             </div>
           ) : status === 'error' ? (
             <div className="text-center py-20 text-red-500 font-medium bg-black/40 backdrop-blur-md rounded-2xl mx-8 border border-red-500/20">
-              Failed to load anime. Please check your connection and try again.
+              <p>Failed to load anime. {error?.message || 'Please check your connection and try again.'}</p>
+              <button
+                type="button"
+                onClick={() => refetch()}
+                className="mt-4 px-6 py-2 bg-white text-black rounded-full font-semibold hover:bg-gray-100"
+              >
+                Retry
+              </button>
             </div>
           ) : (
             <>
@@ -65,8 +82,23 @@ export default function HomePage() {
 
               {/* ── 2. Latest Episodes & Top Anime — slides in from left ── */}
               <ScrollReveal direction="left" distance={64} duration={0.7} delay={0.05} threshold={0.06}>
-                <MainContentGrid liveAiringAnime={mappedAnime} />
+                <MainContentGrid liveAiringAnime={mappedAnime} visibleCount={visibleCount} />
               </ScrollReveal>
+
+              <div className="flex justify-center mt-8 mb-12">
+                <button
+                  type="button"
+                  onClick={async () => {
+                    if (!hasNextPage) return;
+                    await fetchNextPage();
+                    setVisibleCount((current) => current + 12);
+                  }}
+                  disabled={!hasNextPage || isFetchingNextPage}
+                  className="load-more-button"
+                >
+                  {isFetchingNextPage ? 'Loading more...' : hasNextPage ? 'Load more titles' : 'No more titles available'}
+                </button>
+              </div>
 
               {/* ── 3. Estimated Weekly Schedule — slides in from right ── */}
               <ScrollReveal direction="right" distance={64} duration={0.7} delay={0.05} threshold={0.06}>

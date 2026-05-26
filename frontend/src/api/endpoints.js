@@ -1,24 +1,17 @@
-import apiClient from '../services/api.client';
+import { jikan } from '../features/anime-catalog/services/jikanClient';
 import { kitsuService } from '../services/kitsuService';
-import { mal, hasMalClientId } from '../features/anime-catalog/services/malClient';
 import { filterHentai } from '../features/anime-catalog/utils/filters';
 
-// NOTE: Manga and Kitsu-specific features now use the Django backend proxy.
-
 export const fetchTopAnime = async (page = 1, filter = 'airing') => {
-  const payload = await apiClient.get('/catalog/top/anime', {
-    params: { page, filter, limit: 25 },
-  });
-  payload.data = filterHentai(payload.data);
-  return payload;
+  const payload = await jikan.get('/top/anime', { page, filter, limit: 25 });
+  const data = Array.isArray(payload.data) ? payload.data : [];
+  return { ...payload, data: filterHentai(data) };
 };
 
 export const searchAnime = async (query, page = 1) => {
-  const payload = await apiClient.get('/catalog/anime', {
-    params: { q: query, page, limit: 25 },
-  });
-  payload.data = filterHentai(payload.data);
-  return payload;
+  const payload = await jikan.get('/anime', { q: query, page, limit: 25 });
+  const data = Array.isArray(payload.data) ? payload.data : [];
+  return { ...payload, data: filterHentai(data) };
 };
 
 export const searchManga = async (query, page = 1) => {
@@ -66,23 +59,21 @@ export const fetchMangaCharacters = async (id) => {
 };
 
 export const fetchAnimeById = async (id) => {
-  const payload = await apiClient.get(`/catalog/anime/${id}/full`);
+  const payload = await jikan.get(`/anime/${id}/full`);
   return payload.data;
 };
 
 export const fetchAnimeCharacters = async (id) => {
-  const payload = await apiClient.get(`/catalog/anime/${id}/characters`);
-  return payload.data;
+  const payload = await jikan.get(`/anime/${id}/characters`);
+  return payload.data || [];
 };
 
 export const fetchSeasonalAnime = async (year, season, page = 1) => {
-  const payload = await apiClient.get(`/catalog/seasons/${year}/${season}`, {
-    params: { page, limit: 25 },
-  });
+  const payload = await jikan.get(`/seasons/${year}/${season}`, { page, limit: 25 });
   return payload;
 };
 
 export const fetchRecommendations = async (id) => {
-  const payload = await apiClient.get(`/catalog/anime/${id}/recommendations`);
-  return payload.data;
+  const payload = await jikan.get(`/anime/${id}/recommendations`);
+  return payload.data || [];
 };

@@ -12,7 +12,7 @@ const sidebarFilters = {
   Month: 'favorite'
 };
 
-export default function MainContentGrid({ liveAiringAnime }) {
+export default function MainContentGrid({ liveAiringAnime, visibleCount = 12 }) {
   const navigate = useNavigate();
   const [latestTab, setLatestTab] = useState('All');
   const [topTab, setTopTab] = useState('Day');
@@ -33,7 +33,7 @@ export default function MainContentGrid({ liveAiringAnime }) {
     // Distribute categories dynamically for high-fidelity tab filtering!
     const categories = ['Sub', 'Dub', 'Trending', 'Chinese', 'Random'];
     
-    return liveAiringAnime.slice(0, 12).map((item, idx) => {
+    return liveAiringAnime.slice(0, visibleCount).map((item, idx) => {
       const cat = categories[idx % categories.length];
       const hasDub = idx % 2 === 0;
       

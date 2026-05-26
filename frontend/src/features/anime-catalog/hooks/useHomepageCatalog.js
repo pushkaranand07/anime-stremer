@@ -1,20 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import apiClient from '../../../services/api.client';
+import { jikan } from '../services/jikanClient';
 
 async function fetchAllHomepageData() {
-  const popular = await apiClient.get('/catalog/top/anime', {
-    params: { filter: 'bypopularity', limit: 8 },
-  });
-  const seasonal = await apiClient.get('/catalog/seasons/now', {
-    params: { limit: 5 },
-  });
-  const newAdded = await apiClient.get('/catalog/anime', {
-    params: { order_by: 'start_date', sort: 'desc', limit: 5 },
-  });
-  const schedule = await apiClient.get('/catalog/schedules');
-  const completed = await apiClient.get('/catalog/anime', {
-    params: { status: 'complete', order_by: 'end_date', sort: 'desc', limit: 5 },
-  });
+  const popular = await jikan.get('/top/anime', { filter: 'bypopularity', limit: 8 });
+  const seasonal = await jikan.get('/seasons/now', { limit: 5 });
+  const newAdded = await jikan.get('/anime', { order_by: 'start_date', sort: 'desc', limit: 5 });
+  const schedule = await jikan.get('/schedules');
+  const completed = await jikan.get('/anime', { status: 'complete', order_by: 'end_date', sort: 'desc', limit: 5 });
+
   return { popular, seasonal, newAdded, schedule, completed };
 }
 
@@ -56,9 +49,7 @@ export const useTopAnimeLeaderboard = (filter = 'bypopularity') => {
   return useQuery({
     queryKey: ['anime', 'leaderboard', filter],
     queryFn: async () => {
-      const data = await apiClient.get('/catalog/top/anime', {
-        params: { filter, limit: 8 },
-      });
+      const data = await jikan.get('/top/anime', { filter, limit: 8 });
       return data?.data ?? [];
     },
     staleTime: 10 * 60 * 1000,
