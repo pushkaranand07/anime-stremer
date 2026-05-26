@@ -1,5 +1,5 @@
 import { jikan } from '../features/anime-catalog/services/jikanClient';
-import { kitsuService } from '../services/kitsuService';
+import { kitsuClient } from '../services/kitsuClient';
 import { filterHentai } from '../features/anime-catalog/utils/filters';
 
 export const fetchTopAnime = async (page = 1, filter = 'airing') => {
@@ -14,13 +14,15 @@ export const searchAnime = async (query, page = 1) => {
   return { ...payload, data: filterHentai(data) };
 };
 
+const KITSU_MANGA_PAGE_LIMIT = 20;
+
 export const searchManga = async (query, page = 1) => {
   const params = {
     'filter[text]': query,
-    'page[limit]': 25,
-    'page[offset]': (page - 1) * 25,
+    'page[limit]': KITSU_MANGA_PAGE_LIMIT,
+    'page[offset]': (page - 1) * KITSU_MANGA_PAGE_LIMIT,
   };
-  const payload = await kitsuService.getManga(params);
+  const payload = await kitsuClient.getManga(params);
   return {
     data: payload.items,
     pagination: {
@@ -32,16 +34,18 @@ export const searchManga = async (query, page = 1) => {
 };
 
 export const fetchMangaById = async (id) => {
-  return kitsuService.getMangaById(id);
+  return kitsuClient.getMangaById(id);
 };
 
 export const fetchMangaChapters = async (id) => {
-  return kitsuService.getMangaChapters(id, { 'page[limit]': 100, sort: 'number' });
+  return kitsuClient.getMangaChapters(id, { 'page[limit]': 20, sort: 'number' });
 };
 
 export const fetchMangaCharacters = async (id) => {
-  const response = await fetch(`https://kitsu.io/api/edge/manga/${id}/characters?include=character&page[limit]=12`);
-  const payload = await response.json();
+  const payload = await kitsuClient.getMangaCharacters(id, {
+    include: 'character',
+    'page[limit]': 12,
+  });
   if (!payload.data) return [];
   const includedCharacters = payload.included || [];
   return payload.data.map((mediaChar) => {
