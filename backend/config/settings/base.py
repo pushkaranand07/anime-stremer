@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from datetime import timedelta
 from urllib.parse import urlparse
 from decouple import config
 
@@ -12,7 +11,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-prod-env-key-for-fun-
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1').split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -22,21 +21,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # Third-party Apps
     'rest_framework',
-    'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'django_prometheus',
-    
+
     # Internal Apps
     'apps.user',
     'apps.auth_system',
-    'apps.sessions_app',
     'apps.favorites',
     'apps.streaming',
     'apps.anime_catalog',
+    'apps.core',
 ]
 
 MIDDLEWARE = [
@@ -86,7 +83,7 @@ if DATABASE_URL:
             'PASSWORD': parsed_db_url.password or config('DB_PASSWORD', default='postgres'),
             'HOST': parsed_db_url.hostname or config('DB_HOST', default='localhost'),
             'PORT': parsed_db_url.port or config('DB_PORT', default='5432'),
-            'CONN_MAX_AGE': 600,  # Connection reuse for up to 10 minutes
+            'CONN_MAX_AGE': 600,
         }
     }
 else:
@@ -98,7 +95,7 @@ else:
             'PASSWORD': config('DB_PASSWORD', default='postgres'),
             'HOST': config('DB_HOST', default='localhost'),
             'PORT': config('DB_PORT', default='5432'),
-            'CONN_MAX_AGE': 600,  # Connection reuse for up to 10 minutes
+            'CONN_MAX_AGE': 600,
         }
     }
 
@@ -119,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
         'OPTIONS': {
-            'min_length': 10,
+            'min_length': 8,  # relaxed for dev friendliness
         }
     },
     {
@@ -145,37 +142,62 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# REST Framework Configuration
+# ─────────────────────────────────────────────────────────────────────
+# Session-cookie authentication (replaces JWT completely)
+# ─────────────────────────────────────────────────────────────────────
+# Use the database-backed session engine so sessions survive server restarts.
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_NAME = 'animesession'
+SESSION_COOKIE_AGE = 7 * 24 * 60 * 60          # 7 days
+SESSION_COOKIE_HTTPONLY = True                   # JS cannot read cookie
+SESSION_COOKIE_SAMESITE = 'Lax'                  # Works cross-origin for GET, blocks CSRF on POST
+SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
+SESSION_SAVE_EVERY_REQUEST = False               # Only save when modified
+
+# ─────────────────────────────────────────────────────────────────────
+# CSRF
+# ─────────────────────────────────────────────────────────────────────
+CSRF_COOKIE_HTTPONLY = False          # Frontend JavaScript needs to read it to send X-CSRFToken header
+CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='').split(',') if config('CSRF_TRUSTED_ORIGINS', default='') else []
+
+# ─────────────────────────────────────────────────────────────────────
+# DRF — session + CSRF auth (no JWT at all)
+# ─────────────────────────────────────────────────────────────────────
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
     'DEFAULT_PAGINATION_CLASS': 'apps.core.pagination.StandardResultsSetPagination',
     'PAGE_SIZE': 20,
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '60/min',
+        'user': '120/min',
+        'login': '5/min',
+    },
 }
 
-# SimpleJWT settings for RS256 JWT
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'UPDATE_LAST_LOGIN': True,
-    'ALGORITHM': 'RS256',
-    'SIGNING_KEY': config('JWT_PRIVATE_KEY', default=''),
-    'VERIFYING_KEY': config('JWT_PUBLIC_KEY', default=''),
-    'AUDIENCE': None,
-    'ISSUER': None,
-    'JWK_URL': None,
-    'LEEWAY': 0,
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-}
+# Security hardening
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+X_FRAME_OPTIONS = 'DENY'
 
 # Redis Caching Config
 CACHES = {
@@ -200,6 +222,9 @@ KITSU_HEADERS = {
     'Content-Type': 'application/vnd.api+json',
 }
 
-# CORS configuration
+# CORS configuration — must allow credentials for session cookies to work
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='http://localhost:5173').split(',')
+
+# Expose CSRF header to the browser so Axios can read it
+CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']

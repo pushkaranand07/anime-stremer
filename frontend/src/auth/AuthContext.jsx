@@ -1,91 +1,114 @@
 import { createContext, useState, useEffect, useMemo } from 'react';
-import { axiosInstance } from './axiosInterceptor';
+import { axiosInstance, bootstrapCsrf } from './axiosInterceptor';
 import { useAuthStore } from './authStore';
 
 export const AuthContext = createContext(null);
 
+/**
+ * AuthProvider — pure session-cookie architecture.
+ *
+ * - On mount:
+ *   1. Fetches CSRF cookie via bootstrapCsrf()
+ *   2. Checks if an existing session cookie is valid via GET /auth/me/
+ * - Login / Logout / Signup:
+ *   Standard API calls. The browser handles the `animesession` cookie automatically.
+ */
 export function AuthProvider({ children }) {
-  const { user, accessToken, isAuthenticated, setAuth, clearAuth } = useAuthStore();
-  const [isInitializing, setIsInitializing] = useState(true);
-  const [refreshTimeout, setRefreshTimeout] = useState(null);
+  const { user, isAuthenticated, setAuth, clearAuth } = useAuthStore();
+  const [isInitializing, setInitializing] = useState(true);
+  const [isHydrating, setIsHydrating] = useState(true);
 
   useEffect(() => {
-    setIsInitializing(false);
-    return () => {
-      if (refreshTimeout) {
-        window.clearTimeout(refreshTimeout);
+    let cancelled = false;
+
+    async function hydrate() {
+      try {
+        // 1. Ensure CSRF cookie exists before any user action
+        await bootstrapCsrf();
+
+        // 2. Ask Django whether the session is active
+        const response = await axiosInstance.get('/auth/me/');
+        if (!cancelled && response?.user) {
+          setAuth(response.user);
+        } else if (!cancelled) {
+          clearAuth();
+        }
+      } catch {
+        if (!cancelled) clearAuth();
+      } finally {
+        if (!cancelled) {
+          setInitializing(false);
+          setIsHydrating(false);
+        }
       }
-    };
+    }
+
+    hydrate();
+    return () => { cancelled = true; };
   }, []);
 
-  const scheduleRefresh = (expiresIn) => {
-    if (refreshTimeout) {
-      window.clearTimeout(refreshTimeout);
-    }
-
-    const refreshDelay = Math.max((expiresIn || 1500) - 60, 30) * 1000;
-    const timeoutId = window.setTimeout(async () => {
-      try {
-        await refreshToken();
-      } catch (error) {
-        clearAuth();
-      }
-    }, refreshDelay);
-
-    setRefreshTimeout(timeoutId);
-  };
-
-  const login = async ({ username, email, password }) => {
+  /**
+   * login({ username|email, password, remember_me? })
+   */
+  const login = async ({ username, email, password, remember_me = false }) => {
+    await bootstrapCsrf();
     const response = await axiosInstance.post('/auth/login/', {
       username: username || email,
+      email: email || username,
       password,
+      remember_me,
     });
 
-    if (response?.access_token) {
-      setAuth({ username: response.user?.username || username || email || '' }, response.access_token);
-      if (response.expires_in) {
-        scheduleRefresh(response.expires_in);
-      }
-    }
-
-    return response;
-  };
-
-  const refreshToken = async () => {
-    const response = await axiosInstance.post('/auth/refresh/', {});
-    if (response?.access_token) {
-      setAuth({ username: response.user?.username || user?.username || '' }, response.access_token);
-      if (response.expires_in) {
-        scheduleRefresh(response.expires_in);
-      }
+    if (response?.user) {
+      setAuth(response.user);
     }
     return response;
   };
 
+  /**
+   * signup({ username, email, password })
+   */
+  const signup = async ({ username, email, password }) => {
+    await bootstrapCsrf();
+    const response = await axiosInstance.post('/auth/register/', {
+      username: username || (email ? email.split('@')[0] : 'user'),
+      email,
+      password,
+      password_confirm: password,
+    });
+
+    if (response?.user) {
+      setAuth(response.user);
+    }
+    return response;
+  };
+
+  /**
+   * logout()
+   */
   const logout = async () => {
     try {
       await axiosInstance.post('/auth/logout/', {});
-    } catch (_) {
-      // Ignore network failures, clear local state anyway
+    } catch {
+      // Clear client state even if network call fails
     }
     clearAuth();
-    if (refreshTimeout) {
-      window.clearTimeout(refreshTimeout);
-    }
   };
 
   const value = useMemo(
     () => ({
       user,
-      accessToken,
       isAuthenticated,
-      isInitializing,
+      isInitializing: isInitializing || isHydrating,
       login,
-      refreshToken,
+      signup,
+      register: signup,
       logout,
     }),
-    [user, accessToken, isAuthenticated, isInitializing]
+    [user, isAuthenticated, isInitializing, isHydrating]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
+
+export default AuthContext;

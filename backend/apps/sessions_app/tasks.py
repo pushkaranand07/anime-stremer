@@ -1,17 +1,17 @@
 from celery import shared_task
 from django.utils import timezone
-from .models import UserSession
+from django.contrib.sessions.backends.db import SessionStore
+from django.contrib.sessions.models import Session
+
 
 @shared_task(name="cleanup_expired_sessions")
 def cleanup_expired_sessions():
     """
-    Cron-style task designed to execute hourly.
-    Soft-deletes expired and revoked sessions to keep DB footprint minimal.
+    Celery periodic task — purges expired Django sessions from the database.
+    Django's built-in `clearsessions` management command does the same thing,
+    but having it as a Celery task allows scheduling via the beat scheduler
+    without a cron entry.
     """
     now = timezone.now()
-    deleted_count, _ = UserSession.objects.filter(
-        expires_at__lt=now, 
-        is_active=True
-    ).update(is_active=False, revoked_at=now)
-    
-    return f"Purged {deleted_count} expired sessions."
+    deleted_count, _ = Session.objects.filter(expire_date__lt=now).delete()
+    return f"Purged {deleted_count} expired Django sessions."

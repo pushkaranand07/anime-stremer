@@ -1,75 +1,70 @@
-import axios, { InternalAxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import { useAuthStore } from './authStore';
 
-const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1';
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
 
+/**
+ * Shared Axios instance — session-cookie edition.
+ */
 export const axiosInstance = axios.create({
   baseURL: API_URL,
-  withCredentials: true, // Crucial for reading HTTP-only cookies
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 15000,
 });
 
+function getCookie(name: string): string | null {
+  const match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+  return match ? decodeURIComponent(match[3]) : null;
+}
+
+// ─── Request interceptor: attach CSRF token ───────────────────────────────────
 axiosInstance.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    const token = useAuthStore.getState().accessToken;
-    if (token && config.headers) {
-      config.headers.Authorization = `Bearer ${token}`;
+  (config) => {
+    const mutatingMethods = ['POST', 'PUT', 'PATCH', 'DELETE'];
+    if (config.method && mutatingMethods.includes(config.method.toUpperCase())) {
+      const csrfToken = getCookie('csrftoken');
+      if (csrfToken && config.headers) {
+        config.headers['X-CSRFToken'] = csrfToken;
+      }
     }
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-let isRefreshing = false;
-let failedQueue: any[] = [];
-
-const processQueue = (error: any, token: string | null = null) => {
-  failedQueue.forEach((prom) => {
-    if (error) prom.reject(error);
-    else prom.resolve(token);
-  });
-  failedQueue = [];
-};
-
+// ─── Response interceptor: unwrap data, handle auth errors ──────────────────
 axiosInstance.interceptors.response.use(
   (response) => response.data,
   async (error) => {
-    const originalRequest = error.config;
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      if (isRefreshing) {
-        return new Promise((resolve, reject) => {
-          failedQueue.push({ resolve, reject });
-        })
-          .then((token) => {
-            originalRequest.headers.Authorization = `Bearer ${token}`;
-            return axiosInstance(originalRequest);
-          })
-          .catch((err) => Promise.reject(err));
-      }
+    // Extract server-provided descriptive error message
+    const serverMessage =
+      error.response?.data?.error ||
+      error.response?.data?.detail ||
+      error.response?.data?.message;
 
-      originalRequest._retry = true;
-      isRefreshing = true;
+    if (serverMessage && typeof serverMessage === 'string') {
+      error.message = serverMessage;
+    }
 
-      try {
-        const refreshResponse = await axios.post(`${API_URL}/auth/refresh-token`, {}, { withCredentials: true });
-        const newAccessToken = refreshResponse.data.access_token;
-        
-        useAuthStore.getState().setAuth(refreshResponse.data.user, newAccessToken);
-        processQueue(null, newAccessToken);
-        
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-        return axiosInstance(originalRequest);
-      } catch (refreshErr) {
-        processQueue(refreshErr, null);
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      if (!error.config?.url?.includes('/auth/login/')) {
         useAuthStore.getState().clearAuth();
-        return Promise.reject(refreshErr);
-      } finally {
-        isRefreshing = false;
       }
     }
     return Promise.reject(error);
   }
 );
+
 export default axiosInstance;
+
+// ─── CSRF bootstrap ─────────────────────────────────────────────────────────
+export async function bootstrapCsrf(): Promise<void> {
+  try {
+    await axios.get(`${API_URL}/auth/csrf/`, { withCredentials: true });
+  } catch {
+    // Non-fatal; the CSRF cookie may already exist
+  }
+}
